@@ -7,6 +7,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.util.Set;
+
 public class OgameWeb {
 
     public static WebDriver webDriver = null;
@@ -44,6 +46,25 @@ public class OgameWeb {
     public static void scrollToElement(WebElement e) {
         JavascriptExecutor js = (JavascriptExecutor) webDriver;
         js.executeScript("arguments[0].scrollIntoView();", e);
+    }
+
+
+    public String pageTitle(){
+        return webDriver.getTitle();
+    }
+
+    /**
+     * Switch tabs.
+     * @param tabText Text which tab contains.
+     */
+    public void switchTab(String tabText){
+        Set<String> s = OgameWeb.webDriver.getWindowHandles();
+        for(String child : s)
+        {
+            OgameWeb.webDriver.switchTo().window(child);
+            if(OgameWeb.webDriver.getTitle().contains(tabText))
+                break;
+        }
     }
 
     public void setPath(String path) {
