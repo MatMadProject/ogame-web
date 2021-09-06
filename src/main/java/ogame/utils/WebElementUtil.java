@@ -22,4 +22,16 @@ public class WebElementUtil
         }
         return false;
     }
+
+    /**
+     * Sprawdza czy attrybut webelementu zawiera określony ciąg znaków.
+     * Checks that the declared attribute of webelement contains text.
+     * @param element ***
+     * @param attr name of attribute (e.g "class","id")
+     * @param s Contained text.
+     * @return If attribute contains text, returns true.
+     */
+    public static boolean attrContainsText(WebElement element, String attr, String s){
+        return element.getAttribute(attr).contains(s);
+    }
 }
