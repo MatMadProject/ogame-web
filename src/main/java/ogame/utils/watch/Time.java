@@ -11,8 +11,7 @@ public class Time {
      * Actual time in format hh:mm:ss.
      * @return Actual time.
      */
-    public static String get()
-    {
+    public static String get() {
         long currentDateTime = System.currentTimeMillis();
         Date currentDate = new Date(currentDateTime);
         SimpleDateFormat watchFormat = new SimpleDateFormat("HH:mm:ss");
@@ -27,8 +26,7 @@ public class Time {
      * @param milliSecTime Czas w milisekundach; Time in milliseconds.
      * @return Time.
      */
-    public static String get(long milliSecTime)
-    {
+    public static String get(long milliSecTime) {
         Date currentDate = new Date(milliSecTime);
         SimpleDateFormat watchFormat = new SimpleDateFormat("HH:mm:ss");
         return watchFormat.format(currentDate);

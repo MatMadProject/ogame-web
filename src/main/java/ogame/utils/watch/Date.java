@@ -11,8 +11,7 @@ public class Date
      * Actual date in format dd.MM.yyyy.
      * @return Actual date.
      */
-    public static String get()
-    {
+    public static String get() {
         long currentDateTime = System.currentTimeMillis();
         java.util.Date currentDate = new java.util.Date(currentDateTime);
         SimpleDateFormat watchFormat = new SimpleDateFormat("dd.MM.yyyy");
@@ -26,8 +25,7 @@ public class Date
      * Actual date in format yyyy.MM.dd.
      * @return Actual date.
      */
-    public static String getSQL()
-    {
+    public static String getSQL() {
         long currentDateTime = System.currentTimeMillis();
         java.util.Date currentDate = new java.util.Date(currentDateTime);
         SimpleDateFormat watchFormat = new SimpleDateFormat("yyyy.MM.dd");
@@ -42,8 +40,7 @@ public class Date
      * @param milliSecTime Czas w milisekundach; Time in milliseconds.
      * @return Date.
      */
-    public static String get(long milliSecTime)
-    {
+    public static String get(long milliSecTime) {
         java.util.Date currentDate = new java.util.Date(milliSecTime);
         SimpleDateFormat watchFormat = new SimpleDateFormat("dd.MM.yyyy");
         return watchFormat.format(currentDate);

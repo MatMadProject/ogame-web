@@ -1,5 +1,9 @@
 package ogame.utils;
 
+import ogame.tabs.Supplies;
+import ogame.utils.log.AppLog;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
@@ -33,5 +37,16 @@ public class WebElementUtil
      */
     public static boolean attrContainsText(WebElement element, String attr, String s){
         return element.getAttribute(attr).contains(s);
+    }
+
+    public static boolean isWebElementVisible(WebDriver w, String xPathElemnt){
+        try{
+            WebElement e =  w.findElement(By.xpath(xPathElemnt));
+            return true;
+        }
+        catch (Exception e){
+            AppLog.printOnConsole(Supplies.class.getName(),1,"When it checks, the webelement is visible.");
+        }
+        return false;
     }
 }
