@@ -1,6 +1,5 @@
 package ogame;
 
-//import app.data.StaticStrings;
 import ogame.utils.log.*;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -12,7 +11,7 @@ import java.util.Set;
 public class OgameWeb {
 
     public static WebDriver webDriver = null;
-    private String path = "src/main/resources/chromedriver.exe";
+    private static String path = "src/main/resources/chromedriver.exe";
     private static String WEB_ADRESS = null;
     public static boolean closed = false;
 
@@ -22,13 +21,13 @@ public class OgameWeb {
     /**
      * Close Google Chrome.
      */
-    public void close() {
+    public static void close() {
         AppLog.print(OgameWeb.class.getName(),0,"Google Chrome closed.");
         webDriver.quit();
         closed = true;
     }
 
-    public void open(){
+    public static void open(){
         //Chrome
         System.setProperty("webdriver.chrome.driver", path);
         webDriver = new ChromeDriver();
@@ -49,7 +48,7 @@ public class OgameWeb {
     }
 
 
-    public String pageTitle(){
+    public static String pageTitle(){
         return webDriver.getTitle();
     }
 
@@ -57,18 +56,17 @@ public class OgameWeb {
      * Switch tabs.
      * @param tabText Text which tab contains.
      */
-    public void switchTab(String tabText){
+    public static void switchTab(String tabText){
         Set<String> s = OgameWeb.webDriver.getWindowHandles();
-        for(String child : s)
-        {
+        for(String child : s) {
             OgameWeb.webDriver.switchTo().window(child);
             if(OgameWeb.webDriver.getTitle().contains(tabText))
                 break;
         }
     }
 
-    public void setPath(String path) {
-        this.path = path;
+    public static void setPath(String path) {
+        OgameWeb.path = path;
     }
 
     public String getPath() {
