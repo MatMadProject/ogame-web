@@ -55,4 +55,28 @@ public class StringFactory {
         }
         return s.toString();
     }
+
+    /**
+     * Checks  text to see if it contains a string.
+     * @param s checked text.
+     * @param containedString String which has to text contains.
+     * @return Return true if text contains a string.
+     */
+    public static boolean isTextContains(String s, String containedString){
+        return s.contains(containedString);
+    }
+
+    /**
+     * Checks  text to see if it contains a string.
+     * @param s checked text.
+     * @param containedStrings An array of strings that may contain text.
+     * @return Return true if text contains a string.
+     */
+    public static boolean isTextContains(String s, String [] containedStrings){
+        for(String tmp : containedStrings){
+            if(s.contains(tmp))
+                return true;
+        }
+        return false;
+    }
 }

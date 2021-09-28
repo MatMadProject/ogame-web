@@ -20,15 +20,15 @@ public class Date
 
     /**
      * PL
-     * Aktualnd data w formacie yyyy.MM.dd.
+     * Aktualnd data w formacie yyyy-MM-dd.
      * EN
-     * Actual date in format yyyy.MM.dd.
+     * Actual date in format yyyy-MM-dd.
      * @return Actual date.
      */
     public static String getSQL() {
         long currentDateTime = System.currentTimeMillis();
         java.util.Date currentDate = new java.util.Date(currentDateTime);
-        SimpleDateFormat watchFormat = new SimpleDateFormat("yyyy.MM.dd");
+        SimpleDateFormat watchFormat = new SimpleDateFormat("yyyy-MM-dd");
         return watchFormat.format(currentDate);
     }
 

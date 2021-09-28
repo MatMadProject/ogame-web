@@ -15,7 +15,7 @@ public class OgameClock {
             String value = e.getText().split(" ")[0];
             return value;
         } catch (Exception ex) {
-            AppLog.printOnConsole(ResourcesBar.class.getName(), 1, "Doesn't download date.");
+            AppLog.printOnConsole(OgameClock.class.getName(), 1, "Doesn't download date.");
         }
         return "00.00.0000";
     }
@@ -26,7 +26,7 @@ public class OgameClock {
             String value = e.getText().split(" ")[1];
             return value;
         } catch (Exception ex) {
-            AppLog.printOnConsole(ResourcesBar.class.getName(), 1, "Doesn't download time.");
+            AppLog.printOnConsole(OgameClock.class.getName(), 1, "Doesn't download time.");
         }
         return "00:00:00";
     }
@@ -37,7 +37,7 @@ public class OgameClock {
             String value = e.getText();
             return value;
         } catch (Exception ex) {
-            AppLog.printOnConsole(ResourcesBar.class.getName(), 1, "Doesn't download date and time.");
+            AppLog.printOnConsole(OgameClock.class.getName(), 1, "Doesn't download date and time.");
         }
         return "00.00.0000 00:00:00";
     }
