@@ -45,4 +45,17 @@ public class Date
         SimpleDateFormat watchFormat = new SimpleDateFormat("dd.MM.yyyy");
         return watchFormat.format(currentDate);
     }
+
+    /**
+     * PL
+     * Aktualnd data w formacie yyyy-MM-dd.
+     * EN
+     * Actual date in format yyyy-MM-dd.
+     * @return Actual date.
+     */
+    public static String getSQL(long milisecTime) {
+        java.util.Date currentDate = new java.util.Date(milisecTime);
+        SimpleDateFormat watchFormat = new SimpleDateFormat("yyyy-MM-dd");
+        return watchFormat.format(currentDate);
+    }
 }
