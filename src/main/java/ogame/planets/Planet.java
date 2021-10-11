@@ -1,5 +1,8 @@
 package ogame.planets;
 
+import ogame.OgameWeb;
+import ogame.utils.Waiter;
+
 public class Planet {
     private final String id;
     private final int positionOnList;
@@ -9,13 +12,24 @@ public class Planet {
     private String name = "none";
     private Coordinate coordinate = null;
     private Moon moon = null;
+    private long updateTime;
 
 
     public Planet(String id, int positionOnList) {
         this.id = id;
         this.positionOnList = positionOnList;
     }
-
+    /*
+    Execute
+     */
+    public void click(){
+        if(positionOnList != 0)
+            PlanetsList.clickOnPlanet(OgameWeb.webDriver,positionOnList);
+    }
+    public void clickOnMoon(){
+        if(positionOnList != 0)
+            PlanetsList.clickOnMoon(OgameWeb.webDriver,positionOnList);
+    }
     /*
     SETTERS
      */
@@ -43,6 +57,11 @@ public class Planet {
     public void setDiameter(int diameter) {
         this.diameter = diameter;
     }
+
+    public void setUpdateTime(long updateTime) {
+        this.updateTime = updateTime;
+    }
+
     /*
     GETTERS
      */
@@ -77,6 +96,10 @@ public class Planet {
 
     public int getPositionOnList() {
         return positionOnList;
+    }
+
+    public long getUpdateTime() {
+        return updateTime;
     }
 
     @Override

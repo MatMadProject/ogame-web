@@ -113,6 +113,8 @@ public class PlanetsList {
 
     public static boolean clickOnPlanet(WebDriver w, int pos){
         int a = numberOfPlanet(w);
+        if(a == 1 && !planetHasMoon(OgameWeb.webDriver,pos))
+            return true;
         if(pos <= a){
             Planet selectedPlanet = selectedPlanet(OgameWeb.webDriver);
             if(selectedPlanet != null && selectedPlanet.getPositionOnList() == pos)
