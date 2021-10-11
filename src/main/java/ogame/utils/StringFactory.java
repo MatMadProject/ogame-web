@@ -39,7 +39,23 @@ public class StringFactory {
         }
         return true;
     }
+    /**
+     * PL
+     * Sprawdza czy tekst zawiera tylko z liter lub cyfr.
+     * EN
+     * Checks the string contains only letters and digits
+     * @param text
+     * @return True if string contains only letters and digits.
+     */
+    public static boolean isDigit(String text) {
+        try{
+            Integer.parseInt(text);
+            return true;
+        }catch (NumberFormatException ignored) {
 
+        }
+        return false;
+    }
     /**
      * Deletes all chars inside text.
      * @param ch Char wchich will delete.

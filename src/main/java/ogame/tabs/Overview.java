@@ -1,6 +1,7 @@
 package ogame.tabs;
 
 import ogame.FinalXPath;
+import ogame.utils.StringFactory;
 import ogame.utils.log.AppLog;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -58,7 +59,6 @@ public class Overview
             WebElement e =  w.findElement(By.xpath(OVERVIEW_BUTTON));
             e.click();
             return true;
-
         }
         catch (Exception e){
             AppLog.printOnConsole(Overview.class.getName(),1,"While trying to click on a tab.");
@@ -132,14 +132,28 @@ public class Overview
         if(visible(w)) {
             try {
                 WebElement e =  w.findElement(By.xpath(TEMPERATURE_PLANET_CONTENT));
-                String s = e.getText().split(" ")[1];
-                return Integer.parseInt(s);
+                String [] tab = e.getText().split(" ");
+                for(String s : tab){
+                    if(StringFactory.isDigit(s))
+                        return Integer.parseInt(s);
+                }
             }
             catch (Exception e) {
                 AppLog.printOnConsole(Overview.class.getName(),1,"Doesn't download minimum temperature of planet.");
             }
         }
         return -1;
+//        if(visible(w)) {
+//            try {
+//                WebElement e =  w.findElement(By.xpath(TEMPERATURE_PLANET_CONTENT));
+//                String s = e.getText().split(" ")[1];
+//                return Integer.parseInt(s);
+//            }
+//            catch (Exception e) {
+//                AppLog.printOnConsole(Overview.class.getName(),1,"Doesn't download minimum temperature of planet.");
+//            }
+//        }
+//        return -1;
     }
 
     /**
@@ -151,14 +165,29 @@ public class Overview
         if(visible(w)) {
             try {
                 WebElement e =  w.findElement(By.xpath(TEMPERATURE_PLANET_CONTENT));
-                String s = e.getText().split(" ")[4];
-                return Integer.parseInt(s);
+                String [] tab = e.getText().split(" ");
+                for(int i = 2; i < tab.length; i++){
+                    if(StringFactory.isDigit(tab[i]))
+                        return Integer.parseInt(tab[i]);
+                }
+
             }
             catch (Exception e){
                 AppLog.printOnConsole(Overview.class.getName(),1,"Doesn't download maximum temperature of planet.");
             }
         }
         return -1;
+//        if(visible(w)) {
+//            try {
+//                WebElement e =  w.findElement(By.xpath(TEMPERATURE_PLANET_CONTENT));
+//                String s = e.getText().split(" ")[4];
+//                return Integer.parseInt(s);
+//            }
+//            catch (Exception e){
+//                AppLog.printOnConsole(Overview.class.getName(),1,"Doesn't download maximum temperature of planet.");
+//            }
+//        }
+//        return -1;
     }
 
     /**

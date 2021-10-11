@@ -14,7 +14,6 @@ public class Planet {
     private Moon moon = null;
     private long updateTime;
 
-
     public Planet(String id, int positionOnList) {
         this.id = id;
         this.positionOnList = positionOnList;
@@ -22,13 +21,15 @@ public class Planet {
     /*
     Execute
      */
-    public void click(){
+    public boolean click(){
         if(positionOnList != 0)
-            PlanetsList.clickOnPlanet(OgameWeb.webDriver,positionOnList);
+            return PlanetsList.clickOnPlanet(OgameWeb.webDriver,positionOnList);
+        return false;
     }
-    public void clickOnMoon(){
+    public boolean clickOnMoon(){
         if(positionOnList != 0)
-            PlanetsList.clickOnMoon(OgameWeb.webDriver,positionOnList);
+            return PlanetsList.clickOnMoon(OgameWeb.webDriver,positionOnList);
+        return false;
     }
     /*
     SETTERS
