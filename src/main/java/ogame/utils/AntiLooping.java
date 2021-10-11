@@ -13,7 +13,7 @@ public class AntiLooping {
         executeCount = 0;
     }
 
-    public void count(){
+    private void count(){
         executeCount++;
     }
 
@@ -21,7 +21,7 @@ public class AntiLooping {
      * Checks if executeCount is greater tha maxExecute;
      * @return If is greater returns true;
      */
-    public boolean isExecuteHigherThanMaxExecute(){
+    private boolean isExecuteHigherThanMaxExecute(){
         return executeCount > maxExecuteCount;
     }
 

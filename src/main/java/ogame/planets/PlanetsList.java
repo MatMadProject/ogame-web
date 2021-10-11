@@ -114,6 +114,10 @@ public class PlanetsList {
     public static boolean clickOnPlanet(WebDriver w, int pos){
         int a = numberOfPlanet(w);
         if(pos <= a){
+            Planet selectedPlanet = selectedPlanet(OgameWeb.webDriver);
+            if(selectedPlanet != null && selectedPlanet.getPositionOnList() == pos)
+                return true;
+
             PLANET_CONTAINER.setEdit(pos);
             WebElement e = w.findElement(By.xpath(PLANET_CONTAINER.get().concat(PLANET_IMAGE)));
             OgameWeb.scrollToElement(e);
@@ -126,6 +130,9 @@ public class PlanetsList {
     public static boolean clickOnMoon(WebDriver w, int pos){
         int a = numberOfPlanet(w);
         if(pos <= a){
+            Planet selectedPlanet = selectedMoon(OgameWeb.webDriver);
+            if(selectedPlanet != null && selectedPlanet.getPositionOnList() == pos)
+                return true;
             PLANET_CONTAINER.setEdit(pos);
             WebElement e = w.findElement(By.xpath(PLANET_CONTAINER.get().concat(MOON_IMAGE)));
             OgameWeb.scrollToElement(e);
