@@ -13,16 +13,16 @@ import java.util.List;
 
 public class PlanetsList {
 
-    public static final String PLANETS_LIST_CONTAINER = "//*[@id=\"planetList\"]";
-    public static final String NUMBER_OF_PLANETS = "//*[@id=\"countColonies\"]/p/span";
+    private static final String PLANETS_LIST_CONTAINER = "//*[@id=\"planetList\"]";
+    private static final String NUMBER_OF_PLANETS = "//*[@id=\"countColonies\"]/p/span";
     private static final String PLANET_IMAGE = "/a[1]/img";
     private static final String MOON_IMAGE = "/a[2]/img";
     private static final String HIGHTLIGHT_PLANET = "hightlightPlanet";
     private static final String HIGHTLIGHT_MOON = "hightlightMoon";
     private static final String CONTAINS_MOON = "moonlink";
-    public static final WebElementPath PLANET_CONTAINER = new WebElementPath(PLANETS_LIST_CONTAINER.concat("/div["),"]");
-    public static final WebElementPath NAME_OF_PLANET = new WebElementPath(PLANETS_LIST_CONTAINER.concat("/div["),"]/a[1]/span[1]");
-    public static final WebElementPath COORDINATE_OF_PLANET = new WebElementPath(PLANETS_LIST_CONTAINER.concat("/div["),"]/a[1]/span[2]");
+    private static final WebElementPath PLANET_CONTAINER = new WebElementPath(PLANETS_LIST_CONTAINER.concat("/div["),"]");
+    private static final WebElementPath NAME_OF_PLANET = new WebElementPath(PLANETS_LIST_CONTAINER.concat("/div["),"]/a[1]/span[1]");
+    private static final WebElementPath COORDINATE_OF_PLANET = new WebElementPath(PLANETS_LIST_CONTAINER.concat("/div["),"]/a[1]/span[2]");
 
     public static int numberOfPlanet(WebDriver w) {
         try {
