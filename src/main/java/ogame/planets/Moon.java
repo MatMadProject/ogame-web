@@ -1,5 +1,11 @@
 package ogame.planets;
 
+import ogame.buildings.Building;
+import ogame.buildings.DataTechnology;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Moon {
     private final int positionOnList;
     private int diameter;
@@ -7,9 +13,15 @@ public class Moon {
     private Fields fields = null;
     private String name = "none";
     private Coordinate coordinate = null;
+    private List<Building> buildings;
+
 
     public Moon(int positionOnList) {
         this.positionOnList = positionOnList;
+
+        buildings = new ArrayList<>();
+//        for(DataTechnology dataTechnology : DataTechnology.values()){
+//            buildings.add(new Building(dataTechnology.name(),dataTechnology.getValue()));
     }
 
     /*

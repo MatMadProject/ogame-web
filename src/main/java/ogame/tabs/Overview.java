@@ -143,17 +143,6 @@ public class Overview
             }
         }
         return -1;
-//        if(visible(w)) {
-//            try {
-//                WebElement e =  w.findElement(By.xpath(TEMPERATURE_PLANET_CONTENT));
-//                String s = e.getText().split(" ")[1];
-//                return Integer.parseInt(s);
-//            }
-//            catch (Exception e) {
-//                AppLog.printOnConsole(Overview.class.getName(),1,"Doesn't download minimum temperature of planet.");
-//            }
-//        }
-//        return -1;
     }
 
     /**
@@ -177,17 +166,6 @@ public class Overview
             }
         }
         return -1;
-//        if(visible(w)) {
-//            try {
-//                WebElement e =  w.findElement(By.xpath(TEMPERATURE_PLANET_CONTENT));
-//                String s = e.getText().split(" ")[4];
-//                return Integer.parseInt(s);
-//            }
-//            catch (Exception e){
-//                AppLog.printOnConsole(Overview.class.getName(),1,"Doesn't download maximum temperature of planet.");
-//            }
-//        }
-//        return -1;
     }
 
     /**

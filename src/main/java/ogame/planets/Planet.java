@@ -1,7 +1,12 @@
 package ogame.planets;
 
 import ogame.OgameWeb;
-import ogame.utils.Waiter;
+import ogame.buildings.Building;
+import ogame.buildings.DataTechnology;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class Planet {
     private final String id;
@@ -12,11 +17,21 @@ public class Planet {
     private String name = "none";
     private Coordinate coordinate = null;
     private Moon moon = null;
+    private ResourcesProduction resourcesProduction;
+    private Resources resources;
+    private List<Building> buildings;
     private long updateTime;
 
     public Planet(String id, int positionOnList) {
         this.id = id;
         this.positionOnList = positionOnList;
+        this.resourcesProduction = new ResourcesProduction();
+        this.resources = new Resources(0,0,0,0);
+
+        buildings = new ArrayList<>();
+        for(DataTechnology dataTechnology : DataTechnology.values()){
+            buildings.add(new Building(dataTechnology.name(),dataTechnology.getValue()));
+        }
     }
     /*
     Execute
@@ -101,6 +116,22 @@ public class Planet {
 
     public long getUpdateTime() {
         return updateTime;
+    }
+
+    public ResourcesProduction getResourcesProduction() {
+        return resourcesProduction;
+    }
+
+    public Building getBuilding(String dataTechnology) {
+        for(Building building : buildings){
+            if(building.getDataTechnology().equals(dataTechnology))
+                return building;
+        }
+        return null;
+    }
+
+    public Resources getResources() {
+        return resources;
     }
 
     @Override

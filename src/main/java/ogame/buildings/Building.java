@@ -4,17 +4,18 @@ import ogame.Status;
 import ogame.watch.ProductionTime;
 
 public class Building {
+
     private int level;
     private String localName;
     private final String name;
     private Status status;
     private ProductionTime productionTime;
     private RequiredResources requiredResources;
-    private final String dataTechnology;
+    private final DataTechnology dataTechnology;
 
     public Building(String name, String dataTechnology) {
         this.name = name;
-        this.dataTechnology = dataTechnology;
+        this.dataTechnology = DataTechnology.getFromValue(dataTechnology);
     }
 
     public int getLevel() {
@@ -41,7 +42,7 @@ public class Building {
         return requiredResources;
     }
 
-    public String getDataTechnology() {
+    public DataTechnology getDataTechnology() {
         return dataTechnology;
     }
 
