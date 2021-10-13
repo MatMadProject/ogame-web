@@ -130,6 +130,14 @@ public class Planet {
         return null;
     }
 
+    public Building getBuilding(DataTechnology dataTechnology) {
+        for(Building building : buildings){
+            if(building.getDataTechnology().equals(dataTechnology))
+                return building;
+        }
+        return null;
+    }
+
     public Resources getResources() {
         return resources;
     }

@@ -248,17 +248,17 @@ public class Supplies {
         return Status.UNDEFINED;
     }
 
-    public static int dataTechnologyOfBuilding(WebDriver w, int pos) {
+    public static String dataTechnologyOfBuilding(WebDriver w, int pos) {
         try {
             BUILDINGS_CONTAINER.setEdit(pos);
             WebElement e = w.findElement(By.xpath(BUILDINGS_CONTAINER.get()));
             String s = e.getAttribute("data-technology");
-            return Integer.parseInt(s);
+            return s;
         }
         catch (Exception ex) {
             AppLog.printOnConsole(Supplies.class.getName(),1,"Doesn't download data technology of " + DataTechnology.getFromListIndex(pos));
         }
-        return -1;
+        return "-1";
     }
 
     public static String localNameOfBuilding(WebDriver w, int pos) {
