@@ -1,5 +1,7 @@
 package ogame.utils;
 
+import java.text.DecimalFormat;
+
 public class StringFactory {
 
     /**
@@ -71,6 +73,39 @@ public class StringFactory {
         }
         return s.toString();
     }
+
+//    /**
+//     * Formats digit to thousand format. [1000] -> [1.000]
+//     * @param digit Digit
+//     * @return Digit in format.
+//     */
+//    public static String thousandSeparator(String digit) {
+//        DecimalFormat  decimalFormat = new DecimalFormat("#,###");
+//
+//        return decimalFormat.format(Integer.parseInt(digit));
+//    }
+//
+//    /**
+//     * Formats digit to thousand format. [1000] -> [1.000]
+//     * @param digit Digit
+//     * @return Digit in format.
+//     */
+//    public static String thousandSeparator(double digit) {
+//        DecimalFormat  decimalFormat = new DecimalFormat("#,###.");
+//
+//        return decimalFormat.format(digit);
+//    }
+//
+//    /**
+//     * Formats digit to thousand format. [1000] -> [1.000]
+//     * @param digit Digit
+//     * @return Digit in format.
+//     */
+//    public static String thousandSeparator(int digit) {
+//        DecimalFormat  decimalFormat = new DecimalFormat("#,###.");
+//
+//        return decimalFormat.format(digit);
+//    }
 
     /**
      * Checks  text to see if it contains a string.

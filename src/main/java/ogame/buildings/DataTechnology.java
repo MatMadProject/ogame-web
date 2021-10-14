@@ -1,37 +1,46 @@
 package ogame.buildings;
 
+import ogame.planets.Type;
+
 public enum DataTechnology {
-    METAL_MINE ("1",1),
-    CRYSTAL_MINE ("2",2),
-    DEUTERIUM_SYNTHESIZER ("3",3),
-    SOLAR_PLANT ("4",4),
-    FUSION_PLANT ("12",5),
-    SOLAR_SATELITE ("212",6),
-    RESBUGGY ("217",7),
-    METAL_STORAGE ("22",8),
-    CRYSTAL_STORAGE ("23",9),
-    DEUTERIUM_STORAGE ("24",10),
-    ROBOTICS_FACTORY ("14",1),
-    SHIPYARD ("21",2),
-    RESEARCH_LABORATORY ("31",3),
-    ALLIANCE_DEPOT ("341",4),
-    MISSILE_SILO ("44",5),
-    NANITE_FACTORY ("25",6),
-    TERRAFORMER ("33",7),
-    REPAIR_DOCK ("36",8),
-    UNDEFINED ("0",0);
+    METAL_MINE ("1",1,Type.PRODUCTION),
+    CRYSTAL_MINE ("2",2,Type.PRODUCTION),
+    DEUTERIUM_SYNTHESIZER ("3",3,Type.PRODUCTION),
+    SOLAR_PLANT ("4",4,Type.PRODUCTION),
+    FUSION_PLANT ("12",5,Type.PRODUCTION),
+    SOLAR_SATELITE ("212",6,Type.PRODUCTION),
+    RESBUGGY ("217",7,Type.PRODUCTION),
+    METAL_STORAGE ("22",8,Type.PRODUCTION),
+    CRYSTAL_STORAGE ("23",9,Type.PRODUCTION),
+    DEUTERIUM_STORAGE ("24",10,Type.PRODUCTION),
+    ROBOTICS_FACTORY ("14",1, Type.TECHNOLOGIES),
+    SHIPYARD ("21",2, Type.TECHNOLOGIES),
+    RESEARCH_LABORATORY ("31",3, Type.TECHNOLOGIES),
+    ALLIANCE_DEPOT ("341",4, Type.TECHNOLOGIES),
+    MISSILE_SILO ("44",5, Type.TECHNOLOGIES),
+    NANITE_FACTORY ("25",6, Type.TECHNOLOGIES),
+    TERRAFORMER ("33",7, Type.TECHNOLOGIES),
+    REPAIR_DOCK ("36",8, Type.TECHNOLOGIES),
+    UNDEFINED ("0",0, Type.TECHNOLOGIES);
 
     private final String VALUE;
     private final int LIST_INDEX;
+    private final Type TYPE;
 
-    DataTechnology(String VALUE, int LIST_INDEX) {
+    DataTechnology(String VALUE, int LIST_INDEX, Type type) {
         this.VALUE = VALUE;
         this.LIST_INDEX = LIST_INDEX;
+        this.TYPE = type;
     }
 
     public String getValue() {
         return VALUE;
     }
+
+    public Type getType() {
+        return TYPE;
+    }
+
     public int getListIndex() {
         return LIST_INDEX;
     }
