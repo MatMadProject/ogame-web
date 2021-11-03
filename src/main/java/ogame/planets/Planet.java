@@ -4,11 +4,14 @@ import ogame.OgameWeb;
 import ogame.buildings.Building;
 import ogame.buildings.DataTechnology;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class Planet {
+public class Planet implements Serializable {
+
+    private static final long serialVersionUID = 1992L;
     private final String id;
     private final int positionOnList;
     private int diameter;

@@ -1,6 +1,10 @@
 package ogame.planets;
 
-public class Fields {
+import java.io.Serializable;
+
+public class Fields implements Serializable {
+
+    private static final long serialVersionUID = 1992L;
     private int builtUp;
     private int max;
 

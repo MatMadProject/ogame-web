@@ -1,6 +1,10 @@
 package ogame.planets;
 
-public class ResourcesProduction {
+import java.io.Serializable;
+
+public class ResourcesProduction implements Serializable {
+
+    private static final long serialVersionUID = 1992L;
     private double metalPerHour, metalPerDay, metalPerWeek;
     private double crystalPerHour, crystalPerDay, crystalPerWeek;
     private double deuteriumPerHour, deuteriumPerDay, deuteriumPerWeek;

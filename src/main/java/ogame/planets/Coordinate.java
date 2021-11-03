@@ -1,6 +1,10 @@
 package ogame.planets;
 
-public class Coordinate {
+import java.io.Serializable;
+
+public class Coordinate implements Serializable {
+
+    private static final long serialVersionUID = 1992L;
     private String text;
     private int galaxy;
     private int system;

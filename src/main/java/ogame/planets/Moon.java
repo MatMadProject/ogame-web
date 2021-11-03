@@ -3,10 +3,13 @@ package ogame.planets;
 import ogame.buildings.Building;
 import ogame.buildings.DataTechnology;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Moon {
+public class Moon implements Serializable {
+
+    private static final long serialVersionUID = 1992L;
     private final int positionOnList;
     private int diameter;
     private Temperature temperature = null;

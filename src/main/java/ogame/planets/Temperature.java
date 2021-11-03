@@ -1,6 +1,10 @@
 package ogame.planets;
 
-public class Temperature {
+import java.io.Serializable;
+
+public class Temperature implements Serializable {
+
+    private static final long serialVersionUID = 1992L;
     private final int min;
     private final int max;
 
