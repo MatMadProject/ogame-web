@@ -10,6 +10,7 @@ public class AppLog
     private final String time;
     private static final int INFO_TYPE = 0;
     private static final int ERROR_TYPE = 1;
+    private static final int BUILT_TYPE = 2;
     private final static int LENGTH_OF_TYPE = 10;
     private final static int LENGTH_OF_CLASS = 50;
     private final static int LENGTH_OF_LOG = 150;
@@ -69,6 +70,9 @@ public class AppLog
             case 1:
                 s.append(StringFactory.init("ERROR",LENGTH_OF_TYPE));
                 break;
+            case 2:
+                s.append(StringFactory.init("BUILT",LENGTH_OF_TYPE));
+                break;
             default:
                 s.append(StringFactory.init("BAD TYPE",LENGTH_OF_TYPE));
                 break;
@@ -89,7 +93,8 @@ public class AppLog
             return INFO_TYPE;
         if(type.contains("ERROR"))
             return ERROR_TYPE;
-
+        if(type.contains("built"))
+            return BUILT_TYPE;
         return -1;
     }
     /**

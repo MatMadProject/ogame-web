@@ -2,7 +2,9 @@ package ogame.buildings;
 
 import ogame.planets.Type;
 
-public enum DataTechnology {
+import java.io.Serializable;
+
+public enum DataTechnology implements Serializable {
     METAL_MINE ("1",1,Type.PRODUCTION),
     CRYSTAL_MINE ("2",2,Type.PRODUCTION),
     DEUTERIUM_SYNTHESIZER ("3",3,Type.PRODUCTION),
@@ -23,6 +25,7 @@ public enum DataTechnology {
     REPAIR_DOCK ("36",8, Type.TECHNOLOGIES),
     UNDEFINED ("0",0, Type.TECHNOLOGIES);
 
+    private static final long serialVersionUID = 1992L;
     private final String VALUE;
     private final int LIST_INDEX;
     private final Type TYPE;

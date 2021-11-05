@@ -1,6 +1,10 @@
 package ogame.watch;
 
-public class ProductionTime {
+import java.io.Serializable;
+
+public class ProductionTime implements Serializable {
+
+    private static final long serialVersionUID = 1992L;
     private int seconds;
     private int minutes;
     private int hours;

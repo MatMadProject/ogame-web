@@ -3,8 +3,11 @@ package ogame.buildings;
 import ogame.Status;
 import ogame.watch.ProductionTime;
 
-public class Building {
+import java.io.Serializable;
 
+public class Building implements Serializable {
+
+    private static final long serialVersionUID = 1992L;
     private int level;
     private String localName;
     private final String name;

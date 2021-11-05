@@ -1,6 +1,10 @@
 package ogame.buildings;
 
-public class RequiredResources {
+import java.io.Serializable;
+
+public class RequiredResources implements Serializable {
+
+    private static final long serialVersionUID = 1992L;
     private final int metal, crystal, deuterium, energy;
 
     public RequiredResources(int metal, int crystal, int deuterium, int energy) {

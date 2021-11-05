@@ -1,12 +1,16 @@
 package ogame;
 
-public enum Status {
+import java.io.Serializable;
+
+public enum Status implements Serializable {
+
     UNDEFINED("undefined",-1),
     ACTIVE("active",0),
     DISABLED ("disabled",1),
     OFF ("off",2),
     ON ("on",3);
 
+    private static final long serialVersionUID = 1992L;
     private final String NAME;
     private final int ID;
 
