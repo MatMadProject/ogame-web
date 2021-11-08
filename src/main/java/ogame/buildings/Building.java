@@ -4,6 +4,7 @@ import ogame.Status;
 import ogame.watch.ProductionTime;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Building implements Serializable {
 
@@ -67,6 +68,19 @@ public class Building implements Serializable {
 
     public void setRequiredResources(RequiredResources requiredResources) {
         this.requiredResources = requiredResources;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Building building = (Building) o;
+        return dataTechnology == building.dataTechnology;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(dataTechnology);
     }
 
     @Override
