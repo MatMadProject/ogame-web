@@ -17,7 +17,8 @@ public class AppLog
     private static boolean CONSOLE_PRINT = true;
     private static boolean [] TYPE_PRINT = {
             true, /*0*/
-            true  /*1*/
+            true,  /*1*/
+            true  /*2*/
     };
 
     public AppLog(String className, String logText) {
