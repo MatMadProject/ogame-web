@@ -161,19 +161,29 @@ public class Supplies {
     }
 
     public static int energyProduction(WebDriver w){
-        if(visibleBuildingDetails(w)){
-            WebElement e =  w.findElement(By.xpath(ENERGY_SPAN));
-            String s = e.getAttribute("data-value");
-            return Integer.parseInt(s);
+        try{
+            if(visibleBuildingDetails(w)){
+                WebElement e =  w.findElement(By.xpath(ENERGY_SPAN));
+                String s = e.getAttribute("data-value");
+                return Integer.parseInt(s);
+            }
+        }
+        catch (Exception e){
+            AppLog.printOnConsole(Supplies.class.getName(),1,"When it checks, the energy production.");
         }
         return -1;
     }
 
     public static int energyConsumption(WebDriver w){
-        if(visibleBuildingDetails(w)){
-            WebElement e =  w.findElement(By.xpath(ENERGY_SPAN));
-            String s = e.getAttribute("data-value");
-            return Integer.parseInt(s);
+        try{
+            if(visibleBuildingDetails(w)){
+                WebElement e =  w.findElement(By.xpath(ENERGY_SPAN));
+                String s = e.getAttribute("data-value");
+                return Integer.parseInt(s);
+            }
+        }
+        catch (Exception e){
+            AppLog.printOnConsole(Supplies.class.getName(),1,"When it checks, the energy consumption.");
         }
         return -1;
     }
@@ -252,8 +262,7 @@ public class Supplies {
         try {
             BUILDINGS_CONTAINER.setEdit(pos);
             WebElement e = w.findElement(By.xpath(BUILDINGS_CONTAINER.get()));
-            String s = e.getAttribute("data-technology");
-            return s;
+            return e.getAttribute("data-technology");
         }
         catch (Exception ex) {
             AppLog.printOnConsole(Supplies.class.getName(),1,"Doesn't download data technology of " + DataTechnology.getFromListIndex(pos));
