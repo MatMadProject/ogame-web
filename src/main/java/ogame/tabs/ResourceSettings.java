@@ -9,15 +9,15 @@ import org.openqa.selenium.WebElement;
 public class ResourceSettings {
 
     private static final String BUTTON = "//*[@id=\"menuTable\"]/li[2]/span/a/div";
-    private static final String METAL_PER_HOUR = "//*[@id=\"inhalt\"]/div[2]/div[2]/form/table/tbody/tr[20]/td[2]/span";
-    private static final String METAL_PER_DAY = "//*[@id=\"inhalt\"]/div[2]/div[2]/form/table/tbody/tr[21]/td[2]/span";
-    private static final String METAL_PER_WEEK = "//*[@id=\"inhalt\"]/div[2]/div[2]/form/table/tbody/tr[22]/td[2]/span";
-    private static final String CRYSTAL_PER_HOUR = "//*[@id=\"inhalt\"]/div[2]/div[2]/form/table/tbody/tr[20]/td[3]/span";
-    private static final String CRYSTAL_PER_DAY = "//*[@id=\"inhalt\"]/div[2]/div[2]/form/table/tbody/tr[21]/td[3]/span";
-    private static final String CRYSTAL_PER_WEEK = "//*[@id=\"inhalt\"]/div[2]/div[2]/form/table/tbody/tr[22]/td[3]/span";
-    private static final String DEUTERIUM_PER_HOUR = "//*[@id=\"inhalt\"]/div[2]/div[2]/form/table/tbody/tr[20]/td[4]/span";
-    private static final String DEUTERIUM_PER_DAY = "//*[@id=\"inhalt\"]/div[2]/div[2]/form/table/tbody/tr[21]/td[4]/span";
-    private static final String DEUTERIUM_PER_WEEK = "//*[@id=\"inhalt\"]/div[2]/div[2]/form/table/tbody/tr[22]/td[4]/span";
+    private static final String METAL_PER_HOUR = "//*[@id=\"inhalt\"]/div[2]/div[2]/form/table/tbody/tr[19]/td[2]/span";
+    private static final String METAL_PER_DAY = "//*[@id=\"inhalt\"]/div[2]/div[2]/form/table/tbody/tr[20]/td[2]/span";
+    private static final String METAL_PER_WEEK = "//*[@id=\"inhalt\"]/div[2]/div[2]/form/table/tbody/tr[21]/td[2]/span";
+    private static final String CRYSTAL_PER_HOUR = "//*[@id=\"inhalt\"]/div[2]/div[2]/form/table/tbody/tr[19]/td[3]/span";
+    private static final String CRYSTAL_PER_DAY = "//*[@id=\"inhalt\"]/div[2]/div[2]/form/table/tbody/tr[20]/td[3]/span";
+    private static final String CRYSTAL_PER_WEEK = "//*[@id=\"inhalt\"]/div[2]/div[2]/form/table/tbody/tr[21]/td[3]/span";
+    private static final String DEUTERIUM_PER_HOUR = "//*[@id=\"inhalt\"]/div[2]/div[2]/form/table/tbody/tr[19]/td[4]/span";
+    private static final String DEUTERIUM_PER_DAY = "//*[@id=\"inhalt\"]/div[2]/div[2]/form/table/tbody/tr[20]/td[4]/span";
+    private static final String DEUTERIUM_PER_WEEK = "//*[@id=\"inhalt\"]/div[2]/div[2]/form/table/tbody/tr[21]/td[4]/span";
 
     public static boolean click(WebDriver w){
         try{
