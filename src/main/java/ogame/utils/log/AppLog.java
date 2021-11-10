@@ -13,7 +13,7 @@ public class AppLog
     private static final int BUILT_TYPE = 2;
     private final static int LENGTH_OF_TYPE = 10;
     private final static int LENGTH_OF_CLASS = 50;
-    private final static int LENGTH_OF_LOG = 150;
+    private final static int LENGTH_OF_LOG = 200;
     private static boolean CONSOLE_PRINT = true;
     private static boolean [] TYPE_PRINT = {
             true, /*0*/
