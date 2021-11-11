@@ -9,6 +9,18 @@ public class ResourcesProduction implements Serializable {
     private double crystalPerHour, crystalPerDay, crystalPerWeek;
     private double deuteriumPerHour, deuteriumPerDay, deuteriumPerWeek;
 
+    public long timeToMetalProduction(double ammountOfMetalToProduce){
+        double metalPerSecond = metalPerHour/3600;
+        return (long)(ammountOfMetalToProduce/metalPerSecond) * 1000L;
+    }
+    public long timeToCrystalProduction(double ammountOfCrystalToProduce){
+        double crystalPerSecond = crystalPerHour/3600;
+        return (long)(ammountOfCrystalToProduce/crystalPerSecond) * 1000L;
+    }
+    public long timeToDeuteriumProduction(double ammountOfDeuteriumToProduce){
+        double deuteriumPerSecond = deuteriumPerHour/3600;
+        return (long)(ammountOfDeuteriumToProduce/deuteriumPerSecond) * 1000L;
+    }
     public double getMetalPerSecond() {
         return metalPerHour/3600;
     }
