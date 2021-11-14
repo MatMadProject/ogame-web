@@ -11,7 +11,7 @@ import java.util.Set;
 public class OgameWeb {
 
     public static WebDriver webDriver = null;
-    private static String path = "src/main/resources/chromedriver.exe";
+    private static String path = "src/main/java/resources/chromedriver.exe";
     private static String WEB_ADRESS = null;
     public static boolean closed = false;
 
