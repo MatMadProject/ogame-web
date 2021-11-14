@@ -63,4 +63,6 @@ public enum DataTechnology implements Serializable {
         }
         return UNDEFINED;
     }
+
+
 }

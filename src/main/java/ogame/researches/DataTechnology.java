@@ -56,4 +56,5 @@ public enum DataTechnology {
         }
         return UNDEFINED;
     }
+
 }
