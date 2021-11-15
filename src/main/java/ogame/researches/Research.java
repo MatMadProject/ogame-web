@@ -1,7 +1,6 @@
 package ogame.researches;
 
 import ogame.Status;
-import ogame.buildings.DataTechnology;
 import ogame.buildings.RequiredResources;
 import ogame.watch.ProductionTime;
 
