@@ -7,6 +7,7 @@ import ogame.buildings.DataTechnology;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 public class Planet implements Serializable {
@@ -24,6 +25,9 @@ public class Planet implements Serializable {
     private Resources resources;
     private List<Building> buildings;
     private long updateTime;
+    private boolean updateResourcesProduction = true;
+    private boolean updateResourceBuilding = true;
+    private boolean updateTechnologyBuilding = true;
 
     public Planet(String id, int positionOnList) {
         this.id = id;
@@ -125,24 +129,61 @@ public class Planet implements Serializable {
         return resourcesProduction;
     }
 
-    public Building getBuilding(String dataTechnology) {
-        for(Building building : buildings){
-            if(building.getDataTechnology().equals(dataTechnology))
+    public boolean isUpdateResourcesProduction() {
+        return updateResourcesProduction;
+    }
+
+    public void setUpdateResourcesProduction(boolean updateResourcesProduction) {
+        this.updateResourcesProduction = updateResourcesProduction;
+    }
+
+    public boolean isUpdateResourceBuilding() {
+        return updateResourceBuilding;
+    }
+
+    public void setUpdateResourceBuilding(boolean updateResourceBuilding) {
+        this.updateResourceBuilding = updateResourceBuilding;
+    }
+
+    public boolean isUpdateTechnologyBuilding() {
+        return updateTechnologyBuilding;
+    }
+
+    public void setUpdateTechnologyBuilding(boolean updateTechnologyBuilding) {
+        this.updateTechnologyBuilding = updateTechnologyBuilding;
+    }
+
+    public Building getBuilding(String dataTechnologyValue) {
+        for(Building building : buildings)
+            if(building.getDataTechnology().getValue().equals(dataTechnologyValue))
                 return building;
-        }
+
         return null;
     }
 
     public Building getBuilding(DataTechnology dataTechnology) {
-        for(Building building : buildings){
-            if(building.getDataTechnology().equals(dataTechnology))
+        for(Building building : buildings)
+            if(building.getDataTechnology() == dataTechnology)
                 return building;
-        }
+
         return null;
     }
 
     public Resources getResources() {
         return resources;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Planet planet = (Planet) o;
+        return Objects.equals(id, planet.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
     @Override
