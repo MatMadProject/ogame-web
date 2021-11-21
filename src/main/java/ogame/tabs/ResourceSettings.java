@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 public class ResourceSettings {
 
     private static final String BUTTON = "//*[@id=\"menuTable\"]/li[2]/span/a/div";
+    private static final String DEUTERIUM_SYNTH_BUILDED_FLAG = "//*[@id=\"factor\"]/div";
     private static final String METAL_PER_HOUR = "//*[@id=\"inhalt\"]/div[2]/div[2]/form/table/tbody/tr[19]/td[2]/span";
     private static final String METAL_PER_DAY = "//*[@id=\"inhalt\"]/div[2]/div[2]/form/table/tbody/tr[20]/td[2]/span";
     private static final String METAL_PER_WEEK = "//*[@id=\"inhalt\"]/div[2]/div[2]/form/table/tbody/tr[21]/td[2]/span";
@@ -18,6 +19,16 @@ public class ResourceSettings {
     private static final String DEUTERIUM_PER_HOUR = "//*[@id=\"inhalt\"]/div[2]/div[2]/form/table/tbody/tr[19]/td[4]/span";
     private static final String DEUTERIUM_PER_DAY = "//*[@id=\"inhalt\"]/div[2]/div[2]/form/table/tbody/tr[20]/td[4]/span";
     private static final String DEUTERIUM_PER_WEEK = "//*[@id=\"inhalt\"]/div[2]/div[2]/form/table/tbody/tr[21]/td[4]/span";
+    //When deuterium synthesizer is not building on planet.
+    private static final String METAL_PER_HOUR_2 = "//*[@id=\"inhalt\"]/div[2]/div[2]/form/table/tbody/tr[19]/td[2]/span";
+    private static final String METAL_PER_DAY_2 = "//*[@id=\"inhalt\"]/div[2]/div[2]/form/table/tbody/tr[20]/td[2]/span";
+    private static final String METAL_PER_WEEK_2 = "//*[@id=\"inhalt\"]/div[2]/div[2]/form/table/tbody/tr[21]/td[2]/span";
+    private static final String CRYSTAL_PER_HOUR_2 = "//*[@id=\"inhalt\"]/div[2]/div[2]/form/table/tbody/tr[19]/td[3]/span";
+    private static final String CRYSTAL_PER_DAY_2 = "//*[@id=\"inhalt\"]/div[2]/div[2]/form/table/tbody/tr[20]/td[3]/span";
+    private static final String CRYSTAL_PER_WEEK_2 = "//*[@id=\"inhalt\"]/div[2]/div[2]/form/table/tbody/tr[21]/td[3]/span";
+    private static final String DEUTERIUM_PER_HOUR_2 = "//*[@id=\"inhalt\"]/div[2]/div[2]/form/table/tbody/tr[19]/td[4]/span";
+    private static final String DEUTERIUM_PER_DAY_2 = "//*[@id=\"inhalt\"]/div[2]/div[2]/form/table/tbody/tr[20]/td[4]/span";
+    private static final String DEUTERIUM_PER_WEEK_2 = "//*[@id=\"inhalt\"]/div[2]/div[2]/form/table/tbody/tr[21]/td[4]/span";
 
     public static boolean click(WebDriver w){
         try{
@@ -45,10 +56,25 @@ public class ResourceSettings {
         return false;
     }
 
+    private static boolean isDeuteriumSynthesizerBuild(WebDriver w){
+        try{
+            WebElement e =  w.findElement(By.xpath(DEUTERIUM_SYNTH_BUILDED_FLAG));
+            return false;
+        }
+        catch (Exception e){
+            AppLog.printOnConsole(ResourceSettings.class.getName(),1,"When it checks, the deuterium synthesizer is build.");
+        }
+        return true;
+    }
+
     public static int metalPerHour(WebDriver w){
         if(visible(w)){
             try{
-                WebElement e =  w.findElement(By.xpath(METAL_PER_HOUR));
+                WebElement e;
+                if(isDeuteriumSynthesizerBuild(w))
+                    e =  w.findElement(By.xpath(METAL_PER_HOUR));
+                else
+                    e =  w.findElement(By.xpath(METAL_PER_HOUR_2));
                 String s = e.getText();
                 s = removeDot(s);
                 return value(s);
@@ -63,7 +89,11 @@ public class ResourceSettings {
     public static int metalPerDay(WebDriver w){
         if(visible(w)){
             try{
-                WebElement e =  w.findElement(By.xpath(METAL_PER_DAY));
+                WebElement e;
+                if(isDeuteriumSynthesizerBuild(w))
+                    e =  w.findElement(By.xpath(METAL_PER_DAY));
+                else
+                    e =  w.findElement(By.xpath(METAL_PER_DAY_2));
                 String s = e.getText();
                 s = removeDot(s);
                 return value(s);
@@ -78,7 +108,11 @@ public class ResourceSettings {
     public static int metalPerWeek(WebDriver w){
         if(visible(w)){
             try{
-                WebElement e =  w.findElement(By.xpath(METAL_PER_WEEK));
+                WebElement e;
+                if(isDeuteriumSynthesizerBuild(w))
+                    e =  w.findElement(By.xpath(METAL_PER_WEEK));
+                else
+                    e =  w.findElement(By.xpath(METAL_PER_WEEK_2));
                 String s = e.getText();
                 s = removeDot(s);
                 return value(s);
@@ -93,7 +127,12 @@ public class ResourceSettings {
     public static int crystalPerHour(WebDriver w){
         if(visible(w)){
             try{
-                WebElement e =  w.findElement(By.xpath(CRYSTAL_PER_HOUR));
+                WebElement e;
+                if(isDeuteriumSynthesizerBuild(w))
+                    e =  w.findElement(By.xpath(CRYSTAL_PER_HOUR));
+                else
+                    e =  w.findElement(By.xpath(CRYSTAL_PER_HOUR_2));
+
                 String s = e.getText();
                 s = removeDot(s);
                 return value(s);
@@ -108,7 +147,11 @@ public class ResourceSettings {
     public static int crystalPerDay(WebDriver w){
         if(visible(w)){
             try{
-                WebElement e =  w.findElement(By.xpath(CRYSTAL_PER_DAY));
+                WebElement e;
+                if(isDeuteriumSynthesizerBuild(w))
+                    e =  w.findElement(By.xpath(CRYSTAL_PER_DAY));
+                else
+                    e =  w.findElement(By.xpath(CRYSTAL_PER_DAY_2));
                 String s = e.getText();
                 s = removeDot(s);
                 return value(s);
@@ -123,7 +166,11 @@ public class ResourceSettings {
     public static int crystalPerWeek(WebDriver w){
         if(visible(w)){
             try{
-                WebElement e =  w.findElement(By.xpath(CRYSTAL_PER_WEEK));
+                WebElement e;
+                if(isDeuteriumSynthesizerBuild(w))
+                    e =  w.findElement(By.xpath(CRYSTAL_PER_WEEK));
+                else
+                    e =  w.findElement(By.xpath(CRYSTAL_PER_WEEK_2));
                 String s = e.getText();
                 s = removeDot(s);
                 return value(s);
@@ -138,7 +185,11 @@ public class ResourceSettings {
     public static int deuteriumPerHour(WebDriver w){
         if(visible(w)){
             try{
-                WebElement e =  w.findElement(By.xpath(DEUTERIUM_PER_HOUR));
+                WebElement e;
+                if(isDeuteriumSynthesizerBuild(w))
+                    e =  w.findElement(By.xpath(DEUTERIUM_PER_HOUR));
+                else
+                    e =  w.findElement(By.xpath(DEUTERIUM_PER_HOUR_2));
                 String s = e.getText();
                 s = removeDot(s);
                 return value(s);
@@ -153,7 +204,11 @@ public class ResourceSettings {
     public static int deuteriumPerDay(WebDriver w){
         if(visible(w)){
             try{
-                WebElement e =  w.findElement(By.xpath(DEUTERIUM_PER_DAY));
+                WebElement e;
+                if(isDeuteriumSynthesizerBuild(w))
+                    e =  w.findElement(By.xpath(DEUTERIUM_PER_DAY));
+                else
+                    e =  w.findElement(By.xpath(DEUTERIUM_PER_DAY_2));
                 String s = e.getText();
                 s = removeDot(s);
                 return value(s);
@@ -168,7 +223,11 @@ public class ResourceSettings {
     public static int deuteriumPerWeek(WebDriver w){
         if(visible(w)){
             try{
-                WebElement e =  w.findElement(By.xpath(DEUTERIUM_PER_WEEK));
+                WebElement e;
+                if(isDeuteriumSynthesizerBuild(w))
+                    e =  w.findElement(By.xpath(DEUTERIUM_PER_WEEK));
+                else
+                    e =  w.findElement(By.xpath(DEUTERIUM_PER_WEEK_2));
                 String s = e.getText();
                 s = removeDot(s);
                 return value(s);
