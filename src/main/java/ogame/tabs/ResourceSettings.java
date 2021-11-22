@@ -1,6 +1,7 @@
 package ogame.tabs;
 
 import ogame.FinalXPath;
+import ogame.buildings.Building;
 import ogame.utils.log.AppLog;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -55,10 +56,11 @@ public class ResourceSettings {
         }
         return false;
     }
-
+    @Deprecated
     private static boolean isDeuteriumSynthesizerBuild(WebDriver w){
         try{
             WebElement e =  w.findElement(By.xpath(DEUTERIUM_SYNTH_BUILDED_FLAG));
+            e.click();
             return false;
         }
         catch (Exception e){
@@ -67,6 +69,178 @@ public class ResourceSettings {
         return true;
     }
 
+    public static int metalPerHour(WebDriver w, Building deuteriumSynthesizer){
+        if(visible(w)){
+            try{
+                WebElement e;
+                if(deuteriumSynthesizer.getLevel() != 0)
+                    e =  w.findElement(By.xpath(METAL_PER_HOUR));
+                else
+                    e =  w.findElement(By.xpath(METAL_PER_HOUR_2));
+                String s = e.getText();
+                s = removeDot(s);
+                return value(s);
+            }
+            catch (Exception e){
+                AppLog.printOnConsole(ResourceSettings.class.getName(),1,"While try download metal per hour.");
+            }
+        }
+        return -1;
+    }
+
+    public static int metalPerDay(WebDriver w, Building deuteriumSynthesizer){
+        if(visible(w)){
+            try{
+                WebElement e;
+                if(deuteriumSynthesizer.getLevel() != 0)
+                    e =  w.findElement(By.xpath(METAL_PER_DAY));
+                else
+                    e =  w.findElement(By.xpath(METAL_PER_DAY_2));
+                String s = e.getText();
+                s = removeDot(s);
+                return value(s);
+            }
+            catch (Exception e){
+                AppLog.printOnConsole(ResourceSettings.class.getName(),1,"While try download metal per day.");
+            }
+        }
+        return -1;
+    }
+
+    public static int metalPerWeek(WebDriver w, Building deuteriumSynthesizer){
+        if(visible(w)){
+            try{
+                WebElement e;
+                if(deuteriumSynthesizer.getLevel() != 0)
+                    e =  w.findElement(By.xpath(METAL_PER_WEEK));
+                else
+                    e =  w.findElement(By.xpath(METAL_PER_WEEK_2));
+                String s = e.getText();
+                s = removeDot(s);
+                return value(s);
+            }
+            catch (Exception e){
+                AppLog.printOnConsole(ResourceSettings.class.getName(),1,"While try download metal per week.");
+            }
+        }
+        return -1;
+    }
+
+    public static int crystalPerHour(WebDriver w, Building deuteriumSynthesizer){
+        if(visible(w)){
+            try{
+                WebElement e;
+                if(deuteriumSynthesizer.getLevel() != 0)
+                    e =  w.findElement(By.xpath(CRYSTAL_PER_HOUR));
+                else
+                    e =  w.findElement(By.xpath(CRYSTAL_PER_HOUR_2));
+
+                String s = e.getText();
+                s = removeDot(s);
+                return value(s);
+            }
+            catch (Exception e){
+                AppLog.printOnConsole(ResourceSettings.class.getName(),1,"While try download crystal per hour.");
+            }
+        }
+        return -1;
+    }
+
+    public static int crystalPerDay(WebDriver w, Building deuteriumSynthesizer){
+        if(visible(w)){
+            try{
+                WebElement e;
+                if(deuteriumSynthesizer.getLevel() != 0)
+                    e =  w.findElement(By.xpath(CRYSTAL_PER_DAY));
+                else
+                    e =  w.findElement(By.xpath(CRYSTAL_PER_DAY_2));
+                String s = e.getText();
+                s = removeDot(s);
+                return value(s);
+            }
+            catch (Exception e){
+                AppLog.printOnConsole(ResourceSettings.class.getName(),1,"While try download crystal per day.");
+            }
+        }
+        return -1;
+    }
+
+    public static int crystalPerWeek(WebDriver w, Building deuteriumSynthesizer){
+        if(visible(w)){
+            try{
+                WebElement e;
+                if(deuteriumSynthesizer.getLevel() != 0)
+                    e =  w.findElement(By.xpath(CRYSTAL_PER_WEEK));
+                else
+                    e =  w.findElement(By.xpath(CRYSTAL_PER_WEEK_2));
+                String s = e.getText();
+                s = removeDot(s);
+                return value(s);
+            }
+            catch (Exception e){
+                AppLog.printOnConsole(ResourceSettings.class.getName(),1,"While try download crystal per week.");
+            }
+        }
+        return -1;
+    }
+
+    public static int deuteriumPerHour(WebDriver w, Building deuteriumSynthesizer){
+        if(visible(w)){
+            try{
+                WebElement e;
+                if(deuteriumSynthesizer.getLevel() != 0)
+                    e =  w.findElement(By.xpath(DEUTERIUM_PER_HOUR));
+                else
+                    e =  w.findElement(By.xpath(DEUTERIUM_PER_HOUR_2));
+                String s = e.getText();
+                s = removeDot(s);
+                return value(s);
+            }
+            catch (Exception e){
+                AppLog.printOnConsole(ResourceSettings.class.getName(),1,"While try download deuterium per hour.");
+            }
+        }
+        return -1;
+    }
+
+    public static int deuteriumPerDay(WebDriver w, Building deuteriumSynthesizer){
+        if(visible(w)){
+            try{
+                WebElement e;
+                if(deuteriumSynthesizer.getLevel() != 0)
+                    e =  w.findElement(By.xpath(DEUTERIUM_PER_DAY));
+                else
+                    e =  w.findElement(By.xpath(DEUTERIUM_PER_DAY_2));
+                String s = e.getText();
+                s = removeDot(s);
+                return value(s);
+            }
+            catch (Exception e){
+                AppLog.printOnConsole(ResourceSettings.class.getName(),1,"While try download deuterium per day.");
+            }
+        }
+        return -1;
+    }
+
+    public static int deuteriumPerWeek(WebDriver w, Building deuteriumSynthesizer){
+        if(visible(w)){
+            try{
+                WebElement e;
+                if(deuteriumSynthesizer.getLevel() != 0)
+                    e =  w.findElement(By.xpath(DEUTERIUM_PER_WEEK));
+                else
+                    e =  w.findElement(By.xpath(DEUTERIUM_PER_WEEK_2));
+                String s = e.getText();
+                s = removeDot(s);
+                return value(s);
+            }
+            catch (Exception e){
+                AppLog.printOnConsole(ResourceSettings.class.getName(),1,"While try download deuterium per week.");
+            }
+        }
+        return -1;
+    }
+    @Deprecated
     public static int metalPerHour(WebDriver w){
         if(visible(w)){
             try{
@@ -85,7 +259,7 @@ public class ResourceSettings {
         }
         return -1;
     }
-
+    @Deprecated
     public static int metalPerDay(WebDriver w){
         if(visible(w)){
             try{
@@ -104,7 +278,7 @@ public class ResourceSettings {
         }
         return -1;
     }
-
+    @Deprecated
     public static int metalPerWeek(WebDriver w){
         if(visible(w)){
             try{
@@ -123,7 +297,7 @@ public class ResourceSettings {
         }
         return -1;
     }
-
+    @Deprecated
     public static int crystalPerHour(WebDriver w){
         if(visible(w)){
             try{
@@ -143,7 +317,7 @@ public class ResourceSettings {
         }
         return -1;
     }
-
+    @Deprecated
     public static int crystalPerDay(WebDriver w){
         if(visible(w)){
             try{
@@ -162,7 +336,7 @@ public class ResourceSettings {
         }
         return -1;
     }
-
+    @Deprecated
     public static int crystalPerWeek(WebDriver w){
         if(visible(w)){
             try{
@@ -181,7 +355,7 @@ public class ResourceSettings {
         }
         return -1;
     }
-
+    @Deprecated
     public static int deuteriumPerHour(WebDriver w){
         if(visible(w)){
             try{
@@ -200,7 +374,7 @@ public class ResourceSettings {
         }
         return -1;
     }
-
+    @Deprecated
     public static int deuteriumPerDay(WebDriver w){
         if(visible(w)){
             try{
@@ -219,7 +393,7 @@ public class ResourceSettings {
         }
         return -1;
     }
-
+    @Deprecated
     public static int deuteriumPerWeek(WebDriver w){
         if(visible(w)){
             try{
@@ -251,7 +425,6 @@ public class ResourceSettings {
         else
             return s.replace(".","");
     }
-
     /**
      * Ilość surowców bez '.' lub ','.
      * @param s Ilość surowca pobrana z strony.
