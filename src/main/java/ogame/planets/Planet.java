@@ -14,7 +14,7 @@ public class Planet implements Serializable {
 
     private static final long serialVersionUID = 1992L;
     private final String id;
-    private final int positionOnList;
+    private int positionOnList;
     private int diameter;
     private Temperature temperature = null;
     private Fields fields = null;
@@ -171,6 +171,10 @@ public class Planet implements Serializable {
 
     public Resources getResources() {
         return resources;
+    }
+
+    public void setPositionOnList(int positionOnList) {
+        this.positionOnList = positionOnList;
     }
 
     @Override
