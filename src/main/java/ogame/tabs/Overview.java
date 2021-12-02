@@ -48,7 +48,7 @@ public class Overview
     /**
      * Klika w zakładkę.
      * Clicks on tab.
-     * @param w
+     * @param w ***
      * @return Zwróci true, jeżeli kliknie poprawnie. If click with success returns true.
      */
     public static boolean click(WebDriver w){
@@ -174,14 +174,12 @@ public class Overview
      * @param w ***
      * @return Zwroci -1 jeżeli wystąpi błąd. Returns -1 if errors execute.
      */
-    public static String coordinate(WebDriver w)
-    {
+    public static String coordinate(WebDriver w) {
         if(visible(w)) {
             try {
                 WebElement e =  w.findElement(By.xpath(COORDINATE));
-                String s = e.getText();
 
-                return s;
+                return e.getText();
             }
             catch (Exception e) {
                 AppLog.printOnConsole(Overview.class.getName(),1,"Doesn't download coordinate of planet.");
@@ -195,8 +193,7 @@ public class Overview
      * @param w ***
      * @return Zwroci -1 jeżeli wystąpi błąd. Returns -1 if errors execute.
      */
-    public static int points(WebDriver w)
-    {
+    public static int points(WebDriver w) {
         if(visible(w)) {
             try {
                 WebElement e =  w.findElement(By.xpath(SCORE_CONTENT));
@@ -215,8 +212,7 @@ public class Overview
      * @param w ***
      * @return Zwroci -1 jeżeli wystąpi błąd. Returns -1 if errors execute.
      */
-    public static int position(WebDriver w)
-    {
+    public static int position(WebDriver w) {
         if(visible(w)) {
             try {
                 WebElement e =  w.findElement(By.xpath(SCORE_CONTENT));
@@ -240,8 +236,7 @@ public class Overview
      * @param w ***
      * @return Zwroci -1 jeżeli wystąpi błąd. Returns -1 if errors execute.
      */
-    public static int honorPoints(WebDriver w)
-    {
+    public static int honorPoints(WebDriver w) {
         if(visible(w)) {
             try {
                 WebElement e =  w.findElement(By.xpath(HONOR_CONTENT));

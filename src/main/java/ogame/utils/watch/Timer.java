@@ -1,8 +1,11 @@
 package ogame.utils.watch;
 
+import java.io.Serializable;
 import java.time.Duration;
 
-public class Timer {
+public class Timer implements Serializable {
+
+    private static final long serialVersionUID = 1992L;
     private final long startDate;
     private long finishDate;
     private long timeInMiliseconds;
