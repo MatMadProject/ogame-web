@@ -1,11 +1,9 @@
 package ogame.buildings;
 
-import ogame.planets.Type;
-
 import java.io.Serializable;
 
 public enum DataTechnology implements Serializable {
-    METAL_MINE ("1",1,Type.PRODUCTION),
+    METAL_MINE ("1",1, Type.PRODUCTION),
     CRYSTAL_MINE ("2",2,Type.PRODUCTION),
     DEUTERIUM_SYNTHESIZER ("3",3,Type.PRODUCTION),
     SOLAR_PLANT ("4",4,Type.PRODUCTION),

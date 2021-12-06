@@ -3,6 +3,7 @@ package ogame.utils;
 import ogame.tabs.Supplies;
 import ogame.utils.log.AppLog;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -36,6 +37,7 @@ public class WebElementUtil
      * @return If attribute contains text, returns true.
      */
     public static boolean attrContainsText(WebElement element, String attr, String s){
+//        String attrContent = element.getAttribute(attr);
         return element.getAttribute(attr).contains(s);
     }
 
@@ -48,5 +50,10 @@ public class WebElementUtil
             AppLog.printOnConsole(Supplies.class.getName(),1,"When it checks, the webelement is visible.");
         }
         return false;
+    }
+
+    public static void scrollToElement(WebDriver w, WebElement e) {
+        JavascriptExecutor js = (JavascriptExecutor) w;
+        js.executeScript("arguments[0].scrollIntoView();", e);
     }
 }

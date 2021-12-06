@@ -1,4 +1,4 @@
-package ogame.planets;
+package ogame.buildings;
 
 public enum Type {
     PRODUCTION,
