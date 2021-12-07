@@ -1,8 +1,9 @@
 package ogame.planets;
 
+import ogame.DataTechnology;
 import ogame.OgameWeb;
+import ogame.Type;
 import ogame.buildings.Building;
-import ogame.buildings.DataTechnology;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -38,7 +39,9 @@ public class Planet implements Serializable {
 
         buildings = new ArrayList<>();
         for(DataTechnology dataTechnology : DataTechnology.values()){
-            buildings.add(new Building(dataTechnology.name(),dataTechnology.getValue()));
+            if(dataTechnology.getType() == Type.PRODUCTION ||
+                    dataTechnology.getType() == Type.ADVANCED)
+                buildings.add(new Building(dataTechnology.name(),dataTechnology.getValue()));
         }
     }
     /*

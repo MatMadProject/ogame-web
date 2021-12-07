@@ -1,8 +1,9 @@
 package ogame.tabs;
 
+import ogame.DataTechnology;
 import ogame.FinalXPath;
 import ogame.Status;
-import ogame.buildings.DataTechnology;
+import ogame.Type;
 import ogame.buildings.RequiredResources;
 import ogame.utils.WebElementPath;
 import ogame.utils.WebElementUtil;
@@ -117,7 +118,7 @@ public class Facilities {
             return true;
         }
         catch (Exception ex) {
-            AppLog.printOnConsole(Supplies.class.getName(),1,"While try upgrade " + DataTechnology.getFromListIndex(pos));
+            AppLog.printOnConsole(Supplies.class.getName(),1,"While try upgrade " + DataTechnology.getFromListIndex(pos, Type.ADVANCED));
         }
         return false;
     }
@@ -130,7 +131,7 @@ public class Facilities {
             return Status.getStatus(s);
         }
         catch (Exception ex) {
-            AppLog.printOnConsole(Facilities.class.getName(),1,"Doesn't download status of " + DataTechnology.getFromListIndex(pos));
+            AppLog.printOnConsole(Facilities.class.getName(),1,"Doesn't download status of " + DataTechnology.getFromListIndex(pos, Type.ADVANCED));
         }
         return Status.UNDEFINED;
     }
@@ -146,7 +147,7 @@ public class Facilities {
             }
         }
         catch (Exception ex) {
-            AppLog.printOnConsole(Facilities.class.getName(),1,"While try stop upgrade " + DataTechnology.getFromListIndex(pos));
+            AppLog.printOnConsole(Facilities.class.getName(),1,"While try stop upgrade " + DataTechnology.getFromListIndex(pos, Type.ADVANCED));
         }
         return false;
     }
@@ -210,7 +211,7 @@ public class Facilities {
             return true;
         }
         catch (Exception e){
-            AppLog.printOnConsole(Facilities.class.getName(),1,"While trying to click on a building: " + DataTechnology.getFromListIndex(pos));
+            AppLog.printOnConsole(Facilities.class.getName(),1,"While trying to click on a building: " + DataTechnology.getFromListIndex(pos, Type.ADVANCED));
         }
         return false;
     }
@@ -223,7 +224,7 @@ public class Facilities {
             return Integer.parseInt(s);
         }
         catch (Exception ex) {
-            AppLog.printOnConsole(Facilities.class.getName(),1,"Doesn't download level of " + DataTechnology.getFromListIndex(pos));
+            AppLog.printOnConsole(Facilities.class.getName(),1,"Doesn't download level of " + DataTechnology.getFromListIndex(pos, Type.ADVANCED));
         }
         return -1;
     }
@@ -232,11 +233,10 @@ public class Facilities {
         try {
             BUILDINGS_CONTAINER.setEdit(pos);
             WebElement e = w.findElement(By.xpath(BUILDINGS_CONTAINER.get()));
-            String s = e.getAttribute("data-technology");
-            return s;
+            return e.getAttribute("data-technology");
         }
         catch (Exception ex) {
-            AppLog.printOnConsole(Facilities.class.getName(),1,"Doesn't download data technology of " + DataTechnology.getFromListIndex(pos));
+            AppLog.printOnConsole(Facilities.class.getName(),1,"Doesn't download data technology of " + DataTechnology.getFromListIndex(pos, Type.ADVANCED));
         }
         return "-1";
     }
@@ -248,7 +248,7 @@ public class Facilities {
             return e.getAttribute("aria-label");
         }
         catch (Exception ex) {
-            AppLog.printOnConsole(Facilities.class.getName(),1,"Doesn't download local name of " + DataTechnology.getFromListIndex(pos));
+            AppLog.printOnConsole(Facilities.class.getName(),1,"Doesn't download local name of " + DataTechnology.getFromListIndex(pos, Type.ADVANCED));
         }
         return "null";
     }

@@ -1,8 +1,9 @@
 package ogame.tabs;
 
+import ogame.DataTechnology;
 import ogame.FinalXPath;
 import ogame.Status;
-import ogame.buildings.DataTechnology;
+import ogame.Type;
 import ogame.buildings.RequiredResources;
 import ogame.utils.WebElementPath;
 import ogame.utils.WebElementUtil;
@@ -119,7 +120,7 @@ public class Supplies {
             return true;
         }
         catch (Exception ex) {
-            AppLog.printOnConsole(Supplies.class.getName(),1,"While try upgrade " + DataTechnology.getFromListIndex(pos));
+            AppLog.printOnConsole(Supplies.class.getName(),1,"While try upgrade " + DataTechnology.getFromListIndex(pos, Type.PRODUCTION));
         }
         return false;
     }
@@ -135,7 +136,7 @@ public class Supplies {
             }
         }
         catch (Exception ex) {
-            AppLog.printOnConsole(Supplies.class.getName(),1,"While try stop upgrade " + DataTechnology.getFromListIndex(pos));
+            AppLog.printOnConsole(Supplies.class.getName(),1,"While try stop upgrade " + DataTechnology.getFromListIndex(pos, Type.PRODUCTION));
         }
         return false;
     }
@@ -227,7 +228,7 @@ public class Supplies {
             return true;
         }
         catch (Exception e){
-            AppLog.printOnConsole(Supplies.class.getName(),1,"While trying to click on a building: " + DataTechnology.getFromListIndex(pos));
+            AppLog.printOnConsole(Supplies.class.getName(),1,"While trying to click on a building: " + DataTechnology.getFromListIndex(pos, Type.PRODUCTION));
         }
         return false;
     }
@@ -240,7 +241,7 @@ public class Supplies {
             return Integer.parseInt(s);
         }
         catch (Exception ex) {
-            AppLog.printOnConsole(Supplies.class.getName(),1,"Doesn't download level of " + DataTechnology.getFromListIndex(pos));
+            AppLog.printOnConsole(Supplies.class.getName(),1,"Doesn't download level of " + DataTechnology.getFromListIndex(pos, Type.PRODUCTION));
         }
         return -1;
     }
@@ -253,7 +254,7 @@ public class Supplies {
             return Status.getStatus(s);
         }
         catch (Exception ex) {
-            AppLog.printOnConsole(Supplies.class.getName(),1,"Doesn't download status of " + DataTechnology.getFromListIndex(pos));
+            AppLog.printOnConsole(Supplies.class.getName(),1,"Doesn't download status of " + DataTechnology.getFromListIndex(pos, Type.PRODUCTION));
         }
         return Status.UNDEFINED;
     }
@@ -265,7 +266,7 @@ public class Supplies {
             return e.getAttribute("data-technology");
         }
         catch (Exception ex) {
-            AppLog.printOnConsole(Supplies.class.getName(),1,"Doesn't download data technology of " + DataTechnology.getFromListIndex(pos));
+            AppLog.printOnConsole(Supplies.class.getName(),1,"Doesn't download data technology of " + DataTechnology.getFromListIndex(pos, Type.PRODUCTION));
         }
         return "-1";
     }
@@ -277,7 +278,7 @@ public class Supplies {
             return e.getAttribute("aria-label");
         }
         catch (Exception ex) {
-            AppLog.printOnConsole(Supplies.class.getName(),1,"Doesn't download local name of " + DataTechnology.getFromListIndex(pos));
+            AppLog.printOnConsole(Supplies.class.getName(),1,"Doesn't download local name of " + DataTechnology.getFromListIndex(pos, Type.PRODUCTION));
         }
         return "null";
     }

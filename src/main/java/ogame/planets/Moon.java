@@ -1,7 +1,6 @@
 package ogame.planets;
 
 import ogame.buildings.Building;
-import ogame.buildings.DataTechnology;
 
 import java.io.Serializable;
 import java.util.ArrayList;

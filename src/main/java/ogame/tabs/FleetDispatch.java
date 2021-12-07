@@ -1,9 +1,9 @@
 package ogame.tabs;
 
+import ogame.DataTechnology;
 import ogame.FinalXPath;
-import ogame.ships.DataTechnology;
+import ogame.Type;
 import ogame.ships.Mission;
-import ogame.ships.Type;
 import ogame.utils.WebElementPath;
 import ogame.utils.WebElementUtil;
 import ogame.utils.log.AppLog;

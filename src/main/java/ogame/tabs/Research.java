@@ -1,10 +1,10 @@
 package ogame.tabs;
 
+import ogame.DataTechnology;
 import ogame.FinalXPath;
 import ogame.Status;
+import ogame.Type;
 import ogame.buildings.RequiredResources;
-import ogame.researches.DataTechnology;
-import ogame.researches.Type;
 import ogame.utils.WebElementPath;
 import ogame.utils.WebElementUtil;
 import ogame.utils.log.AppLog;
@@ -147,7 +147,7 @@ public class Research {
             }
         }
         catch (Exception ex) {
-            AppLog.printOnConsole(Research.class.getName(),1,"While try upgrade " + DataTechnology.getFromListIndex(pos));
+            AppLog.printOnConsole(Research.class.getName(),1,"While try upgrade " + DataTechnology.getFromListIndex(pos, type));
         }
         return false;
     }
@@ -176,7 +176,7 @@ public class Research {
             }
         }
         catch (Exception ex) {
-            AppLog.printOnConsole(Research.class.getName(),1,"Doesn't download status of " + DataTechnology.getFromListIndex(pos));
+            AppLog.printOnConsole(Research.class.getName(),1,"Doesn't download status of " + DataTechnology.getFromListIndex(pos, type));
         }
         return Status.UNDEFINED;
     }
@@ -191,7 +191,7 @@ public class Research {
             }
         }
         catch (Exception ex) {
-            AppLog.printOnConsole(Research.class.getName(),1,"While try stop upgrade " + DataTechnology.getFromListIndex(pos));
+            AppLog.printOnConsole(Research.class.getName(),1,"While try stop upgrade " + DataTechnology.getFromListIndex(pos, type));
         }
         return false;
     }
@@ -271,7 +271,7 @@ public class Research {
             }
         }
         catch (Exception e){
-            AppLog.printOnConsole(Research.class.getName(),1,"While trying to click on a research: " + DataTechnology.getFromListIndex(pos));
+            AppLog.printOnConsole(Research.class.getName(),1,"While trying to click on a research: " + DataTechnology.getFromListIndex(pos, type));
         }
         return false;
     }
@@ -301,7 +301,7 @@ public class Research {
             }
         }
         catch (Exception ex) {
-            AppLog.printOnConsole(Research.class.getName(),1,"Doesn't download level of " + DataTechnology.getFromListIndex(pos));
+            AppLog.printOnConsole(Research.class.getName(),1,"Doesn't download level of " + DataTechnology.getFromListIndex(pos, type));
         }
         return -1;
     }
@@ -330,7 +330,7 @@ public class Research {
             }
         }
         catch (Exception ex) {
-            AppLog.printOnConsole(Research.class.getName(),1,"Doesn't download data technology of " + DataTechnology.getFromListIndex(pos));
+            AppLog.printOnConsole(Research.class.getName(),1,"Doesn't download data technology of " + DataTechnology.getFromListIndex(pos, type));
         }
         return "-1";
     }
@@ -359,7 +359,7 @@ public class Research {
 
         }
         catch (Exception ex) {
-            AppLog.printOnConsole(Research.class.getName(),1,"Doesn't download local name of " + DataTechnology.getFromListIndex(pos));
+            AppLog.printOnConsole(Research.class.getName(),1,"Doesn't download local name of " + DataTechnology.getFromListIndex(pos, type));
         }
         return "null";
     }
