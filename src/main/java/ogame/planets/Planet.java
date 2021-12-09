@@ -40,7 +40,7 @@ public class Planet implements Serializable {
         buildings = new ArrayList<>();
         for(DataTechnology dataTechnology : DataTechnology.values()){
             if(dataTechnology.getType() == Type.PRODUCTION ||
-                    dataTechnology.getType() == Type.ADVANCED)
+                    dataTechnology.getType() == Type.TECHNOLOGIES)
                 buildings.add(new Building(dataTechnology.name(),dataTechnology.getValue()));
         }
     }

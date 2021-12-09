@@ -1,70 +1,170 @@
 package ogame;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 public enum DataTechnology {
+    RESEARCH_LABORATORY ("31",3, Type.TECHNOLOGIES),
+    //Researches
+    ENERGY_TECHOLOGY ("113",1, Type.BASIC, new ArrayList<>(
+            Collections.singletonList(new RequiredTechnology(1, RESEARCH_LABORATORY)))),
+    LASER_TECHOLOGY ("120",2, Type.BASIC, new ArrayList<>(
+            Arrays.asList(new RequiredTechnology(1,RESEARCH_LABORATORY),
+                    new RequiredTechnology(2,ENERGY_TECHOLOGY)))),
+    ION_TECHOLOGY ("121",3, Type.BASIC, new ArrayList<>(
+            Arrays.asList(new RequiredTechnology(4,RESEARCH_LABORATORY),
+                    new RequiredTechnology(4,ENERGY_TECHOLOGY),
+                    new RequiredTechnology(5,LASER_TECHOLOGY)))),
+    HYPERSPACE_TECHOLOGY ("114",4, Type.BASIC, new ArrayList<>(
+            Arrays.asList(new RequiredTechnology(7,RESEARCH_LABORATORY),
+                    new RequiredTechnology(5,ENERGY_TECHOLOGY),
+                    new RequiredTechnology(5,ION_TECHOLOGY)))),
+    PLASMA_TECHOLOGY ("122",5, Type.BASIC, new ArrayList<>(
+            Arrays.asList(new RequiredTechnology(4,RESEARCH_LABORATORY),
+                    new RequiredTechnology(8,ENERGY_TECHOLOGY),
+                    new RequiredTechnology(10,LASER_TECHOLOGY),
+                    new RequiredTechnology(5,ION_TECHOLOGY)))),
+    COMBUSTION_DRIVE_TECHOLOGY ("115",1, Type.DRIVE, new ArrayList<>(
+            Arrays.asList(new RequiredTechnology(1,RESEARCH_LABORATORY),
+                    new RequiredTechnology(1,ENERGY_TECHOLOGY)))),
+    IMPULSE_DRIVE_TECHOLOGY ("117",2, Type.DRIVE, new ArrayList<>(
+            Arrays.asList(new RequiredTechnology(2,RESEARCH_LABORATORY),
+                    new RequiredTechnology(1,ENERGY_TECHOLOGY)))),
+    HYPERSPACE_DRIVE_TECHOLOGY ("118",3, Type.DRIVE, new ArrayList<>(
+            Arrays.asList(new RequiredTechnology(7,RESEARCH_LABORATORY),
+                    new RequiredTechnology(3,HYPERSPACE_TECHOLOGY)))),
+    ESPIONAGE_TECHOLOGY ("106",1, Type.ADVANCED, new ArrayList<>(
+            Collections.singletonList(new RequiredTechnology(3, RESEARCH_LABORATORY)))),
+    COMPUTER_TECHOLOGY ("108",2, Type.ADVANCED, new ArrayList<>(
+            Collections.singletonList(new RequiredTechnology(1, RESEARCH_LABORATORY)))),
+    ASTROPHYSICS_TECHOLOGY ("124",3, Type.ADVANCED, new ArrayList<>(
+            Arrays.asList(new RequiredTechnology(3,RESEARCH_LABORATORY),
+                    new RequiredTechnology(4,ESPIONAGE_TECHOLOGY),
+                    new RequiredTechnology(3,IMPULSE_DRIVE_TECHOLOGY)))),
+    RESEARCH_NETWORK_TECHOLOGY ("123",4, Type.ADVANCED, new ArrayList<>(
+            Arrays.asList(new RequiredTechnology(10,RESEARCH_LABORATORY),
+                    new RequiredTechnology(8,COMPUTER_TECHOLOGY),
+                    new RequiredTechnology(8,HYPERSPACE_TECHOLOGY)))),
+    GRAVITON_TECHOLOGY ("199",5, Type.ADVANCED, new ArrayList<>(
+            Collections.singletonList(new RequiredTechnology(12, RESEARCH_LABORATORY)))),
+    WEAPONS_TECHOLOGY ("109",1, Type.COMBAT,  new ArrayList<>(
+            Collections.singletonList(new RequiredTechnology(4, RESEARCH_LABORATORY)))),
+    SHIELDING_TECHOLOGY ("110",2, Type.COMBAT,  new ArrayList<>(
+            Arrays.asList(new RequiredTechnology(6,RESEARCH_LABORATORY),
+                    new RequiredTechnology(3,ENERGY_TECHOLOGY)))),
+    ARMOR_TECHOLOGY ("111",3, Type.COMBAT, new ArrayList<>(
+            Collections.singletonList(new RequiredTechnology(2, RESEARCH_LABORATORY)))),
     //Buildings
     METAL_MINE ("1",1, Type.PRODUCTION),
     CRYSTAL_MINE ("2",2,Type.PRODUCTION),
     DEUTERIUM_SYNTHESIZER ("3",3,Type.PRODUCTION),
     SOLAR_PLANT ("4",4,Type.PRODUCTION),
-    FUSION_PLANT ("12",5,Type.PRODUCTION),
-    SOLAR_SATELITE ("212",6,Type.PRODUCTION),
-    RESBUGGY ("217",7,Type.PRODUCTION),
     METAL_STORAGE ("22",8,Type.PRODUCTION),
     CRYSTAL_STORAGE ("23",9,Type.PRODUCTION),
     DEUTERIUM_STORAGE ("24",10,Type.PRODUCTION),
     ROBOTICS_FACTORY ("14",1, Type.TECHNOLOGIES),
-    SHIPYARD ("21",2, Type.TECHNOLOGIES),
-    RESEARCH_LABORATORY ("31",3, Type.TECHNOLOGIES),
-    ALLIANCE_DEPOT ("341",4, Type.TECHNOLOGIES),
-    MISSILE_SILO ("44",5, Type.TECHNOLOGIES),
-    NANITE_FACTORY ("25",6, Type.TECHNOLOGIES),
-    TERRAFORMER ("33",7, Type.TECHNOLOGIES),
-    REPAIR_DOCK ("36",8, Type.TECHNOLOGIES),
-    //Researches
-    ENERGY_TECHOLOGY ("113",1, Type.BASIC),
-    LASER_TECHOLOGY ("120",2, Type.BASIC),
-    ION_TECHOLOGY ("121",3, Type.BASIC),
-    HYPERSPACE_TECHOLOGY ("114",4, Type.BASIC),
-    PLASMA_TECHOLOGY ("122",5, Type.BASIC),
-    COMBUSTION_DRIVE_TECHOLOGY ("115",1, Type.DRIVE),
-    IMPULSE_DRIVE_TECHOLOGY ("117",2, Type.DRIVE),
-    HYPERSPACE_DRIVE_TECHOLOGY ("118",3, Type.DRIVE),
-    ESPIONAGE_TECHOLOGY ("106",1, Type.ADVANCED),
-    COMPUTER_TECHOLOGY ("108",2, Type.ADVANCED),
-    ASTROPHYSICS_TECHOLOGY ("124",3, Type.ADVANCED),
-    RESEARCH_NETWORK_TECHOLOGY ("123",4, Type.ADVANCED),
-    GRAVITON_TECHOLOGY ("199",5, Type.ADVANCED),
-    WEAPONS_TECHOLOGY ("109",1, Type.COMBAT),
-    SHIELDING_TECHOLOGY ("110",2, Type.COMBAT),
-    ARMOR_TECHOLOGY ("111",3, Type.COMBAT),
+    SHIPYARD ("21",2, Type.TECHNOLOGIES, new ArrayList<>(
+            Collections.singletonList(new RequiredTechnology(2, ROBOTICS_FACTORY)))),
+    ALLIANCE_DEPOT ("34",4, Type.TECHNOLOGIES),
+    MISSILE_SILO ("44",5, Type.TECHNOLOGIES,new ArrayList<>(
+            Collections.singletonList(new RequiredTechnology(1, SHIPYARD)))),
+    REPAIR_DOCK ("36",8, Type.TECHNOLOGIES, new ArrayList<>(
+            Collections.singletonList(new RequiredTechnology(2, SHIPYARD)))),
+    NANITE_FACTORY ("15",6, Type.TECHNOLOGIES, new ArrayList<>(
+            Arrays.asList(new RequiredTechnology(10,ROBOTICS_FACTORY),
+                    new RequiredTechnology(10,COMPUTER_TECHOLOGY)))),
+    TERRAFORMER ("33",7, Type.TECHNOLOGIES, new ArrayList<>(
+            Arrays.asList(new RequiredTechnology(1,NANITE_FACTORY),
+                    new RequiredTechnology(12,ENERGY_TECHOLOGY)))),
+    FUSION_PLANT ("12",5,Type.PRODUCTION, new ArrayList<>(
+            Arrays.asList(new RequiredTechnology(5,DEUTERIUM_SYNTHESIZER),
+                    new RequiredTechnology(3,ENERGY_TECHOLOGY)))),
     //Ships
-    FIGHTER_LIGHT("204",1, Type.BATTLE),
-    FIGHTER_HEAVY("205",2,Type.BATTLE),
-    CRUISER("205",3,Type.BATTLE),
-    BATTLE_SHIP("206",4,Type.BATTLE),
-    INTERCEPTOR("215",5,Type.BATTLE),
-    BOMBER("211",6,Type.BATTLE),
-    DESTROYER("213",7,Type.BATTLE),
-    DEATH_STAR("214",8,Type.BATTLE),
-    REAPER("218",9,Type.BATTLE),
-    EXPLORER("219",10,Type.BATTLE),
-    TRANSPORTER_SMALL("202",1,Type.CIVIL),
-    TRANSPORTER_LARGE("203",2,Type.CIVIL),
-    COLONY_SHIP("208",3,Type.CIVIL),
-    RECYCLER("209",4,Type.CIVIL),
-    ESPIONAGE_PROBE("210",5,Type.CIVIL),
+    FIGHTER_LIGHT("204",1, Type.BATTLE, new ArrayList<>(
+            Arrays.asList(new RequiredTechnology(1,SHIPYARD),
+                    new RequiredTechnology(8,COMBUSTION_DRIVE_TECHOLOGY)))),
+    FIGHTER_HEAVY("205",2,Type.BATTLE, new ArrayList<>(
+            Arrays.asList(new RequiredTechnology(2,SHIPYARD),
+                    new RequiredTechnology(2,ARMOR_TECHOLOGY),
+                    new RequiredTechnology(2,IMPULSE_DRIVE_TECHOLOGY)))),
+    CRUISER("205",3,Type.BATTLE, new ArrayList<>(
+            Arrays.asList(new RequiredTechnology(5,SHIPYARD),
+                    new RequiredTechnology(4,IMPULSE_DRIVE_TECHOLOGY),
+                    new RequiredTechnology(2,ION_TECHOLOGY)))),
+    BATTLE_SHIP("206",4,Type.BATTLE, new ArrayList<>(
+            Arrays.asList(new RequiredTechnology(7,SHIPYARD),
+                    new RequiredTechnology(4,HYPERSPACE_DRIVE_TECHOLOGY)))),
+    INTERCEPTOR("215",5,Type.BATTLE, new ArrayList<>(
+            Arrays.asList(new RequiredTechnology(8,SHIPYARD),
+                    new RequiredTechnology(5,HYPERSPACE_TECHOLOGY),
+                    new RequiredTechnology(5,HYPERSPACE_DRIVE_TECHOLOGY),
+                    new RequiredTechnology(12,LASER_TECHOLOGY)))),
+    BOMBER("211",6,Type.BATTLE, new ArrayList<>(
+            Arrays.asList(new RequiredTechnology(8,SHIPYARD),
+                    new RequiredTechnology(6,IMPULSE_DRIVE_TECHOLOGY),
+                    new RequiredTechnology(3,PLASMA_TECHOLOGY)))),
+    DESTROYER("213",7,Type.BATTLE, new ArrayList<>(
+            Arrays.asList(new RequiredTechnology(9,SHIPYARD),
+                    new RequiredTechnology(5,HYPERSPACE_TECHOLOGY),
+                    new RequiredTechnology(6,HYPERSPACE_DRIVE_TECHOLOGY)))),
+    DEATH_STAR("214",8,Type.BATTLE, new ArrayList<>(
+            Arrays.asList(new RequiredTechnology(12,SHIPYARD),
+                    new RequiredTechnology(6,HYPERSPACE_TECHOLOGY),
+                    new RequiredTechnology(7,HYPERSPACE_DRIVE_TECHOLOGY),
+                    new RequiredTechnology(1,GRAVITON_TECHOLOGY)))),
+    REAPER("218",9,Type.BATTLE, new ArrayList<>(
+            Arrays.asList(new RequiredTechnology(10,SHIPYARD),
+                    new RequiredTechnology(6,HYPERSPACE_TECHOLOGY),
+                    new RequiredTechnology(7,HYPERSPACE_DRIVE_TECHOLOGY),
+                    new RequiredTechnology(6,SHIELDING_TECHOLOGY)))),
+    EXPLORER("219",10,Type.BATTLE, new ArrayList<>(
+            Arrays.asList(new RequiredTechnology(5,SHIPYARD),
+                    new RequiredTechnology(2,HYPERSPACE_DRIVE_TECHOLOGY),
+                    new RequiredTechnology(4,SHIELDING_TECHOLOGY)))),
+    TRANSPORTER_SMALL("202",1,Type.CIVIL, new ArrayList<>(
+            Arrays.asList(new RequiredTechnology(2,SHIPYARD),
+                    new RequiredTechnology(2,COMBUSTION_DRIVE_TECHOLOGY)))),
+    TRANSPORTER_LARGE("203",2,Type.CIVIL, new ArrayList<>(
+            Arrays.asList(new RequiredTechnology(4,SHIPYARD),
+                    new RequiredTechnology(6,COMBUSTION_DRIVE_TECHOLOGY)))),
+    COLONY_SHIP("208",3,Type.CIVIL, new ArrayList<>(
+            Arrays.asList(new RequiredTechnology(4,SHIPYARD),
+                    new RequiredTechnology(3,IMPULSE_DRIVE_TECHOLOGY)))),
+    RECYCLER("209",4,Type.CIVIL, new ArrayList<>(
+            Arrays.asList(new RequiredTechnology(4,SHIPYARD),
+                    new RequiredTechnology(6,COMBUSTION_DRIVE_TECHOLOGY),
+                    new RequiredTechnology(2, SHIELDING_TECHOLOGY)))),
+    ESPIONAGE_PROBE("210",5,Type.CIVIL, new ArrayList<>(
+            Arrays.asList(new RequiredTechnology(3,SHIPYARD),
+                    new RequiredTechnology(3,COMBUSTION_DRIVE_TECHOLOGY),
+                    new RequiredTechnology(2,ESPIONAGE_TECHOLOGY)))),
+    SOLAR_SATELITE ("212",6,Type.PRODUCTION, new ArrayList<>(
+            Collections.singletonList(new RequiredTechnology(1, SHIPYARD)))),
+    RESBUGGY ("217",7,Type.PRODUCTION, new ArrayList<>(
+            Arrays.asList(new RequiredTechnology(5,SHIPYARD),
+                    new RequiredTechnology(4,COMBUSTION_DRIVE_TECHOLOGY),
+                    new RequiredTechnology(4,ARMOR_TECHOLOGY),
+                    new RequiredTechnology(4,LASER_TECHOLOGY)))),
     UNDEFINED("0",0,Type.BATTLE);
+
 
     private final String VALUE;
     private final int LIST_INDEX;
+    private ArrayList<RequiredTechnology> requiredTechnologies;
     private final Type TYPE;
 
     DataTechnology(String VALUE, int LIST_INDEX, Type type) {
         this.VALUE = VALUE;
         this.LIST_INDEX = LIST_INDEX;
         TYPE = type;
+    }
+
+    DataTechnology(String VALUE, int LIST_INDEX, Type type, ArrayList<RequiredTechnology> requiredTechnologies) {
+        this.VALUE = VALUE;
+        this.LIST_INDEX = LIST_INDEX;
+        TYPE = type;
+        this.requiredTechnologies = requiredTechnologies;
     }
 
     public String getValue() {
@@ -76,6 +176,10 @@ public enum DataTechnology {
 
     public Type getType() {
         return TYPE;
+    }
+
+    public ArrayList<RequiredTechnology> getRequiredTechnologies() {
+        return requiredTechnologies;
     }
 
     public static DataTechnology getFromValue(String value){
