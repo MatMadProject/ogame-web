@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Resources implements Serializable {
 
     private static final long serialVersionUID = 1992L;
-    private int metal, crystal, deuterium, energy;
+    private long metal, crystal, deuterium, energy;
 
     public Resources(int metal, int crystal, int deuterium, int energy) {
         this.metal = metal;
@@ -14,35 +14,42 @@ public class Resources implements Serializable {
         this.energy = energy;
     }
 
-    public int getMetal() {
+    public Resources(long metal, long crystal, long deuterium, int energy) {
+        this.metal = metal;
+        this.crystal = crystal;
+        this.deuterium = deuterium;
+        this.energy = energy;
+    }
+
+    public long getMetal() {
         return metal;
     }
 
-    public int getCrystal() {
+    public long getCrystal() {
         return crystal;
     }
 
-    public int getDeuterium() {
+    public long getDeuterium() {
         return deuterium;
     }
 
-    public int getEnergy() {
+    public long getEnergy() {
         return energy;
     }
 
-    public void setMetal(int metal) {
+    public void setMetal(long metal) {
         this.metal = metal;
     }
 
-    public void setCrystal(int crystal) {
+    public void setCrystal(long crystal) {
         this.crystal = crystal;
     }
 
-    public void setDeuterium(int deuterium) {
+    public void setDeuterium(long deuterium) {
         this.deuterium = deuterium;
     }
 
-    public void setEnergy(int energy) {
+    public void setEnergy(long energy) {
         this.energy = energy;
     }
 
