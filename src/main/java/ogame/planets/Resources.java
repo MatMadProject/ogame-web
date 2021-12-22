@@ -55,7 +55,7 @@ public class Resources implements Serializable {
 
     @Override
     public String toString() {
-        return "RequiredResources{" +
+        return "Resources{" +
                 "metal=" + metal +
                 ", crystal=" + crystal +
                 ", deuterium=" + deuterium +
