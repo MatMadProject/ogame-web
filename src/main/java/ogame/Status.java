@@ -33,18 +33,6 @@ public enum Status implements Serializable {
                 return status;
         }
         return UNDEFINED;
-//        switch (id){
-//            case 0:
-//                return ACTIVE;
-//            case 1:
-//                return DISABLED;
-//            case 2:
-//                return OFF;
-//            case 3:
-//                return ON;
-//            default:
-//                return UNDEFINED;
-//        }
     }
 
     public static Status getStatus(String name){
@@ -53,17 +41,5 @@ public enum Status implements Serializable {
                 return status;
         }
         return UNDEFINED;
-//        switch (name){
-//            case "active":
-//                return ACTIVE;
-//            case "disabled":
-//                return DISABLED;
-//            case "off":
-//                return OFF;
-//            case "on":
-//                return ON;
-//            default:
-//                return UNDEFINED;
-//        }
     }
 }

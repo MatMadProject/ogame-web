@@ -195,7 +195,7 @@ public class Research {
         }
         return false;
     }
-    //*[@id="technologydetails"]/div[2]/div/ul/li/time
+
     public static ProductionTime productionTimeOfResearch(WebDriver w){
         try {
             if(visibleResearchDetails(w)){
@@ -215,6 +215,7 @@ public class Research {
         }
         return new ProductionTime("PT0S");
     }
+
     public static RequiredResources getRequiredResources(WebDriver w, int pos, Type type){
         if(visibleResearchDetails(w, pos, type)){
             int metal = 0, crystal = 0, deuterium = 0, energy = 0;

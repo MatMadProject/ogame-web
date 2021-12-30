@@ -8,5 +8,6 @@ public enum Type {
     ADVANCED,
     COMBAT,
     BATTLE,
-    CIVIL
+    CIVIL,
+    DEFENCE
 }

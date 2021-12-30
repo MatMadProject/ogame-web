@@ -779,6 +779,12 @@ public class FleetDispatch {
         return false;
     }
 
+    /**
+     * Sends all ship of type on planet.
+     * @param w ***
+     * @param ship Ship type.
+     * @return true - if sent.
+     */
     public static boolean setAllShips(WebDriver w, DataTechnology ship){
         try{
             if(visible(w)){
@@ -801,6 +807,12 @@ public class FleetDispatch {
         return false;
     }
 
+    /**
+     * Sends vships value. If value is higher than ships value on planet. Sends all ships.
+     * @param w ***
+     * @param ship Ship type.
+     * @return true - if sent.
+     */
     public static boolean setValueShips(WebDriver w, DataTechnology ship, int value){
         try{
             if(visible(w)){

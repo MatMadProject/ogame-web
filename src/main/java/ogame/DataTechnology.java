@@ -88,11 +88,11 @@ public enum DataTechnology {
             Arrays.asList(new RequiredTechnology(2,SHIPYARD),
                     new RequiredTechnology(2,ARMOR_TECHOLOGY),
                     new RequiredTechnology(2,IMPULSE_DRIVE_TECHOLOGY)))),
-    CRUISER("205",3,Type.BATTLE, new ArrayList<>(
+    CRUISER("206",3,Type.BATTLE, new ArrayList<>(
             Arrays.asList(new RequiredTechnology(5,SHIPYARD),
                     new RequiredTechnology(4,IMPULSE_DRIVE_TECHOLOGY),
                     new RequiredTechnology(2,ION_TECHOLOGY)))),
-    BATTLE_SHIP("206",4,Type.BATTLE, new ArrayList<>(
+    BATTLE_SHIP("207",4,Type.BATTLE, new ArrayList<>(
             Arrays.asList(new RequiredTechnology(7,SHIPYARD),
                     new RequiredTechnology(4,HYPERSPACE_DRIVE_TECHOLOGY)))),
     INTERCEPTOR("215",5,Type.BATTLE, new ArrayList<>(
@@ -139,15 +139,50 @@ public enum DataTechnology {
             Arrays.asList(new RequiredTechnology(3,SHIPYARD),
                     new RequiredTechnology(3,COMBUSTION_DRIVE_TECHOLOGY),
                     new RequiredTechnology(2,ESPIONAGE_TECHOLOGY)))),
-    SOLAR_SATELITE ("212",6,Type.PRODUCTION, new ArrayList<>(
+    SOLAR_SATELITE ("212",6,Type.CIVIL, new ArrayList<>(
             Collections.singletonList(new RequiredTechnology(1, SHIPYARD)))),
-    RESBUGGY ("217",7,Type.PRODUCTION, new ArrayList<>(
+    RESBUGGY ("217",7,Type.CIVIL, new ArrayList<>(
             Arrays.asList(new RequiredTechnology(5,SHIPYARD),
                     new RequiredTechnology(4,COMBUSTION_DRIVE_TECHOLOGY),
                     new RequiredTechnology(4,ARMOR_TECHOLOGY),
                     new RequiredTechnology(4,LASER_TECHOLOGY)))),
-    UNDEFINED("0",0,Type.BATTLE);
 
+    //DEFENCE
+    ROCKET_LAUNCHER ("401",1,Type.DEFENCE, new ArrayList<>(
+            Collections.singletonList(new RequiredTechnology(1, SHIPYARD)))),
+    LASER_CANNON_LIGHT ("402",2,Type.DEFENCE, new ArrayList<>(
+            Arrays.asList(new RequiredTechnology(2,SHIPYARD),
+                    new RequiredTechnology(1,ENERGY_TECHOLOGY),
+                    new RequiredTechnology(3,LASER_TECHOLOGY)))),
+    LASER_CANNON_HEAVY ("403",3,Type.DEFENCE, new ArrayList<>(
+            Arrays.asList(new RequiredTechnology(4,SHIPYARD),
+                    new RequiredTechnology(3,ENERGY_TECHOLOGY),
+                    new RequiredTechnology(6,LASER_TECHOLOGY)))),
+    GAUSS_CANNON ("404",4,Type.DEFENCE, new ArrayList<>(
+            Arrays.asList(new RequiredTechnology(6,SHIPYARD),
+                    new RequiredTechnology(6,ENERGY_TECHOLOGY),
+                    new RequiredTechnology(3,WEAPONS_TECHOLOGY),
+                    new RequiredTechnology(1,SHIELDING_TECHOLOGY)))),
+    ION_CANNON ("405",5,Type.DEFENCE, new ArrayList<>(
+            Arrays.asList(new RequiredTechnology(4,SHIPYARD),
+                    new RequiredTechnology(4,ION_TECHOLOGY)))),
+    PLASMA_CANNON ("406",6,Type.DEFENCE, new ArrayList<>(
+            Arrays.asList(new RequiredTechnology(8,SHIPYARD),
+                    new RequiredTechnology(7,PLASMA_TECHOLOGY)))),
+    SHIELD_DOME_SMALL ("407",7,Type.DEFENCE, new ArrayList<>(
+            Arrays.asList(new RequiredTechnology(1,SHIPYARD),
+                    new RequiredTechnology(2,SHIELDING_TECHOLOGY)))),
+    SHIELD_DOME_LARGE ("408",8,Type.DEFENCE, new ArrayList<>(
+            Arrays.asList(new RequiredTechnology(6,SHIPYARD),
+                    new RequiredTechnology(6,SHIELDING_TECHOLOGY)))),
+    MISSILE_INTERCEPTOR ("502",9,Type.DEFENCE, new ArrayList<>(
+            Arrays.asList(new RequiredTechnology(1,SHIPYARD),
+                    new RequiredTechnology(2,MISSILE_SILO)))),
+    MISSILE_INTERPLANETARY ("503",10,Type.DEFENCE, new ArrayList<>(
+            Arrays.asList(new RequiredTechnology(1,SHIPYARD),
+                    new RequiredTechnology(3,MISSILE_SILO),
+                    new RequiredTechnology(1,IMPULSE_DRIVE_TECHOLOGY)))),
+    UNDEFINED("0",0,Type.BATTLE);
 
     private final String VALUE;
     private final int LIST_INDEX;
