@@ -68,7 +68,7 @@ public class Shipyard {
             return s.equals(SHIP_DETAILS_VISIBLE);
         }
         catch (Exception e){
-            AppLog.printOnConsole(Shipyard.class.getName(),1,"When it checks, the research details is visible.");
+            AppLog.printOnConsole(Shipyard.class.getName(),1,"When it checks, the ship details is visible.");
         }
         return false;
     }
@@ -224,7 +224,7 @@ public class Shipyard {
             }
         }
         catch (Exception e){
-            AppLog.printOnConsole(Shipyard.class.getName(),1,"While trying to click on a ship: " + dataTechnology);
+            AppLog.printOnConsole(Shipyard.class.getName(),1,"While trying to click on a " + dataTechnology);
         }
         return false;
     }
