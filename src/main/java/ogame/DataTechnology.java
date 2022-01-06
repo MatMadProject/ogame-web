@@ -80,6 +80,13 @@ public enum DataTechnology {
     FUSION_PLANT ("12",5,Type.PRODUCTION, new ArrayList<>(
             Arrays.asList(new RequiredTechnology(5,DEUTERIUM_SYNTHESIZER),
                     new RequiredTechnology(3,ENERGY_TECHOLOGY)))),
+    SOLAR_SATELITE_B ("212",6,Type.PRODUCTION, new ArrayList<>(
+            Collections.singletonList(new RequiredTechnology(1, SHIPYARD)))),
+    RESBUGGY_B ("217",7,Type.PRODUCTION, new ArrayList<>(
+            Arrays.asList(new RequiredTechnology(5,SHIPYARD),
+                    new RequiredTechnology(4,COMBUSTION_DRIVE_TECHOLOGY),
+                    new RequiredTechnology(4,ARMOR_TECHOLOGY),
+                    new RequiredTechnology(4,LASER_TECHOLOGY)))),
     //Ships
     FIGHTER_LIGHT("204",1, Type.BATTLE, new ArrayList<>(
             Arrays.asList(new RequiredTechnology(1,SHIPYARD),
