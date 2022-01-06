@@ -24,6 +24,12 @@ public class Ship implements Serializable {
         setRequiredResources(requiredResources(dataTechnology));
     }
 
+    public Ship(DataTechnology dataTechnology) {
+        this.dataTechnology = dataTechnology;
+        this.name = dataTechnology.name();
+        setRequiredResources(requiredResources(dataTechnology));
+    }
+
     public int getValue() {
         return value;
     }
