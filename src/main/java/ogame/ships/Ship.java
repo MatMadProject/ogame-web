@@ -6,6 +6,7 @@ import ogame.buildings.RequiredResources;
 import ogame.watch.ProductionTime;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Ship implements Serializable {
 
@@ -117,5 +118,31 @@ public class Ship implements Serializable {
             default:
                 return null;
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Ship ship = (Ship) o;
+        return dataTechnology == ship.dataTechnology;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(dataTechnology);
+    }
+
+    @Override
+    public String toString() {
+        return "Ship{" +
+                "value=" + value +
+                ", localName='" + localName + '\'' +
+                ", name='" + name + '\'' +
+                ", status=" + status +
+                ", productionTime=" + productionTime +
+                ", requiredResources=" + requiredResources +
+                ", dataTechnology=" + dataTechnology +
+                '}';
     }
 }

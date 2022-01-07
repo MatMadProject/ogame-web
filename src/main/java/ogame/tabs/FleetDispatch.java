@@ -4,6 +4,7 @@ import ogame.DataTechnology;
 import ogame.FinalXPath;
 import ogame.Type;
 import ogame.ships.Mission;
+import ogame.utils.StringFactory;
 import ogame.utils.WebElementPath;
 import ogame.utils.WebElementUtil;
 import ogame.utils.log.AppLog;
@@ -57,8 +58,10 @@ public class FleetDispatch {
     private static final WebElementPath SPEED_CONTAINER = new WebElementPath("//*[@id=\"speedPercentage\"]/div[2]/div[","]");
     private static final WebElementPath MILITARY_SHIP_CONTENER = new WebElementPath("//*[@id=\"military\"]/li[","]/span");
     private static final WebElementPath MILITARY_SHIP_INPUT = new WebElementPath("//*[@id=\"military\"]/li[","]/input");
+    private static final WebElementPath MILITARY_SHIP_VALUE = new WebElementPath("//*[@id=\"military\"]/li[","]/span/span");
     private static final WebElementPath CIVIL_SHIP_CONTENER = new WebElementPath("//*[@id=\"civil\"]/li[","]/span");
     private static final WebElementPath CIVIL_SHIP_INPUT = new WebElementPath("//*[@id=\"civil\"]/li[","]/input");
+    private static final WebElementPath CIVIL_SHIP_VALUE = new WebElementPath("//*[@id=\"civil\"]/li[","]/span/span");
 
     public static boolean visible(WebDriver w) {
         try{
@@ -808,7 +811,7 @@ public class FleetDispatch {
     }
 
     /**
-     * Sends vships value. If value is higher than ships value on planet. Sends all ships.
+     * Sends ships value. If value is higher than ships value on planet. Sends all ships.
      * @param w ***
      * @param ship Ship type.
      * @return true - if sent.
@@ -834,5 +837,33 @@ public class FleetDispatch {
             AppLog.printOnConsole(FleetDispatch.class.getName(),1,"While try set value of ship " + ship);
         }
         return false;
+    }
+
+    /**
+     * Get ship value.
+     * @param w ***
+     * @param ship Ship type.
+     * @return true - if sent.
+     */
+    public static int getValueShips(WebDriver w, DataTechnology ship){
+        try{
+            if(visible(w)){
+                WebElement e;
+                if(ship.getType() == Type.BATTLE){
+                    MILITARY_SHIP_VALUE.setEdit(ship.getListIndex());
+                    e =  w.findElement(By.xpath(MILITARY_SHIP_VALUE.get()));
+                }else{
+                    CIVIL_SHIP_VALUE.setEdit(ship.getListIndex());
+                    e =  w.findElement(By.xpath(CIVIL_SHIP_VALUE.get()));
+                }
+                WebElementUtil.scrollToElement(w,e);
+                String value = e.getAttribute("data-value");
+                return Integer.parseInt(StringFactory.deleteChars('.',value));
+            }
+        }
+        catch (Exception e){
+            AppLog.printOnConsole(FleetDispatch.class.getName(),1,"While try set value of ship " + ship);
+        }
+        return -1;
     }
 }
