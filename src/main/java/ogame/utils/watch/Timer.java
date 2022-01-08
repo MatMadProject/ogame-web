@@ -46,6 +46,12 @@ public class Timer implements Serializable {
 
         return (finishDate - currentTime)/1000;
     }
+    public static long timeMilliseconds(long timeMillisecnods, long timeMillisecnods2){
+        return timeMillisecnods - timeMillisecnods2;
+    }
+    public static long timeSeconds(long timeSecnods, long timeSecnods2){
+        return timeSecnods - timeSecnods2;
+    }
 
     public String leftTime(){
         Duration duration = Duration.ofMillis(finishDate - System.currentTimeMillis());
