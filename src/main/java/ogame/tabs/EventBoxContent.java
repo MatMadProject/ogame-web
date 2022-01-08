@@ -1,11 +1,10 @@
 package ogame.tabs;
 
-import ogame.OgameWeb;
 import ogame.eventbox.Event;
 import ogame.eventbox.GalaxyObject;
 import ogame.eventbox.Type;
 import ogame.planets.Coordinate;
-import ogame.utils.Waiter;
+import ogame.ships.Mission;
 import ogame.utils.WebElementPath;
 import ogame.utils.WebElementUtil;
 import ogame.utils.log.AppLog;
@@ -75,11 +74,9 @@ public class EventBoxContent {
 
     public static int eventBoxSize(WebDriver w){
         try{
-//            if(visible(w)){
                 WebElement e =  w.findElement(By.xpath(EVENT_BOX_CONTENT_TABLE_BODY));
                 List<WebElement> table = e.findElements(By.tagName("tr"));
                 return table.size();
-//            }
         }
         catch (Exception e){
             AppLog.printOnConsole(EventBoxContent.class.getName(),1,"When try download size of event box.");
@@ -89,11 +86,9 @@ public class EventBoxContent {
 
     public static String id(WebDriver w, int position){
         try{
-//            if(visible(w)){
                 EVENT.setEdit(position);
                 WebElement e =  w.findElement(By.xpath(EVENT.get()));
                 return e.getAttribute("id");
-//            }
         }
         catch (Exception e){
             AppLog.printOnConsole(EventBoxContent.class.getName(),1,"When try download id of event.");
@@ -103,12 +98,10 @@ public class EventBoxContent {
 
     public static int missionType(WebDriver w, int position){
         try{
-//            if(visible(w)){
                 EVENT.setEdit(position);
                 WebElement e =  w.findElement(By.xpath(EVENT.get()));
                 String s = e.getAttribute("data-mission-type");
                 return Integer.parseInt(s);
-//            }
         }
         catch (Exception e){
             AppLog.printOnConsole(EventBoxContent.class.getName(),1,"When try download mission type of event.");
@@ -118,12 +111,10 @@ public class EventBoxContent {
 
     public static Type type(WebDriver w, int position){
         try{
-//            if(visible(w)){
             EVENT.setEdit(position);
             WebElement e =  w.findElement(By.xpath(EVENT.get().concat(TYPE)));
             String s = e.getAttribute("class");
             return Type.getFromValue(s.split(" ")[0]);
-//            }
         }
         catch (Exception e){
             AppLog.printOnConsole(EventBoxContent.class.getName(),1,"When try download type of event.");
@@ -133,12 +124,10 @@ public class EventBoxContent {
 
     public static boolean isReturn(WebDriver w, int position){
         try{
-//            if(visible(w)){
             EVENT.setEdit(position);
             WebElement e =  w.findElement(By.xpath(EVENT.get()));
             String s = e.getAttribute("data-return-flight");
             return Boolean.parseBoolean(s);
-//            }
         }
         catch (Exception e){
             AppLog.printOnConsole(EventBoxContent.class.getName(),1,"When try download is event return.");
@@ -148,12 +137,10 @@ public class EventBoxContent {
 
     public static long arrivalTime(WebDriver w, int position){
         try{
-//            if(visible(w)){
             EVENT.setEdit(position);
             WebElement e =  w.findElement(By.xpath(EVENT.get()));
             String s = e.getAttribute("data-arrival-time");
             return Long.parseLong(s);
-//            }
         }
         catch (Exception e){
             AppLog.printOnConsole(EventBoxContent.class.getName(),1,"When try download arrival type of event.");
@@ -163,7 +150,6 @@ public class EventBoxContent {
 
     public static GalaxyObject origin(WebDriver w, int position){
         try{
-//            if(visible(w)){
             EVENT.setEdit(position);
             WebElement e =  w.findElement(By.xpath(EVENT.get().concat(ORIGIN_OBJECT)));
             String s = e.getAttribute("class");
@@ -173,7 +159,6 @@ public class EventBoxContent {
                 return GalaxyObject.MOON;
             else if(s.contains("planetIcon tf"))
                 return GalaxyObject.DEBRIS;
-//            }
         }
         catch (Exception e){
             AppLog.printOnConsole(EventBoxContent.class.getName(),1,"When try download origin galaxy object.");
@@ -198,11 +183,9 @@ public class EventBoxContent {
 
     public static String fleetDetails(WebDriver w, int position){
         try{
-//            if(visible(w)){
             EVENT.setEdit(position);
             WebElement e =  w.findElement(By.xpath(EVENT.get().concat(FLEET_DETAILS)));
             return e.getAttribute("title");
-//            }
         }
         catch (Exception e){
             AppLog.printOnConsole(EventBoxContent.class.getName(),1,"When try download fleet details.");
@@ -311,5 +294,55 @@ public class EventBoxContent {
         }
 
         return list;
+    }
+
+    public static ArrayList<Event> events(WebDriver w, Mission mission){
+        ArrayList<Event> list = new ArrayList<>();
+
+        int eventBoxSize = eventBoxSize(w);
+        if(eventBoxSize > 0){
+            for(int i = 1; i <= eventBoxSize; i++){
+                int missionType = missionType(w,i);
+                if(missionType == mission.getDATA_MISSION_TYPE()){
+                    String id = id(w,i);
+                    Event event = new Event(id);
+                    event.setMissionType(missionType);
+                    event.setType(type(w,i));
+                    event.setReturn(isReturn(w,i));
+                    event.setArrivalTime(arrivalTime(w,i));
+                    event.setOrigin(origin(w,i));
+                    event.setOriginCoordinate(originCoordinate(w,i));
+                    event.setDestination(destination(w,i));
+                    event.setDestinationCoordinate(destiantionCoordinate(w,i));
+                    event.setFleetDetails(fleetDetails(w,i));
+                    list.add(event);
+                }
+            }
+        }
+
+        return list;
+    }
+
+    public static Event eventFromId(WebDriver w, String idEvent){
+        int eventBoxSize = eventBoxSize(w);
+        if(eventBoxSize > 0){
+            for(int i = 1; i <= eventBoxSize; i++){
+                String id = id(w,i);
+                if(id != null && id.equals(idEvent)) {
+                    Event event = new Event(id);
+                    event.setMissionType(missionType(w,i));
+                    event.setType(type(w,i));
+                    event.setReturn(isReturn(w,i));
+                    event.setArrivalTime(arrivalTime(w,i));
+                    event.setOrigin(origin(w,i));
+                    event.setOriginCoordinate(originCoordinate(w,i));
+                    event.setDestination(destination(w,i));
+                    event.setDestinationCoordinate(destiantionCoordinate(w,i));
+                    event.setFleetDetails(fleetDetails(w,i));
+                    return event;
+                }
+            }
+        }
+        return null;
     }
 }

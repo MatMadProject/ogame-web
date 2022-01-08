@@ -1,6 +1,7 @@
 package ogame.planets;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Coordinate implements Serializable {
 
@@ -77,5 +78,18 @@ public class Coordinate implements Serializable {
                 ", system=" + system +
                 ", planet=" + planet +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Coordinate that = (Coordinate) o;
+        return galaxy == that.galaxy && system == that.system && planet == that.planet;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(galaxy, system, planet);
     }
 }

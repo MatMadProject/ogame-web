@@ -7,10 +7,10 @@ public enum Mission {
     TRANSPORT(4, 3),
     STATION(5,4),
     SPY(6,6),
-    STOP(7),
+    STOP(7,-1),
     ATTACK(8,1),
     RELATIONSHIP_ATTACK(9),
-    DESTROYE(10),
+    DESTROYE(10,-1),
     UNDEFINED(0,0);
     private final int LIST_INDEX;
     private int DATA_MISSION_TYPE;
