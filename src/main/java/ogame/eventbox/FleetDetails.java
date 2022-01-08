@@ -90,7 +90,7 @@ public class FleetDetails {
                 continue;
             String name = name(s);
             String value = value(s);
-            ship.add(new FleetDetailsShip(name,value));
+            ship.add(new FleetDetailsShip(name,StringFactory.deleteChars('\n',value)));
         }
         return ship;
     }
