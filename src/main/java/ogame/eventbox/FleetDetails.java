@@ -138,6 +138,7 @@ public class FleetDetails {
             if(addFlag){
                 String value = value(s);
                 value = StringFactory.deleteChars('\n',value);
+                value = StringFactory.deleteChars('.',value);
                 switch (count){
                     case 1:
                         metal = Integer.parseInt(value);
