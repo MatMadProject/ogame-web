@@ -40,13 +40,16 @@ public class EventBoxContent {
             return !WebElementUtil.attrContainsText(e,"style","display");
         }
         catch (Exception e){
-            AppLog.printOnConsole(EventBoxContent.class.getName(),1,"When it checks, the tab is visible.");
+            AppLog.printOnConsole(EventBoxContent.class.getName(),1,"When it checks, the container is visible.");
         }
         return false;
     }
 
     public static boolean open(WebDriver w) {
         try{
+            if(visible(w))
+                return true;
+
             WebElement e =  w.findElement(By.xpath(SHOW_BOX_CONTENT_BUTTON));
             e.click();
             return true;

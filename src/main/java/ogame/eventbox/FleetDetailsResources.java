@@ -1,8 +1,8 @@
 package ogame.eventbox;
 
 public class FleetDetailsResources {
-    public final String name;
-    public final String value;
+    private final String name;
+    private final String value;
 
     public FleetDetailsResources(String name, String value) {
         this.name = name;

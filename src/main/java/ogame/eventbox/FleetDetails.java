@@ -43,7 +43,7 @@ public class FleetDetails {
     /**
      * @return Returns list of table row from fleet details text.
      */
-    public ArrayList<String> trTagList(){
+    private ArrayList<String> trTagList(){
         ArrayList<String> list = new ArrayList<>();
 
         int startTrTagIndex = getStartTrTagIndex(0);
@@ -61,7 +61,7 @@ public class FleetDetails {
      * @param trContent Table row content
      * @return name value from table row
      */
-    public String name(String trContent){
+    private String name(String trContent){
         return trContent.split(":")[0].split(">")[2];
     }
 
@@ -69,7 +69,7 @@ public class FleetDetails {
      * @param trContent Table row content
      * @return  value from table row
      */
-    public String value(String trContent){
+    private String value(String trContent){
         String [] st1 = trContent.split("class=");
         String s1 = st1[1].replace("</td>","").replace("</tr>","");
         String [] st2 = s1.split(">");
@@ -160,7 +160,7 @@ public class FleetDetails {
      * @param trContent Content of tr tag.
      * @return false - if contains data of resource or ship, else - true
      */
-    public boolean isNextResource(String trContent){
+    private boolean isNextResource(String trContent){
         return trContent.contains("</th>");
     }
     /**
@@ -168,7 +168,7 @@ public class FleetDetails {
      * @param trContent Content of tr tag.
      * @return true - if is space tr
      */
-    public boolean isSpace(String trContent){
+    private boolean isSpace(String trContent){
         return trContent.contains("&nbsp");
     }
 }
