@@ -74,7 +74,7 @@ public class Timer implements Serializable {
     }
 
     public String leftTimeSecond(){
-        Duration duration = Duration.ofMillis(finishDate - System.currentTimeMillis()/1000);
+        Duration duration = Duration.ofSeconds(finishDate - System.currentTimeMillis()/1000);
         long seconds = duration.getSeconds();
         long hh = seconds / 3600;
         long mm = (seconds % 3600) / 60;
