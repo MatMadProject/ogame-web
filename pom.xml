@@ -6,7 +6,7 @@
 
     <groupId>pl.matmadproject</groupId>
     <artifactId>ogame-web</artifactId>
-    <version>1.9.8</version>
+    <version>1.9.10</version>
     <packaging>jar</packaging>
 
     <distributionManagement>
@@ -28,13 +28,14 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <version>4.13.1</version>
             <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <version>4.13.1</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
