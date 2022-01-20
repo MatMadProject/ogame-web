@@ -282,4 +282,46 @@ public class Supplies {
         }
         return "null";
     }
+
+    public static long startDateOfUpgradeBuilding(WebDriver w, int pos){
+        if(statusOfBuilding(w,pos) == Status.ACTIVE){
+            try {
+                BUILDINGS_CONTAINER.setEdit(pos);
+                WebElement e = w.findElement(By.xpath(BUILDINGS_CONTAINER.get()));
+                return Long.parseLong(e.getAttribute("data-start"));
+            }
+            catch (Exception ex) {
+                AppLog.printOnConsole(Supplies.class.getName(),1,"Doesn't download start data of " + DataTechnology.getFromListIndex(pos, Type.PRODUCTION));
+            }
+        }
+        return -1;
+    }
+
+    public static long endDateOfUpgradeBuilding(WebDriver w, int pos){
+        if(statusOfBuilding(w,pos) == Status.ACTIVE){
+            try {
+                BUILDINGS_CONTAINER.setEdit(pos);
+                WebElement e = w.findElement(By.xpath(BUILDINGS_CONTAINER.get()));
+                return Long.parseLong(e.getAttribute("data-end"));
+            }
+            catch (Exception ex) {
+                AppLog.printOnConsole(Supplies.class.getName(),1,"Doesn't download end data of " + DataTechnology.getFromListIndex(pos, Type.PRODUCTION));
+            }
+        }
+        return -1;
+    }
+
+    public static long productionTimeOfUpgradedBuildingInSeconds(WebDriver w, int pos){
+        if(statusOfBuilding(w,pos) == Status.ACTIVE){
+            try {
+                BUILDINGS_CONTAINER.setEdit(pos);
+                WebElement e = w.findElement(By.xpath(BUILDINGS_CONTAINER.get()));
+                return Long.parseLong(e.getAttribute("data-total"));
+            }
+            catch (Exception ex) {
+                AppLog.printOnConsole(Supplies.class.getName(),1,"Doesn't download production time of " + DataTechnology.getFromListIndex(pos, Type.PRODUCTION));
+            }
+        }
+        return -1;
+    }
 }

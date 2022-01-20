@@ -3,6 +3,7 @@ package ogame.tabs;
 import ogame.DataTechnology;
 import ogame.FinalXPath;
 import ogame.Status;
+import ogame.Type;
 import ogame.utils.WebElementPath;
 import ogame.utils.WebElementUtil;
 import ogame.utils.log.AppLog;
@@ -158,7 +159,6 @@ public class Defence {
 
             if(e != null)
                 return e.getAttribute("aria-label");
-
         }
         catch (Exception ex) {
             AppLog.printOnConsole(Defence.class.getName(),1,"Doesn't download local name of " + dataTechnology);
@@ -208,5 +208,53 @@ public class Defence {
             AppLog.printOnConsole(Shipyard.class.getName(),1,"While try input ship amount.");
         }
         return false;
+    }
+
+    public static long startDateOfUpgradeBuilding(WebDriver w, DataTechnology dataTechnology){
+        if(statusOfDefence(w,dataTechnology) == Status.ACTIVE){
+            try {
+                DEFENCE_CONTENER.setEdit(dataTechnology.getListIndex());
+                WebElement e = w.findElement(By.xpath(DEFENCE_CONTENER.get()));
+
+                if(e != null)
+                    return Long.parseLong(e.getAttribute("data-start"));
+            }
+            catch (Exception ex) {
+                AppLog.printOnConsole(Defence.class.getName(),1,"Doesn't download start data of " + dataTechnology);
+            }
+        }
+        return -1;
+    }
+
+    public static long endDateOfUpgradeBuilding(WebDriver w, DataTechnology dataTechnology){
+        if(statusOfDefence(w,dataTechnology) == Status.ACTIVE){
+            try {
+                DEFENCE_CONTENER.setEdit(dataTechnology.getListIndex());
+                WebElement e = w.findElement(By.xpath(DEFENCE_CONTENER.get()));
+
+                if(e != null)
+                    return Long.parseLong(e.getAttribute("data-end"));
+            }
+            catch (Exception ex) {
+                AppLog.printOnConsole(Defence.class.getName(),1,"Doesn't download end data of " + dataTechnology);
+            }
+        }
+        return -1;
+    }
+
+    public static long productionTimeOfUpgradedBuildingInSeconds(WebDriver w, DataTechnology dataTechnology){
+        if(statusOfDefence(w,dataTechnology) == Status.ACTIVE){
+            try {
+                DEFENCE_CONTENER.setEdit(dataTechnology.getListIndex());
+                WebElement e = w.findElement(By.xpath(DEFENCE_CONTENER.get()));
+
+                if(e != null)
+                    return Long.parseLong(e.getAttribute("data-total"));
+            }
+            catch (Exception ex) {
+                AppLog.printOnConsole(Defence.class.getName(),1,"Doesn't download production time of " + dataTechnology);
+            }
+        }
+        return -1;
     }
 }

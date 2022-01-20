@@ -399,4 +399,73 @@ public class Shipyard {
         }
         return -1;
     }
+
+    public static long startDateOfUpgradeBuilding(WebDriver w, DataTechnology dataTechnology){
+        if(statusOfShip(w,dataTechnology) == Status.ACTIVE){
+            try {
+                WebElement e = null;
+                if(dataTechnology.getType() == Type.BATTLE){
+                    MILITARY_SHIP_CONTENER.setEdit(dataTechnology.getListIndex());
+                    e = w.findElement(By.xpath(MILITARY_SHIP_CONTENER.get()));
+                }
+                if(dataTechnology.getType() == Type.CIVIL){
+                    CIVIL_SHIP_CONTENER.setEdit(dataTechnology.getListIndex());
+                    e = w.findElement(By.xpath(CIVIL_SHIP_CONTENER.get()));
+                }
+                if(e != null)
+                    Long.parseLong(e.getAttribute("data-start"));
+
+            }
+            catch (Exception ex) {
+                AppLog.printOnConsole(Shipyard.class.getName(),1,"Doesn't download start data of " + dataTechnology);
+            }
+        }
+        return -1;
+    }
+
+    public static long endDateOfUpgradeBuilding(WebDriver w, DataTechnology dataTechnology){
+        if(statusOfShip(w,dataTechnology) == Status.ACTIVE){
+            try {
+                WebElement e = null;
+                if(dataTechnology.getType() == Type.BATTLE){
+                    MILITARY_SHIP_CONTENER.setEdit(dataTechnology.getListIndex());
+                    e = w.findElement(By.xpath(MILITARY_SHIP_CONTENER.get()));
+                }
+                if(dataTechnology.getType() == Type.CIVIL){
+                    CIVIL_SHIP_CONTENER.setEdit(dataTechnology.getListIndex());
+                    e = w.findElement(By.xpath(CIVIL_SHIP_CONTENER.get()));
+                }
+                if(e != null)
+                    Long.parseLong(e.getAttribute("data-end"));
+
+            }
+            catch (Exception ex) {
+                AppLog.printOnConsole(Shipyard.class.getName(),1,"Doesn't download end data of " + dataTechnology);
+            }
+        }
+        return -1;
+    }
+
+    public static long productionTimeOfUpgradedBuildingInSeconds(WebDriver w, DataTechnology dataTechnology){
+        if(statusOfShip(w,dataTechnology) == Status.ACTIVE){
+            try {
+                WebElement e = null;
+                if(dataTechnology.getType() == Type.BATTLE){
+                    MILITARY_SHIP_CONTENER.setEdit(dataTechnology.getListIndex());
+                    e = w.findElement(By.xpath(MILITARY_SHIP_CONTENER.get()));
+                }
+                if(dataTechnology.getType() == Type.CIVIL){
+                    CIVIL_SHIP_CONTENER.setEdit(dataTechnology.getListIndex());
+                    e = w.findElement(By.xpath(CIVIL_SHIP_CONTENER.get()));
+                }
+                if(e != null)
+                    Long.parseLong(e.getAttribute("data-total"));
+
+            }
+            catch (Exception ex) {
+                AppLog.printOnConsole(Shipyard.class.getName(),1,"Doesn't download production of " + dataTechnology);
+            }
+        }
+        return -1;
+    }
 }
