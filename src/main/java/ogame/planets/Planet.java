@@ -29,6 +29,7 @@ public class Planet implements Serializable {
     private boolean updateResourcesProduction = true;
     private boolean updateResourceBuilding = true;
     private boolean updateTechnologyBuilding = true;
+    private boolean updatePlanetInformation = true;
     private boolean colonyDataAdded = false;
 
     public Planet(String id, int positionOnList) {
@@ -187,6 +188,14 @@ public class Planet implements Serializable {
 
     public void setColonyDataAdded() {
         this.colonyDataAdded = true;
+    }
+
+    public boolean isUpdatePlanetInformation() {
+        return updatePlanetInformation;
+    }
+
+    public void setUpdatePlanetInformation(boolean updatePlanetInformation) {
+        this.updatePlanetInformation = updatePlanetInformation;
     }
 
     @Override
