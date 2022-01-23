@@ -65,6 +65,17 @@ public class Overview
         }
         return false;
     }
+    public static boolean clickAlways(WebDriver w){
+        try{
+            WebElement e =  w.findElement(By.xpath(OVERVIEW_BUTTON));
+            e.click();
+            return true;
+        }
+        catch (Exception e){
+            AppLog.printOnConsole(Overview.class.getName(),1,"While trying to click on a tab.");
+        }
+        return false;
+    }
 
     /**
      * Pobiera średnicę planety. Downloads the diameter of planet.

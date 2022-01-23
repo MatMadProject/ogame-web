@@ -27,12 +27,12 @@ public class Timer implements Serializable {
         this.finishDate = finishDate;
     }
 
-    public long getTimeInMiliseconds() {
+    public long getTimeInMilliseconds() {
         return timeInMiliseconds;
     }
 
-    public void setTimeInMiliseconds(long timeInMiliseconds) {
-        this.timeInMiliseconds = timeInMiliseconds;
+    public void setTimeInMilliseconds(long timeInMilliseconds) {
+        this.timeInMiliseconds = timeInMilliseconds;
     }
 
     public boolean isTimeLeft(long currentTime){
@@ -46,11 +46,11 @@ public class Timer implements Serializable {
 
         return (finishDate - currentTime)/1000;
     }
-    public static long timeMilliseconds(long timeMillisecnods, long timeMillisecnods2){
-        return timeMillisecnods - timeMillisecnods2;
+    public static long timeMilliseconds(long timeMilliseconds, long timeMilliseconds2){
+        return timeMilliseconds - timeMilliseconds2;
     }
-    public static long timeSeconds(long timeSecnods, long timeSecnods2){
-        return timeSecnods - timeSecnods2;
+    public static long timeSeconds(long timeSeconds, long timeSeconds2){
+        return timeSeconds - timeSeconds2;
     }
 
     @Deprecated
