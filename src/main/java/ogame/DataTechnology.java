@@ -187,7 +187,7 @@ public enum DataTechnology {
                     new RequiredTechnology(2,MISSILE_SILO)))),
     MISSILE_INTERPLANETARY ("503",10,Type.DEFENCE, new ArrayList<>(
             Arrays.asList(new RequiredTechnology(1,SHIPYARD),
-                    new RequiredTechnology(3,MISSILE_SILO),
+                    new RequiredTechnology(4,MISSILE_SILO),
                     new RequiredTechnology(1,IMPULSE_DRIVE_TECHOLOGY)))),
     UNDEFINED("0",0,Type.BATTLE);
 
