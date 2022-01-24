@@ -99,7 +99,7 @@ public class Defence {
         return Status.UNDEFINED;
     }
 
-    public static ProductionTime productionTimeOfShip(WebDriver w){
+    public static ProductionTime productionTimeOfDefence(WebDriver w){
         try {
             if(visibleDefenceDetails(w)){
                 WebElement e =  w.findElement(By.xpath(PRODUCTION_TIME));
@@ -210,7 +210,7 @@ public class Defence {
         return false;
     }
 
-    public static long startDateOfUpgradeBuilding(WebDriver w, DataTechnology dataTechnology){
+    public static long startDateOfUpgrade(WebDriver w, DataTechnology dataTechnology){
         if(statusOfDefence(w,dataTechnology) == Status.ACTIVE){
             try {
                 DEFENCE_CONTENER.setEdit(dataTechnology.getListIndex());
@@ -226,7 +226,7 @@ public class Defence {
         return -1;
     }
 
-    public static long endDateOfUpgradeBuilding(WebDriver w, DataTechnology dataTechnology){
+    public static long endDateOfUpgrade(WebDriver w, DataTechnology dataTechnology){
         if(statusOfDefence(w,dataTechnology) == Status.ACTIVE){
             try {
                 DEFENCE_CONTENER.setEdit(dataTechnology.getListIndex());
@@ -242,7 +242,7 @@ public class Defence {
         return -1;
     }
 
-    public static long productionTimeOfUpgradedBuildingInSeconds(WebDriver w, DataTechnology dataTechnology){
+    public static long productionTimeOfUpgradedDefenceInSeconds(WebDriver w, DataTechnology dataTechnology){
         if(statusOfDefence(w,dataTechnology) == Status.ACTIVE){
             try {
                 DEFENCE_CONTENER.setEdit(dataTechnology.getListIndex());
