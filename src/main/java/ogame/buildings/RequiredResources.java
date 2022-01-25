@@ -5,28 +5,28 @@ import java.io.Serializable;
 public class RequiredResources implements Serializable {
 
     private static final long serialVersionUID = 1992L;
-    private final int metal, crystal, deuterium, energy;
+    private final long metal, crystal, deuterium, energy;
 
-    public RequiredResources(int metal, int crystal, int deuterium, int energy) {
+    public RequiredResources(long metal, long crystal, long deuterium, long energy) {
         this.metal = metal;
         this.crystal = crystal;
         this.deuterium = deuterium;
         this.energy = energy;
     }
 
-    public int getMetal() {
+    public long getMetal() {
         return metal;
     }
 
-    public int getCrystal() {
+    public long getCrystal() {
         return crystal;
     }
 
-    public int getDeuterium() {
+    public long getDeuterium() {
         return deuterium;
     }
 
-    public int getEnergy() {
+    public long getEnergy() {
         return energy;
     }
 

@@ -51,6 +51,8 @@ public class Shipyard {
 
     public static boolean click(WebDriver w){
         try{
+            if(visible(w)){ return true;
+            }
             WebElement e =  w.findElement(By.xpath(SHIPYARD_BUTTON));
             e.click();
             return true;

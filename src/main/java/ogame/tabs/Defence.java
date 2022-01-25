@@ -47,6 +47,8 @@ public class Defence {
 
     public static boolean click(WebDriver w){
         try{
+            if(visible(w)){ return true;
+            }
             WebElement e =  w.findElement(By.xpath(DEFENCE_BUTTON));
             e.click();
             return true;
