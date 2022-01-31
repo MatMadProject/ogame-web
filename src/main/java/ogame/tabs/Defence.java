@@ -207,7 +207,7 @@ public class Defence {
             }
         }
         catch (Exception ex) {
-            AppLog.printOnConsole(Shipyard.class.getName(),1,"While try input ship amount.");
+            AppLog.printOnConsole(Defence.class.getName(),1,"While try input defence amount.");
         }
         return false;
     }

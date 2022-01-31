@@ -418,7 +418,7 @@ public class ResourceSettings {
      * @return Tekst bez ',' lub '.'.
      */
     private static String removeDot(String s) {
-        if(s.contains("m"))
+        if(s.contains("M"))
             return s.replace(",","");
         else if(s.contains("Mld"))
             return s.replace(",","");
@@ -431,8 +431,8 @@ public class ResourceSettings {
      * @return Ilość surowca.
      */
     private static int value(String s) {
-        if(s.contains("m"))
-            return Integer.parseInt(s.replace("m","")) * 1000 ;
+        if(s.contains("M"))
+            return Integer.parseInt(s.replace("M","")) * 1000 ;
         else if(s.contains("Mld"))
             return Integer.parseInt(s.replace("Mld","")) * 1000000;
         else

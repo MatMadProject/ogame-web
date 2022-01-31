@@ -415,7 +415,7 @@ public class Shipyard {
                     e = w.findElement(By.xpath(CIVIL_SHIP_CONTENER.get()));
                 }
                 if(e != null)
-                    Long.parseLong(e.getAttribute("data-start"));
+                    return Long.parseLong(e.getAttribute("data-start"));
 
             }
             catch (Exception ex) {
@@ -438,7 +438,7 @@ public class Shipyard {
                     e = w.findElement(By.xpath(CIVIL_SHIP_CONTENER.get()));
                 }
                 if(e != null)
-                    Long.parseLong(e.getAttribute("data-end"));
+                    return Long.parseLong(e.getAttribute("data-end"));
 
             }
             catch (Exception ex) {
@@ -461,7 +461,7 @@ public class Shipyard {
                     e = w.findElement(By.xpath(CIVIL_SHIP_CONTENER.get()));
                 }
                 if(e != null)
-                    Long.parseLong(e.getAttribute("data-total"));
+                    return Long.parseLong(e.getAttribute("data-total"));
 
             }
             catch (Exception ex) {
