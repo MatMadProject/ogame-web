@@ -82,4 +82,24 @@ public class Timer implements Serializable {
 
         return String.format("%02d:%02d:%02d", hh, mm, ss);
     }
+
+    public String leftTimeMillisecond(long endTimeInMilliseconds){
+        Duration duration = Duration.ofMillis(endTimeInMilliseconds - System.currentTimeMillis());
+        long seconds = duration.getSeconds();
+        long hh = seconds / 3600;
+        long mm = (seconds % 3600) / 60;
+        long ss = seconds % 60;
+
+        return String.format("%02d:%02d:%02d", hh, mm, ss);
+    }
+
+    public String leftTimeSecond(long endTimeInSeconds){
+        Duration duration = Duration.ofSeconds(endTimeInSeconds - System.currentTimeMillis()/1000);
+        long seconds = duration.getSeconds();
+        long hh = seconds / 3600;
+        long mm = (seconds % 3600) / 60;
+        long ss = seconds % 60;
+
+        return String.format("%02d:%02d:%02d", hh, mm, ss);
+    }
 }
