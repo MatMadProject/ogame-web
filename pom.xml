@@ -6,7 +6,7 @@
 
     <groupId>pl.matmadproject</groupId>
     <artifactId>ogame-web</artifactId>
-    <version>1.9.22</version>
+    <version>1.9.23</version>
     <packaging>jar</packaging>
 
     <distributionManagement>
