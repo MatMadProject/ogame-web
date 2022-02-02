@@ -151,6 +151,37 @@ public class Research {
         }
         return false;
     }
+    public static Status statusOfResearch(WebDriver w, DataTechnology dataTechnology) {
+        Type type = dataTechnology.getType();
+        int pos = dataTechnology.getListIndex();
+        try {
+            WebElement e = null;
+            if(type == Type.BASIC){
+                TECHNOLOGIES_BASIC_CONTAINER.setEdit(pos);
+                e = w.findElement(By.xpath(TECHNOLOGIES_BASIC_CONTAINER.get()));
+            }
+            if(type == Type.ADVANCED){
+                TECHNOLOGIES_ADVANCED_CONTAINER.setEdit(pos);
+                e = w.findElement(By.xpath(TECHNOLOGIES_ADVANCED_CONTAINER.get()));
+            }
+            if(type == Type.COMBAT){
+                TECHNOLOGIES_COMBAT_CONTAINER.setEdit(pos);
+                e = w.findElement(By.xpath(TECHNOLOGIES_COMBAT_CONTAINER.get()));
+            }
+            if(type == Type.DRIVE){
+                TECHNOLOGIES_DRIVE_CONTAINER.setEdit(pos);
+                e = w.findElement(By.xpath(TECHNOLOGIES_DRIVE_CONTAINER.get()));
+            }
+            if(e != null){
+                String s = e.getAttribute("data-status");
+                return Status.getStatus(s);
+            }
+        }
+        catch (Exception ex) {
+            AppLog.printOnConsole(Research.class.getName(),1,"Doesn't download status of " + DataTechnology.getFromListIndex(pos, type));
+        }
+        return Status.UNDEFINED;
+    }
     public static Status statusOfResearch(WebDriver w, int pos, Type type) {
         try {
             WebElement e = null;
@@ -363,5 +394,96 @@ public class Research {
             AppLog.printOnConsole(Research.class.getName(),1,"Doesn't download local name of " + DataTechnology.getFromListIndex(pos, type));
         }
         return "null";
+    }
+
+    public static long productionTimeOfUpgradedResearchInSeconds(WebDriver w, DataTechnology dataTechnology){
+        int pos = dataTechnology.getListIndex();
+        Type type = dataTechnology.getType();
+        try {
+            WebElement e = null;
+            if(type == Type.BASIC){
+                TECHNOLOGIES_BASIC_CONTAINER.setEdit(pos);
+                e = w.findElement(By.xpath(TECHNOLOGIES_BASIC_CONTAINER.get()));
+            }
+            if(type == Type.ADVANCED){
+                TECHNOLOGIES_ADVANCED_CONTAINER.setEdit(pos);
+                e = w.findElement(By.xpath(TECHNOLOGIES_ADVANCED_CONTAINER.get()));
+            }
+            if(type == Type.COMBAT){
+                TECHNOLOGIES_COMBAT_CONTAINER.setEdit(pos);
+                e = w.findElement(By.xpath(TECHNOLOGIES_COMBAT_CONTAINER.get()));
+            }
+            if(type == Type.DRIVE){
+                TECHNOLOGIES_DRIVE_CONTAINER.setEdit(pos);
+                e = w.findElement(By.xpath(TECHNOLOGIES_DRIVE_CONTAINER.get()));
+            }
+            if(e != null)
+                return Long.parseLong(e.getAttribute("data-total"));
+
+        }
+        catch (Exception ex) {
+            AppLog.printOnConsole(Research.class.getName(),1,"Doesn't download production time of " + DataTechnology.getFromListIndex(pos, type));
+        }
+        return -1;
+    }
+    public static long endDateOfUpgradeResearch(WebDriver w, DataTechnology dataTechnology){
+        int pos = dataTechnology.getListIndex();
+        Type type = dataTechnology.getType();
+        try {
+            WebElement e = null;
+            if(type == Type.BASIC){
+                TECHNOLOGIES_BASIC_CONTAINER.setEdit(pos);
+                e = w.findElement(By.xpath(TECHNOLOGIES_BASIC_CONTAINER.get()));
+            }
+            if(type == Type.ADVANCED){
+                TECHNOLOGIES_ADVANCED_CONTAINER.setEdit(pos);
+                e = w.findElement(By.xpath(TECHNOLOGIES_ADVANCED_CONTAINER.get()));
+            }
+            if(type == Type.COMBAT){
+                TECHNOLOGIES_COMBAT_CONTAINER.setEdit(pos);
+                e = w.findElement(By.xpath(TECHNOLOGIES_COMBAT_CONTAINER.get()));
+            }
+            if(type == Type.DRIVE){
+                TECHNOLOGIES_DRIVE_CONTAINER.setEdit(pos);
+                e = w.findElement(By.xpath(TECHNOLOGIES_DRIVE_CONTAINER.get()));
+            }
+            if(e != null)
+                return Long.parseLong(e.getAttribute("data-end"));
+
+        }
+        catch (Exception ex) {
+            AppLog.printOnConsole(Research.class.getName(),1,"Doesn't download end data of " + DataTechnology.getFromListIndex(pos, type));
+        }
+        return -1;
+    }
+    public static long startDateOfUpgradeBuilding(WebDriver w, DataTechnology dataTechnology){
+        int pos = dataTechnology.getListIndex();
+        Type type = dataTechnology.getType();
+        try {
+            WebElement e = null;
+            if(type == Type.BASIC){
+                TECHNOLOGIES_BASIC_CONTAINER.setEdit(pos);
+                e = w.findElement(By.xpath(TECHNOLOGIES_BASIC_CONTAINER.get()));
+            }
+            if(type == Type.ADVANCED){
+                TECHNOLOGIES_ADVANCED_CONTAINER.setEdit(pos);
+                e = w.findElement(By.xpath(TECHNOLOGIES_ADVANCED_CONTAINER.get()));
+            }
+            if(type == Type.COMBAT){
+                TECHNOLOGIES_COMBAT_CONTAINER.setEdit(pos);
+                e = w.findElement(By.xpath(TECHNOLOGIES_COMBAT_CONTAINER.get()));
+            }
+            if(type == Type.DRIVE){
+                TECHNOLOGIES_DRIVE_CONTAINER.setEdit(pos);
+                e = w.findElement(By.xpath(TECHNOLOGIES_DRIVE_CONTAINER.get()));
+            }
+            if(e != null)
+                return Long.parseLong(e.getAttribute("data-start"));
+
+        }
+        catch (Exception ex) {
+            AppLog.printOnConsole(Research.class.getName(),1,"Doesn't download start data of " + DataTechnology.getFromListIndex(pos, type));
+        }
+        return -1;
     }
 }

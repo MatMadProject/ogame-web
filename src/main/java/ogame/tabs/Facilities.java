@@ -118,7 +118,7 @@ public class Facilities {
             return true;
         }
         catch (Exception ex) {
-            AppLog.printOnConsole(Supplies.class.getName(),1,"While try upgrade " + DataTechnology.getFromListIndex(pos, Type.ADVANCED));
+            AppLog.printOnConsole(Supplies.class.getName(),1,"While try upgrade " + DataTechnology.getFromListIndex(pos, Type.TECHNOLOGIES));
         }
         return false;
     }
@@ -131,7 +131,7 @@ public class Facilities {
             return Status.getStatus(s);
         }
         catch (Exception ex) {
-            AppLog.printOnConsole(Facilities.class.getName(),1,"Doesn't download status of " + DataTechnology.getFromListIndex(pos, Type.ADVANCED));
+            AppLog.printOnConsole(Facilities.class.getName(),1,"Doesn't download status of " + DataTechnology.getFromListIndex(pos, Type.TECHNOLOGIES));
         }
         return Status.UNDEFINED;
     }
@@ -147,7 +147,7 @@ public class Facilities {
             }
         }
         catch (Exception ex) {
-            AppLog.printOnConsole(Facilities.class.getName(),1,"While try stop upgrade " + DataTechnology.getFromListIndex(pos, Type.ADVANCED));
+            AppLog.printOnConsole(Facilities.class.getName(),1,"While try stop upgrade " + DataTechnology.getFromListIndex(pos, Type.TECHNOLOGIES));
         }
         return false;
     }
@@ -211,7 +211,7 @@ public class Facilities {
             return true;
         }
         catch (Exception e){
-            AppLog.printOnConsole(Facilities.class.getName(),1,"While trying to click on a building: " + DataTechnology.getFromListIndex(pos, Type.ADVANCED));
+            AppLog.printOnConsole(Facilities.class.getName(),1,"While trying to click on a building: " + DataTechnology.getFromListIndex(pos, Type.TECHNOLOGIES));
         }
         return false;
     }
@@ -224,7 +224,7 @@ public class Facilities {
             return Integer.parseInt(s);
         }
         catch (Exception ex) {
-            AppLog.printOnConsole(Facilities.class.getName(),1,"Doesn't download level of " + DataTechnology.getFromListIndex(pos, Type.ADVANCED));
+            AppLog.printOnConsole(Facilities.class.getName(),1,"Doesn't download level of " + DataTechnology.getFromListIndex(pos, Type.TECHNOLOGIES));
         }
         return -1;
     }
@@ -236,7 +236,7 @@ public class Facilities {
             return e.getAttribute("data-technology");
         }
         catch (Exception ex) {
-            AppLog.printOnConsole(Facilities.class.getName(),1,"Doesn't download data technology of " + DataTechnology.getFromListIndex(pos, Type.ADVANCED));
+            AppLog.printOnConsole(Facilities.class.getName(),1,"Doesn't download data technology of " + DataTechnology.getFromListIndex(pos, Type.TECHNOLOGIES));
         }
         return "-1";
     }
@@ -248,7 +248,7 @@ public class Facilities {
             return e.getAttribute("aria-label");
         }
         catch (Exception ex) {
-            AppLog.printOnConsole(Facilities.class.getName(),1,"Doesn't download local name of " + DataTechnology.getFromListIndex(pos, Type.ADVANCED));
+            AppLog.printOnConsole(Facilities.class.getName(),1,"Doesn't download local name of " + DataTechnology.getFromListIndex(pos, Type.TECHNOLOGIES));
         }
         return "null";
     }
@@ -261,7 +261,7 @@ public class Facilities {
                 return Long.parseLong(e.getAttribute("data-start"));
             }
             catch (Exception ex) {
-                AppLog.printOnConsole(Facilities.class.getName(),1,"Doesn't download start data of " + DataTechnology.getFromListIndex(pos, Type.ADVANCED));
+                AppLog.printOnConsole(Facilities.class.getName(),1,"Doesn't download start data of " + DataTechnology.getFromListIndex(pos,Type.TECHNOLOGIES));
             }
         }
         return -1;
@@ -275,7 +275,7 @@ public class Facilities {
                 return Long.parseLong(e.getAttribute("data-end"));
             }
             catch (Exception ex) {
-                AppLog.printOnConsole(Facilities.class.getName(),1,"Doesn't download end data of " + DataTechnology.getFromListIndex(pos, Type.ADVANCED));
+                AppLog.printOnConsole(Facilities.class.getName(),1,"Doesn't download end data of " + DataTechnology.getFromListIndex(pos, Type.TECHNOLOGIES));
             }
         }
         return -1;
@@ -289,7 +289,7 @@ public class Facilities {
                 return Long.parseLong(e.getAttribute("data-total"));
             }
             catch (Exception ex) {
-                AppLog.printOnConsole(Facilities.class.getName(),1,"Doesn't download production time of " + DataTechnology.getFromListIndex(pos, Type.ADVANCED));
+                AppLog.printOnConsole(Facilities.class.getName(),1,"Doesn't download production time of " + DataTechnology.getFromListIndex(pos, Type.TECHNOLOGIES));
             }
         }
         return -1;
