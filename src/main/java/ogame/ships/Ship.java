@@ -12,6 +12,7 @@ public class Ship implements Serializable {
 
     private static final long serialVersionUID = 1992L;
     private int value;
+    private int capacity;
     private String localName;
     private final String name;
     private Status status;
@@ -23,12 +24,14 @@ public class Ship implements Serializable {
         this.name = name;
         this.dataTechnology = dataTechnology;
         setRequiredResources(requiredResources(dataTechnology));
+        setCapacity(capacity(dataTechnology));
     }
 
     public Ship(DataTechnology dataTechnology) {
         this.dataTechnology = dataTechnology;
         this.name = dataTechnology.name();
         setRequiredResources(requiredResources(dataTechnology));
+        setCapacity(capacity(dataTechnology));
     }
 
     public int getValue() {
@@ -75,6 +78,14 @@ public class Ship implements Serializable {
         this.requiredResources = requiredResources;
     }
 
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
+
     public DataTechnology getDataTechnology() {
         return dataTechnology;
     }
@@ -118,6 +129,48 @@ public class Ship implements Serializable {
             default:
                 return null;
         }
+    }
+
+    private int capacity(DataTechnology dataTechnology){
+        switch (dataTechnology){
+            case FIGHTER_LIGHT:
+                return 50;
+            case FIGHTER_HEAVY:
+                return 100;
+            case CRUISER:
+                return 800;
+            case BATTLE_SHIP:
+                return 1500;
+            case INTERCEPTOR:
+                return 750;
+            case BOMBER:
+                return 500;
+            case DESTROYER:
+                return 2000;
+            case DEATH_STAR:
+                return 1000000;
+            case REAPER:
+            case EXPLORER:
+                return 10000;
+            case TRANSPORTER_SMALL:
+                return 5000;
+            case TRANSPORTER_LARGE:
+                return 25000;
+            case COLONY_SHIP:
+                return 7500;
+            case RECYCLER:
+                return 20000;
+            case ESPIONAGE_PROBE:
+            case SOLAR_SATELITE:
+            case RESBUGGY:
+            default:
+                return 0;
+        }
+    }
+
+    public int currentCapacity(int levelHyperspaceTechnology){
+        int bonus = (capacity/20) * levelHyperspaceTechnology;
+        return capacity + bonus;
     }
 
     @Override
