@@ -53,6 +53,10 @@ public class Resources implements Serializable {
         this.energy = energy;
     }
 
+    public long sum(){
+        return metal + crystal + deuterium;
+    }
+
     @Override
     public String toString() {
         return "Resources{" +
