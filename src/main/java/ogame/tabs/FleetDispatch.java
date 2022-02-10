@@ -531,6 +531,23 @@ public class FleetDispatch {
         }
         return -1L;
     }
+    public static long flyDurationSeconds(WebDriver w){
+        try{
+            if(isFleet2Visible(w)){
+                WebElement e =  w.findElement(By.xpath(FLY_DURATION));
+                String flyDuration = e.getText();
+                String [] time = flyDuration.split(" ")[0].split(":");
+                int sec = Integer.parseInt(time[2]);
+                int min = Integer.parseInt(time[1]);
+                int hour = Integer.parseInt(time[0]);
+                return sec + min * 60L + hour * 3600L;
+            }
+        }
+        catch (Exception e){
+            AppLog.printOnConsole(FleetDispatch.class.getName(),1,"While try downloads fly duration.");
+        }
+        return -1L;
+    }
 
     public static long deuteriumConsumption(WebDriver w){
         try{
