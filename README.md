@@ -8,4 +8,4 @@ Selenium Web - version 3.141.59
 Chromedriver - latest stable version for your Chrome webbrowser
 
 LICENSE:
-Open source
+Open source - GNU General Public License
