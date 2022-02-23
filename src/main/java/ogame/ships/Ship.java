@@ -19,6 +19,7 @@ public class Ship implements Serializable {
     private ProductionTime productionTime;
     private RequiredResources requiredResources;
     private final DataTechnology dataTechnology;
+    private boolean selectAll;
 
     public Ship(String name, DataTechnology dataTechnology) {
         this.name = name;
@@ -76,6 +77,14 @@ public class Ship implements Serializable {
 
     public void setRequiredResources(RequiredResources requiredResources) {
         this.requiredResources = requiredResources;
+    }
+
+    public boolean isSelectAll() {
+        return selectAll;
+    }
+
+    public void setSelectAll(boolean selectAll) {
+        this.selectAll = selectAll;
     }
 
     public int getCapacity() {
@@ -168,7 +177,7 @@ public class Ship implements Serializable {
         }
     }
 
-    public int currentCapacity(int levelHyperspaceTechnology){
+    public long currentCapacity(int levelHyperspaceTechnology){
         int bonus = (capacity/20) * levelHyperspaceTechnology;
         return capacity + bonus;
     }

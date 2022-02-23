@@ -23,6 +23,7 @@ public class Defence {
     private static final String PRODUCTION_TIME = FinalXPath.TECHNOLOGY_DETAILS.concat("/div[2]/div/ul");
     private static final String BUILD_DURATION = "build_duration";
     private static final String BUILD_BUTTON = FinalXPath.TECHNOLOGY_DETAILS.concat("/div[2]/div/div[3]/button");
+    private static final String BUILD_SHIELD_BUTTON = FinalXPath.TECHNOLOGY_DETAILS.concat("/div[2]/div/div[2]/button");
     private static final String BUILD_AMOUNT_INPUT = "//*[@id=\"build_amount\"]";
 
     private static final WebElementPath DEFENCE_CONTENER = new WebElementPath("//*[@id=\"technologies\"]/ul/li[","]");
@@ -192,7 +193,21 @@ public class Defence {
             }
         }
         catch (Exception ex) {
-            AppLog.printOnConsole(Defence.class.getName(),1,"While try click built ship.");
+            AppLog.printOnConsole(Defence.class.getName(),1,"While try click built defence.");
+        }
+        return false;
+    }
+
+    public static boolean clickBuiltDefenceShield(WebDriver w){
+        try {
+            if(visibleDefenceDetails(w)){
+                WebElement e =  w.findElement(By.xpath(BUILD_SHIELD_BUTTON));
+                e.click();
+                return true;
+            }
+        }
+        catch (Exception ex) {
+            AppLog.printOnConsole(Defence.class.getName(),1,"While try click built defence shield.");
         }
         return false;
     }

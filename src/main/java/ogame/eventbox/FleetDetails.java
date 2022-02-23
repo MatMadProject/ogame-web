@@ -127,7 +127,7 @@ public class FleetDetails {
         ArrayList<String> list = trTagList();
         boolean addFlag = false;
         int count = 1;
-        int metal = 0, crystal = 0, deuterium = 0;
+        long metal = 0, crystal = 0, deuterium = 0;
         for(String s :list){
             if(isNextResource(s))
                 continue;
@@ -141,13 +141,13 @@ public class FleetDetails {
                 value = StringFactory.deleteChars('.',value);
                 switch (count){
                     case 1:
-                        metal = Integer.parseInt(value);
+                        metal = Long.parseLong(value);
                         break;
                     case 2:
-                        crystal = Integer.parseInt(value);
+                        crystal = Long.parseLong(value);
                         break;
                     case 3:
-                        deuterium = Integer.parseInt(value);
+                        deuterium = Long.parseLong(value);
                         break;
                 }
                 count++;
