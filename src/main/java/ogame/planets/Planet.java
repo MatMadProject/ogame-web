@@ -118,6 +118,10 @@ public class Planet implements Serializable {
         return moon;
     }
 
+    public boolean hasMoon(){
+        return moon != null;
+    }
+
     public int getDiameter() {
         return diameter;
     }

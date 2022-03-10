@@ -1,6 +1,10 @@
 package ogame.eventbox;
 
-public class FleetDetailsShip {
+import java.io.Serializable;
+
+public class FleetDetailsShip implements Serializable {
+
+    private static final long serialVersionUID = 1992L;
     private final String name;
     private final String value;
 

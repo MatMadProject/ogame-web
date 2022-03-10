@@ -30,7 +30,7 @@ public class StringFactory {
      * Sprawdza czy tekst zawiera tylko z liter lub cyfr.
      * EN
      * Checks the string contains only letters and digits
-     * @param text
+     * @param text *
      * @return True if string contains only letters and digits.
      */
     public static boolean isAlphanumeric(String text) {
@@ -46,7 +46,7 @@ public class StringFactory {
      * Sprawdza czy tekst zawiera tylko z liter lub cyfr.
      * EN
      * Checks the string contains only letters and digits
-     * @param text
+     * @param text *
      * @return True if string contains only letters and digits.
      */
     public static boolean isDigit(String text) {
@@ -74,6 +74,78 @@ public class StringFactory {
         return s.toString();
     }
 
+    public static boolean  containsWhiteSpace(String s){
+        return s.contains(" ");
+    }
+
+    /**
+     * Example: 1000000 -> 1.000.000
+     * @param digit *
+     * @return Formatted digit.
+     */
+    public static String digitFormattedWithDots(long digit){
+        StringBuilder s = new StringBuilder(String.valueOf(digit));
+        int a = s.length();
+        StringBuilder tmp = new StringBuilder();
+        if(a%3 == 2 && a > 3) {
+            for(int i = 0; i < a; i++) {
+                tmp.append(s.charAt(i));
+                if(i%3 == 1 && i != a-1)
+                    tmp.append(".");
+            }
+        }
+        else if(a%3 == 1 && a > 3) {
+            for(int i = 0; i < a; i++) {
+                tmp.append(s.charAt(i));
+                if(i%3 == 0 && i != a-1)
+                    tmp.append(".");
+            }
+        }
+        else if(a%3 == 0 && a > 3) {
+            for(int i = 0; i < a; i++) {
+                tmp.append(s.charAt(i));
+                if(i%3 == 2 && i != a-1)
+                    tmp.append(".");
+            }
+        }
+        else
+            tmp = new StringBuilder(String.valueOf(digit));
+        return tmp.toString();
+    }
+    /**
+     * Example: 1000000 -> 1 000 000
+     * @param digit *
+     * @return Formatted digit.
+     */
+    public static String digitFormattedWithSpace(long digit){
+        StringBuilder s = new StringBuilder(String.valueOf(digit));
+        int a = s.length();
+        StringBuilder tmp = new StringBuilder();
+        if(a%3 == 2 && a > 3) {
+            for(int i = 0; i < a; i++) {
+                tmp.append(s.charAt(i));
+                if(i%3 == 1 && i != a-1)
+                    tmp.append(" ");
+            }
+        }
+        else if(a%3 == 1 && a > 3) {
+            for(int i = 0; i < a; i++) {
+                tmp.append(s.charAt(i));
+                if(i%3 == 0 && i != a-1)
+                    tmp.append(" ");
+            }
+        }
+        else if(a%3 == 0 && a > 3) {
+            for(int i = 0; i < a; i++) {
+                tmp.append(s.charAt(i));
+                if(i%3 == 2 && i != a-1)
+                    tmp.append(" ");
+            }
+        }
+        else
+            tmp = new StringBuilder(String.valueOf(digit));
+        return tmp.toString();
+    }
 //    /**
 //     * Formats digit to thousand format. [1000] -> [1.000]
 //     * @param digit Digit

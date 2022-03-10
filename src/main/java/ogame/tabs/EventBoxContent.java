@@ -326,6 +326,39 @@ public class EventBoxContent {
         return list;
     }
 
+    public static ArrayList<Event> events(WebDriver w, Mission mission, Coordinate originCoordinate, Coordinate destinationCoordinate){
+        ArrayList<Event> list = new ArrayList<>();
+
+        int eventBoxSize = eventBoxSize(w);
+        if(eventBoxSize > 0){
+            for(int i = 1; i <= eventBoxSize; i++){
+                int missionType = missionType(w,i);
+                if(missionType == mission.getDATA_MISSION_TYPE()){
+                    Coordinate thisOriginCoordinate = originCoordinate(w,i);
+                    Coordinate thisDestinationCoordinate = destiantionCoordinate(w,i);
+
+                    if(thisOriginCoordinate.equals(originCoordinate)
+                    && thisDestinationCoordinate.equals(destinationCoordinate)){
+                        String id = id(w,i);
+                        Event event = new Event(id);
+                        event.setMissionType(missionType);
+                        event.setType(type(w,i));
+                        event.setReturn(isReturn(w,i));
+                        event.setArrivalTime(arrivalTime(w,i));
+                        event.setOrigin(origin(w,i));
+                        event.setOriginCoordinate(originCoordinate(w,i));
+                        event.setDestination(destination(w,i));
+                        event.setDestinationCoordinate(destiantionCoordinate(w,i));
+                        event.setFleetDetails(fleetDetails(w,i));
+                        list.add(event);
+                    }
+                }
+            }
+        }
+
+        return list;
+    }
+
     public static Event eventFromId(WebDriver w, String idEvent){
         int eventBoxSize = eventBoxSize(w);
         if(eventBoxSize > 0){
