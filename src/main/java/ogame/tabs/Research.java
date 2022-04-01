@@ -57,6 +57,35 @@ public class Research {
         }
         return false;
     }
+    public static boolean visibleResearchDetails(WebDriver w, DataTechnology dataTechnology) {
+        try{
+            WebElement e = null;
+            Type type = dataTechnology.getType();
+            int pos = dataTechnology.getListIndex();
+            if(type == Type.BASIC){
+                TECHNOLOGIES_BASIC_CONTAINER.setEdit(pos);
+                e = w.findElement(By.xpath(TECHNOLOGIES_BASIC_CONTAINER.get()));
+            }
+            if(type == Type.ADVANCED){
+                TECHNOLOGIES_ADVANCED_CONTAINER.setEdit(pos);
+                e = w.findElement(By.xpath(TECHNOLOGIES_ADVANCED_CONTAINER.get()));
+            }
+            if(type == Type.COMBAT){
+                TECHNOLOGIES_COMBAT_CONTAINER.setEdit(pos);
+                e = w.findElement(By.xpath(TECHNOLOGIES_COMBAT_CONTAINER.get()));
+            }
+            if(type == Type.DRIVE){
+                TECHNOLOGIES_DRIVE_CONTAINER.setEdit(pos);
+                e = w.findElement(By.xpath(TECHNOLOGIES_DRIVE_CONTAINER.get()));
+            }
+            if(e != null)
+                return WebElementUtil.attrContainsText(e,"class", RESEARCH_SHOWS_DETAILS);
+        }
+        catch (Exception e){
+            AppLog.printOnConsole(Research.class.getName(),1,"When it checks, the research details is visible.");
+        }
+        return false;
+    }
     public static boolean visibleResearchDetails(WebDriver w, int pos, Type type) {
         try{
             WebElement e = null;
@@ -117,6 +146,39 @@ public class Research {
         }
         catch (Exception e){
             AppLog.printOnConsole(Research.class.getName(),1,"While trying to click on a error box - decline decision.");
+        }
+        return false;
+    }
+    public static boolean upgrade(WebDriver w, DataTechnology dataTechnology){
+        try {
+            if(!statusOfResearch(w,dataTechnology).equals(Status.ON))
+                return false;
+            WebElement e = null;
+            Type type = dataTechnology.getType();
+            int pos = dataTechnology.getListIndex();
+            if(type == Type.BASIC){
+                TECHNOLOGIES_BASIC_CONTAINER.setEdit(pos);
+                e = w.findElement(By.xpath(TECHNOLOGIES_BASIC_CONTAINER.get().concat(RESEARCH_UPGRADE_BUTTON)));
+            }
+            if(type == Type.ADVANCED){
+                TECHNOLOGIES_ADVANCED_CONTAINER.setEdit(pos);
+                e = w.findElement(By.xpath(TECHNOLOGIES_ADVANCED_CONTAINER.get().concat(RESEARCH_UPGRADE_BUTTON)));
+            }
+            if(type == Type.COMBAT){
+                TECHNOLOGIES_COMBAT_CONTAINER.setEdit(pos);
+                e = w.findElement(By.xpath(TECHNOLOGIES_COMBAT_CONTAINER.get().concat(RESEARCH_UPGRADE_BUTTON)));
+            }
+            if(type == Type.DRIVE){
+                TECHNOLOGIES_DRIVE_CONTAINER.setEdit(pos);
+                e = w.findElement(By.xpath(TECHNOLOGIES_DRIVE_CONTAINER.get().concat(RESEARCH_UPGRADE_BUTTON)));
+            }
+            if(e != null){
+                e.click();
+                return true;
+            }
+        }
+        catch (Exception ex) {
+            AppLog.printOnConsole(Research.class.getName(),1,"While try upgrade " + dataTechnology);
         }
         return false;
     }
@@ -211,6 +273,21 @@ public class Research {
         }
         return Status.UNDEFINED;
     }
+    public static boolean stopUpgrade(WebDriver w, DataTechnology dataTechnology){
+        try {
+            if(!statusOfResearch(w,dataTechnology).equals(Status.ACTIVE))
+                return false;
+            if(visibleResearchDetails(w,dataTechnology)){
+                WebElement e = w.findElement(By.xpath(RESEARCH_STOP_UPGRADE_BUTTON));
+                e.click();
+                return true;
+            }
+        }
+        catch (Exception ex) {
+            AppLog.printOnConsole(Research.class.getName(),1,"While try stop upgrade " + dataTechnology);
+        }
+        return false;
+    }
     public static boolean stopUpgrade(WebDriver w, int pos, Type type){
         try {
             if(!statusOfResearch(w,pos,type).equals(Status.ACTIVE))
@@ -246,7 +323,34 @@ public class Research {
         }
         return new ProductionTime("PT0S");
     }
-
+    public static RequiredResources getRequiredResources(WebDriver w, DataTechnology dataTechnology){
+        if(visibleResearchDetails(w, dataTechnology)){
+            int metal = 0, crystal = 0, deuterium = 0, energy = 0;
+            String s;
+            WebElement e =  w.findElement(By.xpath(REQUIRED_RESOURCES_CONTAINER));
+            List<WebElement> list = e.findElements(By.tagName("li"));
+            for(WebElement element : list){
+                if(WebElementUtil.attrContainsText(element,"class","metal")){
+                    s = element.getAttribute("data-value");
+                    metal = Integer.parseInt(s);
+                }
+                if(WebElementUtil.attrContainsText(element,"class","crystal")){
+                    s = element.getAttribute("data-value");
+                    crystal = Integer.parseInt(s);
+                }
+                if(WebElementUtil.attrContainsText(element,"class","deuterium")){
+                    s = element.getAttribute("data-value");
+                    deuterium = Integer.parseInt(s);
+                }
+                if(WebElementUtil.attrContainsText(element,"class","energy")){
+                    s = element.getAttribute("data-value");
+                    energy = Integer.parseInt(s);
+                }
+            }
+            return new RequiredResources(metal,crystal,deuterium,energy);
+        }
+        return new RequiredResources(-1,-1,-1,-1);
+    }
     public static RequiredResources getRequiredResources(WebDriver w, int pos, Type type){
         if(visibleResearchDetails(w, pos, type)){
             int metal = 0, crystal = 0, deuterium = 0, energy = 0;
@@ -275,7 +379,39 @@ public class Research {
         }
         return new RequiredResources(-1,-1,-1,-1);
     }
-
+    public static boolean clickOnResearch(WebDriver w, DataTechnology dataTechnology){
+        try{
+            WebElement e = null;
+            Type type = dataTechnology.getType();
+            int pos = dataTechnology.getListIndex();
+            if(type == Type.BASIC){
+                TECHNOLOGIES_BASIC_CONTAINER.setEdit(pos);
+                e = w.findElement(By.xpath(TECHNOLOGIES_BASIC_CONTAINER.get()));
+            }
+            if(type == Type.ADVANCED){
+                TECHNOLOGIES_ADVANCED_CONTAINER.setEdit(pos);
+                e = w.findElement(By.xpath(TECHNOLOGIES_ADVANCED_CONTAINER.get()));
+            }
+            if(type == Type.COMBAT){
+                TECHNOLOGIES_COMBAT_CONTAINER.setEdit(pos);
+                e = w.findElement(By.xpath(TECHNOLOGIES_COMBAT_CONTAINER.get()));
+            }
+            if(type == Type.DRIVE){
+                TECHNOLOGIES_DRIVE_CONTAINER.setEdit(pos);
+                e = w.findElement(By.xpath(TECHNOLOGIES_DRIVE_CONTAINER.get()));
+            }
+            if(e != null){
+                if(visibleResearchDetails(w,pos,type))
+                    return true;
+                e.click();
+                return true;
+            }
+        }
+        catch (Exception e){
+            AppLog.printOnConsole(Research.class.getName(),1,"While trying to click on a research: " + dataTechnology);
+        }
+        return false;
+    }
     public static boolean clickOnResearch(WebDriver w, int pos, Type type){
         try{
             WebElement e = null;
@@ -307,7 +443,37 @@ public class Research {
         }
         return false;
     }
-
+    public static int levelOfResearch(WebDriver w, DataTechnology dataTechnology) {
+        try {
+            WebElement e = null;
+            Type type = dataTechnology.getType();
+            int pos = dataTechnology.getListIndex();
+            if(type == Type.BASIC){
+                TECHNOLOGIES_BASIC_CONTAINER.setEdit(pos);
+                e = w.findElement(By.xpath(TECHNOLOGIES_BASIC_CONTAINER.get().concat(RESEARCH_LEVEL)));
+            }
+            if(type == Type.ADVANCED){
+                TECHNOLOGIES_ADVANCED_CONTAINER.setEdit(pos);
+                e = w.findElement(By.xpath(TECHNOLOGIES_ADVANCED_CONTAINER.get().concat(RESEARCH_LEVEL)));
+            }
+            if(type == Type.COMBAT){
+                TECHNOLOGIES_COMBAT_CONTAINER.setEdit(pos);
+                e = w.findElement(By.xpath(TECHNOLOGIES_COMBAT_CONTAINER.get().concat(RESEARCH_LEVEL)));
+            }
+            if(type == Type.DRIVE){
+                TECHNOLOGIES_DRIVE_CONTAINER.setEdit(pos);
+                e = w.findElement(By.xpath(TECHNOLOGIES_DRIVE_CONTAINER.get().concat(RESEARCH_LEVEL)));
+            }
+            if(e != null){
+                String s = e.getText();
+                return Integer.parseInt(s);
+            }
+        }
+        catch (Exception ex) {
+            AppLog.printOnConsole(Research.class.getName(),1,"Doesn't download level of " + dataTechnology);
+        }
+        return -1;
+    }
     public static int levelOfResearch(WebDriver w, int pos, Type type) {
         try {
             WebElement e = null;
@@ -337,6 +503,36 @@ public class Research {
         }
         return -1;
     }
+    public static String dataTechnologyOfResearch(WebDriver w, DataTechnology dataTechnology) {
+        try {
+            WebElement e = null;
+            Type type = dataTechnology.getType();
+            int pos = dataTechnology.getListIndex();
+            if(type == Type.BASIC){
+                TECHNOLOGIES_BASIC_CONTAINER.setEdit(pos);
+                e = w.findElement(By.xpath(TECHNOLOGIES_BASIC_CONTAINER.get()));
+            }
+            if(type == Type.ADVANCED){
+                TECHNOLOGIES_ADVANCED_CONTAINER.setEdit(pos);
+                e = w.findElement(By.xpath(TECHNOLOGIES_ADVANCED_CONTAINER.get()));
+            }
+            if(type == Type.COMBAT){
+                TECHNOLOGIES_COMBAT_CONTAINER.setEdit(pos);
+                e = w.findElement(By.xpath(TECHNOLOGIES_COMBAT_CONTAINER.get()));
+            }
+            if(type == Type.DRIVE){
+                TECHNOLOGIES_DRIVE_CONTAINER.setEdit(pos);
+                e = w.findElement(By.xpath(TECHNOLOGIES_DRIVE_CONTAINER.get()));
+            }
+            if(e != null){
+                return e.getAttribute("data-technology");
+            }
+        }
+        catch (Exception ex) {
+            AppLog.printOnConsole(Research.class.getName(),1,"Doesn't download data technology of " + dataTechnology);
+        }
+        return "-1";
+    }
 
     public static String dataTechnologyOfResearch(WebDriver w, int pos, Type type) {
         try {
@@ -365,6 +561,36 @@ public class Research {
             AppLog.printOnConsole(Research.class.getName(),1,"Doesn't download data technology of " + DataTechnology.getFromListIndex(pos, type));
         }
         return "-1";
+    }
+    public static String localNameOfResearch(WebDriver w, DataTechnology dataTechnology) {
+        try {
+            WebElement e = null;
+            Type type = dataTechnology.getType();
+            int pos = dataTechnology.getListIndex();
+            if(type == Type.BASIC){
+                TECHNOLOGIES_BASIC_CONTAINER.setEdit(pos);
+                e = w.findElement(By.xpath(TECHNOLOGIES_BASIC_CONTAINER.get()));
+            }
+            if(type == Type.ADVANCED){
+                TECHNOLOGIES_ADVANCED_CONTAINER.setEdit(pos);
+                e = w.findElement(By.xpath(TECHNOLOGIES_ADVANCED_CONTAINER.get()));
+            }
+            if(type == Type.COMBAT){
+                TECHNOLOGIES_COMBAT_CONTAINER.setEdit(pos);
+                e = w.findElement(By.xpath(TECHNOLOGIES_COMBAT_CONTAINER.get()));
+            }
+            if(type == Type.DRIVE){
+                TECHNOLOGIES_DRIVE_CONTAINER.setEdit(pos);
+                e = w.findElement(By.xpath(TECHNOLOGIES_DRIVE_CONTAINER.get()));
+            }
+            if(e != null)
+                return e.getAttribute("aria-label");
+
+        }
+        catch (Exception ex) {
+            AppLog.printOnConsole(Research.class.getName(),1,"Doesn't download local name of " + dataTechnology);
+        }
+        return "null";
     }
 
     public static String localNameOfResearch(WebDriver w, int pos, Type type) {
