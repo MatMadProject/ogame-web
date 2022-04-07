@@ -6,7 +6,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 
+import javax.xml.bind.Element;
 import java.util.List;
 
 public class WebElementUtil
@@ -55,5 +58,9 @@ public class WebElementUtil
     public static void scrollToElement(WebDriver w, WebElement e) {
         JavascriptExecutor js = (JavascriptExecutor) w;
         js.executeScript("arguments[0].scrollIntoView();", e);
+    }
+    public static void moveCursorToElement(WebDriver webDriver, WebElement element){
+        Actions actions = new Actions(webDriver);
+        actions.moveToElement(element).perform();
     }
 }

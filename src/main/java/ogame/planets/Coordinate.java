@@ -6,13 +6,11 @@ import java.util.Objects;
 public class Coordinate implements Serializable {
 
     private static final long serialVersionUID = 1992L;
-    private String text;
     private int galaxy;
     private int system;
     private int planet;
 
     public Coordinate(String text) {
-        this.text = text;
 
         StringBuilder sb = new StringBuilder(text);
 
@@ -29,15 +27,11 @@ public class Coordinate implements Serializable {
         this.galaxy = galaxy;
         this.system = system;
         this.planet = planet;
-        text = "["+galaxy+":"+system+":"+planet+"]";
     }
 
     /*
     SETTERS
      */
-    public void setText(String text) {
-        this.text = text;
-    }
 
     public void setGalaxy(int galaxy) {
         this.galaxy = galaxy;
@@ -55,7 +49,7 @@ public class Coordinate implements Serializable {
      */
 
     public String getText() {
-        return text;
+        return "["+galaxy+":"+system+":"+planet+"]";
     }
 
     public int getGalaxy() {
@@ -73,8 +67,7 @@ public class Coordinate implements Serializable {
     @Override
     public String toString() {
         return "Coordinate{" +
-                "text='" + text + '\'' +
-                ", galaxy=" + galaxy +
+                "galaxy=" + galaxy +
                 ", system=" + system +
                 ", planet=" + planet +
                 '}';
