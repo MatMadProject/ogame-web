@@ -5,27 +5,18 @@ import ogame.OgameWeb;
 import ogame.Type;
 import ogame.buildings.Building;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 
-public class Planet implements Serializable {
+public class Planet extends PlanetListObject{
 
-    private static final long serialVersionUID = 1992L;
-    private final String id;
-    private int positionOnList;
-    private int diameter;
-    private Temperature temperature = null;
-    private Fields fields = null;
-    private String name = "none";
-    private Coordinate coordinate = null;
     private Moon moon = null;
     private ResourcesProduction resourcesProduction;
     private Resources resources;
     private List<Building> buildings;
-    private long updateTime;
+    private long updateTimeInMilliSeconds;
     private boolean updateResourcesProduction = true;
     private boolean updateResourceBuilding = true;
     private boolean updateTechnologyBuilding = true;
@@ -33,87 +24,22 @@ public class Planet implements Serializable {
     private boolean colonyDataAdded = false;
 
     public Planet(String id, int positionOnList) {
-        this.id = id;
-        this.positionOnList = positionOnList;
+        super(positionOnList,id);
         this.resourcesProduction = new ResourcesProduction();
         this.resources = new Resources(0,0,0,0);
-
-        buildings = new ArrayList<>();
-        for(DataTechnology dataTechnology : DataTechnology.values()){
-            if(dataTechnology.getType() == Type.PRODUCTION ||
-                    dataTechnology.getType() == Type.TECHNOLOGIES)
-                buildings.add(new Building(dataTechnology.name(),dataTechnology.getValue()));
-        }
-    }
-    /*
-    Execute
-     */
-    public boolean click(){
-        if(positionOnList != 0)
-            return PlanetsList.clickOnPlanet(OgameWeb.webDriver,positionOnList);
-        return false;
-    }
-    public boolean clickOnMoon(){
-        if(positionOnList != 0)
-            return PlanetsList.clickOnMoon(OgameWeb.webDriver,positionOnList);
-        return false;
-    }
-    /*
-    SETTERS
-     */
-
-    public void setTemperature(Temperature temperature) {
-        this.temperature = temperature;
-    }
-
-    public void setFields(Fields fields) {
-        this.fields = fields;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setCoordinate(Coordinate coordinate) {
-        this.coordinate = coordinate;
+        buildings = getInstance();
     }
 
     public void setMoon(Moon moon) {
         this.moon = moon;
     }
 
-    public void setDiameter(int diameter) {
-        this.diameter = diameter;
+    public void setUpdateTimeInMilliSeconds(long updateTimeInMilliSeconds) {
+        this.updateTimeInMilliSeconds = updateTimeInMilliSeconds;
     }
-
-    public void setUpdateTime(long updateTime) {
-        this.updateTime = updateTime;
-    }
-
     /*
     GETTERS
      */
-
-    public String getId() {
-        return id;
-    }
-
-    public Temperature getTemperature() {
-        return temperature;
-    }
-
-    public Fields getFields() {
-        return fields;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Coordinate getCoordinate() {
-        return coordinate;
-    }
-
     public Moon getMoon() {
         return moon;
     }
@@ -122,16 +48,8 @@ public class Planet implements Serializable {
         return moon != null;
     }
 
-    public int getDiameter() {
-        return diameter;
-    }
-
-    public int getPositionOnList() {
-        return positionOnList;
-    }
-
-    public long getUpdateTime() {
-        return updateTime;
+    public long getUpdateTimeInMilliSeconds() {
+        return updateTimeInMilliSeconds;
     }
 
     public ResourcesProduction getResourcesProduction() {
@@ -145,7 +63,6 @@ public class Planet implements Serializable {
     public void setUpdateResourcesProduction(boolean updateResourcesProduction) {
         this.updateResourcesProduction = updateResourcesProduction;
     }
-
     public boolean isUpdateResourceBuilding() {
         return updateResourceBuilding;
     }
@@ -153,7 +70,6 @@ public class Planet implements Serializable {
     public void setUpdateResourceBuilding(boolean updateResourceBuilding) {
         this.updateResourceBuilding = updateResourceBuilding;
     }
-
     public boolean isUpdateTechnologyBuilding() {
         return updateTechnologyBuilding;
     }
@@ -161,29 +77,27 @@ public class Planet implements Serializable {
     public void setUpdateTechnologyBuilding(boolean updateTechnologyBuilding) {
         this.updateTechnologyBuilding = updateTechnologyBuilding;
     }
-
     public Building getBuilding(String dataTechnologyValue) {
-        for(Building building : buildings)
-            if(building.getDataTechnology().getValue().equals(dataTechnologyValue))
-                return building;
-
-        return null;
+        return buildings.stream().
+                filter(item -> item.getDataTechnology().getValue().equals(dataTechnologyValue)).
+                findFirst().orElse(null);
     }
-
     public Building getBuilding(DataTechnology dataTechnology) {
-        for(Building building : buildings)
-            if(building.getDataTechnology() == dataTechnology)
-                return building;
-
-        return null;
+        return buildings.stream().
+                filter(item -> item.getDataTechnology() == dataTechnology).
+                findFirst().orElse(null);
     }
-
+    private List<Building> getInstance(){
+        List<Building> buildings = new ArrayList<>();
+        for(DataTechnology dataTechnology : DataTechnology.values()){
+            if(dataTechnology.getType() == Type.PRODUCTION ||
+                    dataTechnology.getType() == Type.TECHNOLOGIES)
+                buildings.add(new Building(dataTechnology.name(),dataTechnology.getValue()));
+        }
+        return buildings;
+    }
     public Resources getResources() {
         return resources;
-    }
-
-    public void setPositionOnList(int positionOnList) {
-        this.positionOnList = positionOnList;
     }
 
     public boolean isColonyDataAdded() {
@@ -201,31 +115,28 @@ public class Planet implements Serializable {
     public void setUpdatePlanetInformation(boolean updatePlanetInformation) {
         this.updatePlanetInformation = updatePlanetInformation;
     }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Planet planet = (Planet) o;
-        return Objects.equals(id, planet.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
+        PlanetListObject planet = (PlanetListObject) o;
+        return Objects.equals(super.getId(), planet.getId());
     }
 
     @Override
     public String toString() {
         return "Planet{" +
-                "id='" + id + '\'' +
-                ", positionOnList=" + positionOnList +
-                ", diameter=" + diameter +
-                ", temperature=" + temperature +
-                ", fields=" + fields +
-                ", name='" + name + '\'' +
-                ", coordinate=" + coordinate +
-                ", moon=" + moon +
+                "moon=" + moon +
+                ", resourcesProduction=" + resourcesProduction +
+                ", resources=" + resources +
+                ", buildings=" + buildings +
+                ", updateTimeInMilliSeconds=" + updateTimeInMilliSeconds +
+                ", updateResourcesProduction=" + updateResourcesProduction +
+                ", updateResourceBuilding=" + updateResourceBuilding +
+                ", updateTechnologyBuilding=" + updateTechnologyBuilding +
+                ", updatePlanetInformation=" + updatePlanetInformation +
+                ", colonyDataAdded=" + colonyDataAdded +
+                super.toString() +
                 '}';
     }
 }

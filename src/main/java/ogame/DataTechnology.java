@@ -87,6 +87,13 @@ public enum DataTechnology {
                     new RequiredTechnology(4,COMBUSTION_DRIVE_TECHOLOGY),
                     new RequiredTechnology(4,ARMOR_TECHOLOGY),
                     new RequiredTechnology(4,LASER_TECHOLOGY)))),
+    //Buildings-Moon
+    MOON_BASE ("41",3,Type.TECHNOLOGIES),
+    SENSOR_PHALANX ("42",3,Type.TECHNOLOGIES,new ArrayList<>(
+            Collections.singletonList(new RequiredTechnology(1, MOON_BASE)))),
+    JUMP_GATE ("43",3,Type.TECHNOLOGIES,new ArrayList<>(
+            Arrays.asList(new RequiredTechnology(1,MOON_BASE),
+                    new RequiredTechnology(7,HYPERSPACE_TECHOLOGY)))),
     //Ships
     FIGHTER_LIGHT("204",1, Type.BATTLE, new ArrayList<>(
             Arrays.asList(new RequiredTechnology(1,SHIPYARD),

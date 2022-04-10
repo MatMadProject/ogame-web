@@ -118,4 +118,19 @@ public class ResourcesProduction implements Serializable {
     public void setDeuteriumPerWeek(double deuteriumPerWeek) {
         this.deuteriumPerWeek = deuteriumPerWeek;
     }
+
+    @Override
+    public String toString() {
+        return "ResourcesProduction{" +
+                "metalPerHour=" + metalPerHour +
+                ", metalPerDay=" + metalPerDay +
+                ", metalPerWeek=" + metalPerWeek +
+                ", crystalPerHour=" + crystalPerHour +
+                ", crystalPerDay=" + crystalPerDay +
+                ", crystalPerWeek=" + crystalPerWeek +
+                ", deuteriumPerHour=" + deuteriumPerHour +
+                ", deuteriumPerDay=" + deuteriumPerDay +
+                ", deuteriumPerWeek=" + deuteriumPerWeek +
+                '}';
+    }
 }

@@ -80,9 +80,6 @@ public class PlanetsList {
         }
         return null;
     }
-
-
-
     public static Planet selectedPlanet(WebDriver w){
         int a = numberOfPlanet(w);
         WebElement e;
@@ -95,8 +92,7 @@ public class PlanetsList {
         }
         return null;
     }
-
-    public static Planet selectedMoon(WebDriver w){
+    public static Moon selectedMoon(WebDriver w){
         int a = numberOfPlanet(w);
         WebElement e;
         for(int pos = 1; pos <= a; pos++){
@@ -104,13 +100,34 @@ public class PlanetsList {
             e = w.findElement(By.xpath(PLANET_CONTAINER.get()));
             String tmp = e.getAttribute("class");
             if(tmp.contains(HIGHTLIGHT_MOON))
-                return new Planet(planetID(w,pos), pos);
+                return new Moon(pos,planetID(w,pos));
         }
         return null;
     }
-
-
-
+//    public static Planet selectedPlanet(WebDriver w){
+//        int a = numberOfPlanet(w);
+//        WebElement e;
+//        for(int pos = 1; pos <= a; pos++){
+//            PLANET_CONTAINER.setEdit(pos);
+//            e = w.findElement(By.xpath(PLANET_CONTAINER.get()));
+//            String tmp = e.getAttribute("class");
+//            if(tmp.contains(HIGHTLIGHT_PLANET))
+//                return new Planet(planetID(w,pos), pos);
+//        }
+//        return null;
+//    }
+//    public static Planet selectedMoon(WebDriver w){
+//        int a = numberOfPlanet(w);
+//        WebElement e;
+//        for(int pos = 1; pos <= a; pos++){
+//            PLANET_CONTAINER.setEdit(pos);
+//            e = w.findElement(By.xpath(PLANET_CONTAINER.get()));
+//            String tmp = e.getAttribute("class");
+//            if(tmp.contains(HIGHTLIGHT_MOON))
+//                return new Planet(planetID(w,pos), pos);
+//        }
+//        return null;
+//    }
     public static boolean clickOnPlanet(WebDriver w, int pos){
         int a = numberOfPlanet(w);
         if(a == 1 && !planetHasMoon(OgameWeb.webDriver,pos))
@@ -132,8 +149,8 @@ public class PlanetsList {
     public static boolean clickOnMoon(WebDriver w, int pos){
         int a = numberOfPlanet(w);
         if(pos <= a){
-            Planet selectedPlanet = selectedMoon(OgameWeb.webDriver);
-            if(selectedPlanet != null && selectedPlanet.getPositionOnList() == pos)
+            Moon selectedMoon = selectedMoon(OgameWeb.webDriver);
+            if(selectedMoon != null && selectedMoon.getPositionOnList() == pos)
                 return true;
             PLANET_CONTAINER.setEdit(pos);
             WebElement e = w.findElement(By.xpath(PLANET_CONTAINER.get().concat(MOON_IMAGE)));
@@ -144,7 +161,30 @@ public class PlanetsList {
         return false;
     }
 
-    public static boolean planetHasMoon(WebDriver w, int pos){
+    public static Planet getPlanet(WebDriver w, int pos){
+        int a = numberOfPlanet(w);
+        if(pos <= a){
+            String nameOfPlanet = PlanetsList.nameOfPlanet(OgameWeb.webDriver,pos);
+            String coordinateOfPlanet = PlanetsList.coordinateOfPlanet(OgameWeb.webDriver,pos);
+            String planetID = PlanetsList.planetID(OgameWeb.webDriver,pos);
+            Planet planet = new Planet(planetID,pos);
+            planet.setName(nameOfPlanet);
+            planet.setCoordinate(new Coordinate(coordinateOfPlanet));
+            return planet;
+        }
+        return null;
+    }
+    public static Moon getMoon(WebDriver w, int pos){
+        if(planetHasMoon(w,pos)){
+            String planetID = PlanetsList.planetID(OgameWeb.webDriver,pos);
+            String coordinateOfMoon = PlanetsList.coordinateOfPlanet(OgameWeb.webDriver,pos);
+            Moon moon = new Moon(pos,planetID);
+            moon.setCoordinate(new Coordinate(coordinateOfMoon));
+            return moon;
+        }
+        return null;
+    }
+    private static boolean planetHasMoon(WebDriver w, int pos){
         int a = numberOfPlanet(w);
         if(pos <= a){
             PLANET_CONTAINER.setEdit(pos);

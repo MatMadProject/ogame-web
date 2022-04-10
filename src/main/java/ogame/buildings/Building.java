@@ -23,6 +23,11 @@ public class Building implements Serializable {
         this.dataTechnology = DataTechnology.getFromValue(dataTechnology);
     }
 
+    public Building(DataTechnology dataTechnology) {
+        this.name = dataTechnology.name();
+        this.dataTechnology = dataTechnology;
+    }
+
     public int getLevel() {
         return level;
     }
