@@ -1,22 +1,25 @@
 package ogame.planets;
 
-import ogame.OgameObject;
+
 import ogame.actions.PlanetListAction;
+import ogame.galaxy.GalaxyObject;
 import ogame.utils.Waiter;
 import org.openqa.selenium.WebDriver;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 
-public class PlanetListObject extends OgameObject implements PlanetListAction {
+public class PlanetListObject extends GalaxyObject implements PlanetListAction, Serializable {
 
-    private final int positionOnList;
+    private static final long serialVersionUID = 1992L;
+    private int positionOnList;
     private final String id;
     private int diameter;
     private Temperature temperature = null;
     private Fields fields = null;
     private String name = "none";
-    private Coordinate coordinate = null;
+
 
     public PlanetListObject(int positionOnList, String id) {
         this.positionOnList = positionOnList;
@@ -25,6 +28,10 @@ public class PlanetListObject extends OgameObject implements PlanetListAction {
 
     public int getPositionOnList() {
         return positionOnList;
+    }
+
+    public void setPositionOnList(int positionOnList) {
+        this.positionOnList = positionOnList;
     }
 
     public int getDiameter() {
@@ -57,14 +64,6 @@ public class PlanetListObject extends OgameObject implements PlanetListAction {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Coordinate getCoordinate() {
-        return coordinate;
-    }
-
-    public void setCoordinate(Coordinate coordinate) {
-        this.coordinate = coordinate;
     }
 
     public String getId() {
@@ -109,8 +108,29 @@ public class PlanetListObject extends OgameObject implements PlanetListAction {
                 ", temperature=" + temperature +
                 ", fields=" + fields +
                 ", name='" + name + '\'' +
-                ", coordinate=" + coordinate +
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PlanetListObject)) return false;
+        PlanetListObject that = (PlanetListObject) o;
+        return super.equals(that);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId());
+    }
+
+    @Override
+    public boolean setGalaxyObject(WebDriver webDriver) {
+        return false;
+    }
+
+    @Override
+    public boolean inputCoordinate(WebDriver webDriver) {
+        return false;
+    }
 }

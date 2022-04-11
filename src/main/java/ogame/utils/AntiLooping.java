@@ -1,7 +1,10 @@
 package ogame.utils;
 
-public class AntiLooping {
+import java.io.Serializable;
 
+public class AntiLooping implements Serializable {
+
+    private static final long serialVersionUID = 1992L;
     private int executeCount = 0;
     private  final int maxExecuteCount;
 

@@ -298,7 +298,7 @@ public class Galaxy {
                 debris.setResources(new Resources(metal,crystal,0L,0));
                 Ship ship = new Ship(DataTechnology.RECYCLER);
                 ship.setValue((int)requiredShips);
-                debris.setShips(ship);
+                debris.setRequiredShip(ship);
             }catch (Exception e){
                 AppLog.printOnConsole(Galaxy.class.getName(),1,"While trying trying get resources on debris " + planetCoordinate+".");
             }
@@ -494,7 +494,7 @@ public class Galaxy {
                 debris.setResources(new Resources(metal,crystal,0L,0));
                 Ship ship = new Ship(DataTechnology.EXPLORER);
                 ship.setValue((int)requiredShips);
-                debris.setShips(ship);
+                debris.setRequiredShip(ship);
             }catch (Exception e){
                 AppLog.printOnConsole(Galaxy.class.getName(),1,"While trying trying get resources on expedition debris.");
             }
@@ -522,26 +522,28 @@ public class Galaxy {
         return resources;
     }
 
-    public static GalaxyRow getGalaxyRow(WebDriver w, int planetCoordinate){
+    public static GalaxyRow getGalaxyRow(WebDriver w, int planetPosition){
         List<Integer> colonizedPlanet = colonizedPlanet(w);
         GalaxyRow galaxyRow = new GalaxyRow();
-        if(colonizedPlanet.contains(planetCoordinate)){
+        if(colonizedPlanet.contains(planetPosition)){
             Coordinate coordinate = selectedCoordinate(w);
-            coordinate.setPlanet(planetCoordinate);
-            String planetName = planetName(w,planetCoordinate);
-            boolean moon = hasMoon(w,planetCoordinate);
-            boolean showPlanetDebris = showPlanetDebris(w,planetCoordinate);
+            coordinate.setPlanet(planetPosition);
+            String planetName = planetName(w,planetPosition);
+            boolean moon = hasMoon(w,planetPosition);
+            boolean showPlanetDebris = showPlanetDebris(w,planetPosition);
             Debris debris = new Debris();
-            if(showPlanetDebris)
-                 debris = planetDebris(w,planetCoordinate);
-            ActiveAlert activeAlertPlanet = activeAlertPlanet(w,planetCoordinate);
-            ActiveAlert activeAlertMoon = activeAlertMoon(w,planetCoordinate);
-            String playerName = playerName(w,planetCoordinate);
-            String playerId = playerId(w,planetCoordinate);
-            String allianceName = allianceName(w,planetCoordinate);
-            String allianceId = allianceId(w,planetCoordinate);
-            HonorRank honorRank = playerHonorRank(w,planetCoordinate);
-            PlayerStatus playerStatus = playerStatus(w,planetCoordinate);
+            if(showPlanetDebris){
+                debris = planetDebris(w,planetPosition);
+                debris.setCoordinate(coordinate);
+            }
+            ActiveAlert activeAlertPlanet = activeAlertPlanet(w,planetPosition);
+            ActiveAlert activeAlertMoon = activeAlertMoon(w,planetPosition);
+            String playerName = playerName(w,planetPosition);
+            String playerId = playerId(w,planetPosition);
+            String allianceName = allianceName(w,planetPosition);
+            String allianceId = allianceId(w,planetPosition);
+            HonorRank honorRank = playerHonorRank(w,planetPosition);
+            PlayerStatus playerStatus = playerStatus(w,planetPosition);
 
             galaxyRow.setCoordinate(coordinate);
             galaxyRow.setPlanetName(planetName);
@@ -570,8 +572,10 @@ public class Galaxy {
             boolean moon = hasMoon(w,planetPosition);
             boolean showPlanetDebris = showPlanetDebris(w,planetPosition);
             Debris debris = new Debris();
-            if(showPlanetDebris)
+            if(showPlanetDebris){
                 debris = planetDebris(w,planetPosition);
+                debris.setCoordinate(coordinate);
+            }
             ActiveAlert activeAlertPlanet = activeAlertPlanet(w,planetPosition);
             ActiveAlert activeAlertMoon = activeAlertMoon(w,planetPosition);
             String playerName = playerName(w,planetPosition);

@@ -1,9 +1,9 @@
 package ogame.tabs;
 
-import ogame.DataTechnology;
-import ogame.FinalXPath;
-import ogame.Type;
+import ogame.*;
+import ogame.planets.Coordinate;
 import ogame.ships.Mission;
+import ogame.ships.Ship;
 import ogame.utils.StringFactory;
 import ogame.utils.WebElementPath;
 import ogame.utils.WebElementUtil;
@@ -13,6 +13,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class FleetDispatch {
 
@@ -431,6 +432,13 @@ public class FleetDispatch {
         return false;
     }
 
+    public static boolean setCoordinate(WebDriver w, Coordinate coordinate){
+        boolean galaxy = setGalaxy(w,coordinate.getGalaxy());
+        boolean system = setSystem(w,coordinate.getSystem());
+        boolean position = setPosition(w,coordinate.getPlanet());
+        return galaxy && system && position;
+    }
+
     public static boolean selectMission(WebDriver w, Mission mission){
         try{
             if(isFleet2Visible(w)){
@@ -726,7 +734,7 @@ public class FleetDispatch {
         return false;
     }
 
-    public static boolean setDeueriumValue(WebDriver w, long value){
+    public static boolean setDeuteriumValue(WebDriver w, long value){
         try{
             if(isFleet2Visible(w)){
                 WebElement e =  w.findElement(By.xpath(INPUT_DEUTERIUM));
@@ -856,6 +864,11 @@ public class FleetDispatch {
         return false;
     }
 
+    public static void setValueShips(WebDriver webDriver, List<Ship> ships){
+        for(Ship ship : ships)
+            setValueShips(webDriver,ship.getDataTechnology(),ship.getValue());
+    }
+
     /**
      * Get ship value.
      * @param w ***
@@ -882,5 +895,53 @@ public class FleetDispatch {
             AppLog.printOnConsole(FleetDispatch.class.getName(),1,"While try set value of ship " + ship);
         }
         return -1;
+    }
+
+    public static boolean isMaxExpeditionReached(WebDriver webDriver){
+        int currentExpedition = currentExpeditionSlots(webDriver);
+        int maxExpeditions =maxExpeditionSlots(webDriver);
+
+        return currentExpedition >= maxExpeditions;
+    }
+
+    public static boolean isMaxFleetReached(WebDriver webDriver){
+        int currentFleet= currentFleetSlots(webDriver);
+        int maxFleet = maxFleetSlots(webDriver);
+
+        return currentFleet >= maxFleet;
+    }
+
+    public static List<Ship> getShipsOnPlanet(WebDriver webDriver){
+        List<Ship> returnedShip = new ArrayList<>();
+        List<DataTechnology> civilShips = DataTechnology.dataTechnologyList(Type.CIVIL);
+        List<DataTechnology> battleShips = DataTechnology.dataTechnologyList(Type.BATTLE);
+
+        Ship ship;
+        for(DataTechnology dataTechnology : civilShips){
+            ship = new Ship(dataTechnology);
+            ship.setValue(getValueShips(webDriver,dataTechnology));
+            returnedShip.add(ship);
+        }
+        for(DataTechnology dataTechnology : battleShips){
+            ship = new Ship(dataTechnology);
+            ship.setValue(getValueShips(webDriver,dataTechnology));
+            returnedShip.add(ship);
+        }
+        return returnedShip;
+    }
+
+    public static List<Ship> getShipsOnPlanet(WebDriver webDriver, List<Ship> ships){
+
+        for(Ship  ship : ships)
+            ship.setValue(getValueShips(webDriver,ship.getDataTechnology()));
+
+        return ships;
+    }
+
+    public static boolean isEnoughDeuteriumForFlight(WebDriver webDriver){
+        long deuteriumConsumption = FleetDispatch.deuteriumConsumption(webDriver);
+        long deuteriumOnPlanet = ResourcesBar.deuterium(webDriver);
+
+        return  deuteriumOnPlanet > deuteriumConsumption;
     }
 }

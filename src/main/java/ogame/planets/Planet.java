@@ -1,21 +1,25 @@
 package ogame.planets;
 
 import ogame.DataTechnology;
-import ogame.OgameWeb;
 import ogame.Type;
 import ogame.buildings.Building;
+import ogame.tabs.FleetDispatch;
+import ogame.utils.Waiter;
+import org.openqa.selenium.WebDriver;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 
-public class Planet extends PlanetListObject{
+public class Planet extends PlanetListObject implements Serializable{
 
+    private static final long serialVersionUID = 1992L;
     private Moon moon = null;
-    private ResourcesProduction resourcesProduction;
-    private Resources resources;
-    private List<Building> buildings;
+    private final ResourcesProduction resourcesProduction;
+    private final Resources resources;
+    private final List<Building> buildings;
     private long updateTimeInMilliSeconds;
     private boolean updateResourcesProduction = true;
     private boolean updateResourceBuilding = true;
@@ -136,7 +140,23 @@ public class Planet extends PlanetListObject{
                 ", updateTechnologyBuilding=" + updateTechnologyBuilding +
                 ", updatePlanetInformation=" + updatePlanetInformation +
                 ", colonyDataAdded=" + colonyDataAdded +
-                super.toString() +
                 '}';
+    }
+    @Override
+    public boolean setGalaxyObject(WebDriver w) {
+        boolean selected;
+        do{
+            if(FleetDispatch.isTargetPlanetSelected(w))
+                return true;
+            FleetDispatch.clickTargetPlanet(w);
+            Waiter.sleep(200, 200);
+            if (getAntiLooping().check()) {
+                getAntiLooping().reset();
+                return false;
+            }
+            selected  = FleetDispatch.isTargetPlanetSelected(w);
+        }while(selected);
+        getAntiLooping().reset();
+        return false;
     }
 }

@@ -306,7 +306,7 @@ public class EventBoxContent {
         if(eventBoxSize > 0){
             for(int i = 1; i <= eventBoxSize; i++){
                 int missionType = missionType(w,i);
-                if(missionType == mission.getDATA_MISSION_TYPE()){
+                if(missionType == mission.getdataMissionType()){
                     String id = id(w,i);
                     Event event = new Event(id);
                     event.setMissionType(missionType);
@@ -333,7 +333,7 @@ public class EventBoxContent {
         if(eventBoxSize > 0){
             for(int i = 1; i <= eventBoxSize; i++){
                 int missionType = missionType(w,i);
-                if(missionType == mission.getDATA_MISSION_TYPE()){
+                if(missionType == mission.getdataMissionType()){
                     Coordinate thisOriginCoordinate = originCoordinate(w,i);
                     Coordinate thisDestinationCoordinate = destiantionCoordinate(w,i);
 

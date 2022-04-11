@@ -1,6 +1,9 @@
 package ogame.ships;
 
-public enum Mission {
+import java.io.Serializable;
+
+public enum Mission implements Serializable {
+
     EXPEDITION(1,15),
     COLONIZE(2,7),
     COLLECT_DEBRIS(3,8),
@@ -15,6 +18,7 @@ public enum Mission {
     private final int LIST_INDEX;
     private int DATA_MISSION_TYPE;
 
+    private static final long serialVersionUID = 1992L;
     Mission(int LIST_INDEX){
         this.LIST_INDEX = LIST_INDEX;
     }
@@ -28,7 +32,7 @@ public enum Mission {
         return LIST_INDEX;
     }
 
-    public int getDATA_MISSION_TYPE() {
+    public int getdataMissionType() {
         return DATA_MISSION_TYPE;
     }
 
@@ -42,7 +46,7 @@ public enum Mission {
 
     public static Mission getFromDataMissionType(int value){
         for(Mission mission : Mission.values()){
-            if(mission.getDATA_MISSION_TYPE() == value)
+            if(mission.getdataMissionType() == value)
                 return mission;
         }
         return UNDEFINED;
