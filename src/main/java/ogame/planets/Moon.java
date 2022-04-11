@@ -63,6 +63,9 @@ public class Moon extends PlanetListObject implements Serializable {
     public String toString() {
         return "Moon{" +
                 "buildings=" + buildings +
+                ", updateTechnologyBuilding=" + updateTechnologyBuilding +
+                ", updateMoonInformation=" + updateMoonInformation +
+                ", moonDataAdded=" + moonDataAdded +
                 '}';
     }
 
@@ -71,7 +74,7 @@ public class Moon extends PlanetListObject implements Serializable {
         if (this == o) return true;
         if (!(o instanceof Moon)) return false;
         Moon moon = (Moon) o;
-        return super.equals(moon);
+        return Objects.equals(super.getId(), moon.getId());
     }
 
     @Override
@@ -95,10 +98,5 @@ public class Moon extends PlanetListObject implements Serializable {
         }while(selected);
         getAntiLooping().reset();
         return false;
-    }
-
-    @Override
-    public boolean inputCoordinate(WebDriver webDriver) {
-        return super.inputCoordinate(webDriver);
     }
 }

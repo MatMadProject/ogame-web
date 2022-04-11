@@ -131,6 +131,6 @@ public class PlanetListObject extends GalaxyObject implements PlanetListAction, 
 
     @Override
     public boolean inputCoordinate(WebDriver webDriver) {
-        return false;
+        return super.inputCoordinate(webDriver);
     }
 }

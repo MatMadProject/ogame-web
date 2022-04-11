@@ -930,11 +930,13 @@ public class FleetDispatch {
         return returnedShip;
     }
 
-    public static List<Ship> getShipsOnPlanet(WebDriver webDriver, List<Ship> ships){
-
-        for(Ship  ship : ships)
-            ship.setValue(getValueShips(webDriver,ship.getDataTechnology()));
-
+    public static List<Ship> getShipsOnPlanet(WebDriver webDriver, List<Ship> declaredShips){
+        List<Ship> ships = new ArrayList<>();
+        for(Ship  ship : declaredShips){
+            Ship tmp = new Ship(ship.getDataTechnology());
+            tmp.setValue(getValueShips(webDriver,ship.getDataTechnology()));
+            ships.add(tmp);
+        }
         return ships;
     }
 
