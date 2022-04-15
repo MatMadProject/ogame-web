@@ -97,6 +97,6 @@ public class Moon extends PlanetListObject implements Serializable {
             selected  = FleetDispatch.isTargetMoonSelected(w);
         }while(selected);
         getAntiLooping().reset();
-        return false;
+        return true;
     }
 }

@@ -1,6 +1,7 @@
 package ogame.tabs;
 
 import ogame.ContentWrapper;
+import ogame.OgameWeb;
 import ogame.galaxy.*;
 import ogame.DataTechnology;
 import ogame.FinalXPath;
@@ -201,6 +202,7 @@ public class Galaxy {
         }
         return new Coordinate(0,0,0);
     }
+
     public static boolean showPlanetCoordinate(WebDriver webDriver, int planetCoordinate){
         if(hasPlanetDebris(webDriver, planetCoordinate)){
             GALAXY_ROW.setEdit(planetCoordinate);
@@ -478,7 +480,7 @@ public class Galaxy {
     }
     public static Debris expeditionDebris(WebDriver w){
         Debris debris = new Debris();
-        if(hasExpeditionDebris(w)){
+        if(showExpeditionDebris(w)){
             try {
                 DEBRIS_ON_GALAXY_ROW.setEdit(16);
                 WebElement element = w.findElement(By.xpath(DEBRIS_ON_GALAXY_ROW.get().concat(METAL_VALUE_ON_DEBRIS)));
@@ -504,7 +506,7 @@ public class Galaxy {
 
     public static Resources resourcesOnExpeditionDebris(WebDriver w){
         Resources resources = new Resources(0L,0L,0L,0);
-        if(hasExpeditionDebris(w)){
+        if(showExpeditionDebris(w)){
             try {
                 DEBRIS_ON_GALAXY_ROW.setEdit(16);
                 WebElement element = w.findElement(By.xpath(DEBRIS_ON_GALAXY_ROW.get().concat(METAL_VALUE_ON_DEBRIS)));
@@ -602,5 +604,20 @@ public class Galaxy {
             galaxyRows.add(galaxyRow);
         }
         return galaxyRows;
+    }
+
+    public static boolean isDeclaredCoordinateSelected(WebDriver webDriver, Coordinate declaredCoordinate){
+        Coordinate currentGalaxyCoordinate = selectedCoordinate(webDriver);
+        return currentGalaxyCoordinate.equals(declaredCoordinate);
+    }
+
+    public static boolean inputDeclaredCoordinate(WebDriver webDriver, Coordinate declaredCoordinate){
+        boolean inputGalaxy = inputGalaxy(webDriver,declaredCoordinate.getGalaxy());
+        boolean inputSystem = inputSystem(webDriver, declaredCoordinate.getSystem());
+
+        if(inputGalaxy && inputSystem)
+            return  changeCoordinate(webDriver);
+        else
+            return false;
     }
 }

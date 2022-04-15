@@ -157,6 +157,6 @@ public class Planet extends PlanetListObject implements Serializable{
             selected  = FleetDispatch.isTargetPlanetSelected(w);
         }while(selected);
         getAntiLooping().reset();
-        return false;
+        return true;
     }
 }

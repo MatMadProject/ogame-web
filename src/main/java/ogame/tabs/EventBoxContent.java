@@ -1,10 +1,12 @@
 package ogame.tabs;
 
+import ogame.OgameWeb;
 import ogame.eventbox.Event;
 import ogame.eventbox.GalaxyObject;
 import ogame.eventbox.Type;
 import ogame.planets.Coordinate;
 import ogame.ships.Mission;
+import ogame.utils.Waiter;
 import ogame.utils.WebElementPath;
 import ogame.utils.WebElementUtil;
 import ogame.utils.log.AppLog;
@@ -77,9 +79,9 @@ public class EventBoxContent {
 
     public static int eventBoxSize(WebDriver w){
         try{
-                WebElement e =  w.findElement(By.xpath(EVENT_BOX_CONTENT_TABLE_BODY));
-                List<WebElement> table = e.findElements(By.tagName("tr"));
-                return table.size();
+            WebElement e =  w.findElement(By.xpath(EVENT_BOX_CONTENT_TABLE_BODY));
+            List<WebElement> table = e.findElements(By.tagName("tr"));
+            return table.size();
         }
         catch (Exception e){
             AppLog.printOnConsole(EventBoxContent.class.getName(),1,"When try download size of event box.");
@@ -277,8 +279,9 @@ public class EventBoxContent {
 
     public static ArrayList<Event> events(WebDriver w){
         ArrayList<Event> list = new ArrayList<>();
-
         int eventBoxSize = eventBoxSize(w);
+        open(w);
+        Waiter.sleep(200,200);
         if(eventBoxSize > 0){
             for(int i = 1; i <= eventBoxSize; i++){
                 String id = id(w,i);
@@ -301,8 +304,9 @@ public class EventBoxContent {
 
     public static ArrayList<Event> events(WebDriver w, Mission mission){
         ArrayList<Event> list = new ArrayList<>();
-
         int eventBoxSize = eventBoxSize(w);
+        open(w);
+        Waiter.sleep(200,200);
         if(eventBoxSize > 0){
             for(int i = 1; i <= eventBoxSize; i++){
                 int missionType = missionType(w,i);
@@ -328,8 +332,9 @@ public class EventBoxContent {
 
     public static ArrayList<Event> events(WebDriver w, Mission mission, Coordinate originCoordinate, Coordinate destinationCoordinate){
         ArrayList<Event> list = new ArrayList<>();
-
         int eventBoxSize = eventBoxSize(w);
+        open(w);
+        Waiter.sleep(200,200);
         if(eventBoxSize > 0){
             for(int i = 1; i <= eventBoxSize; i++){
                 int missionType = missionType(w,i);
@@ -361,6 +366,8 @@ public class EventBoxContent {
 
     public static Event eventFromId(WebDriver w, String idEvent){
         int eventBoxSize = eventBoxSize(w);
+        open(w);
+        Waiter.sleep(200,200);
         if(eventBoxSize > 0){
             for(int i = 1; i <= eventBoxSize; i++){
                 String id = id(w,i);
@@ -380,5 +387,9 @@ public class EventBoxContent {
             }
         }
         return null;
+    }
+
+    public boolean isAnyFlightEvent(){
+        return eventBoxSize(OgameWeb.webDriver)  > 0;
     }
 }

@@ -1,14 +1,16 @@
 package ogame.galaxy;
 
+import ogame.actions.GalaxyAction;
 import ogame.planets.Resources;
 import ogame.tabs.FleetDispatch;
 import ogame.ships.Ship;
+import ogame.tabs.Galaxy;
 import ogame.utils.Waiter;
 import org.openqa.selenium.WebDriver;
 
 import java.io.Serializable;
 
-public class Debris extends GalaxyObject implements Serializable {
+public class Debris extends GalaxyObject implements Serializable, GalaxyAction {
 
     private static final long serialVersionUID = 1992L;
     private Resources resources;
@@ -63,6 +65,24 @@ public class Debris extends GalaxyObject implements Serializable {
             selected  = FleetDispatch.isTargetDebrisSelected(w);
         }while(selected);
         getAntiLooping().reset();
-        return false;
+        return true;
+    }
+
+    @Override
+    public boolean changeCoordinate(WebDriver webDriver) {
+        boolean selected;
+        do{
+            if(Galaxy.isDeclaredCoordinateSelected(webDriver,getCoordinate()))
+                return true;
+            Galaxy.inputDeclaredCoordinate(webDriver,getCoordinate());
+            Waiter.sleep(200, 200);
+            if (getAntiLooping().check()) {
+                getAntiLooping().reset();
+                return false;
+            }
+            selected  = Galaxy.isDeclaredCoordinateSelected(webDriver,getCoordinate());
+        }while(selected);
+        getAntiLooping().reset();
+        return true;
     }
 }
