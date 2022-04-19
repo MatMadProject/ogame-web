@@ -7,5 +7,10 @@ Java - version 8
 Selenium Web - version 3.141.59
 Chromedriver - latest stable version for your Chrome webbrowser
 
+UPDATE: PACKAGE VERSION 2.x.x
+Java - version 17
+Selenium Web - version 3.141.59
+Chromedriver - latest stable version for your Chrome webbrowser
+
 LICENSE:
 Open source - GNU General Public License
