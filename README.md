@@ -2,15 +2,15 @@
 
 The code is based on the Selenium API. It allows you to download game data in any language. Tested on Chrome.
 
-API VERSION:
+API VERSION:</br>
 Java - version 8
 Selenium Web - version 3.141.59
 Chromedriver - latest stable version for your Chrome webbrowser
 
-UPDATE: PACKAGE VERSION 2.x.x
+UPDATE: PACKAGE VERSION 2.x.x</br>
 Java - version 17
 Selenium Web - version 3.141.59
 Chromedriver - latest stable version for your Chrome webbrowser
 
-LICENSE:
+LICENSE:</br>
 Open source - GNU General Public License
