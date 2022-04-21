@@ -1,5 +1,8 @@
 package ogame.utils.watch;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 public class Calendar {
     /**
      * PL
@@ -43,5 +46,15 @@ public class Calendar {
      */
     public static String getDateTimeSQL(long milisecTime) {
         return Date.getSQL(milisecTime)+" "+Time.get(milisecTime);
+    }
+    /**
+     * EN
+     * @param dateTimeSQLFormatted Date in format yyyy-mm-dd hh:mm:ss.
+     * @return Time in milliseconds from formatted String.
+     */
+    public static long getDateTimeInMilliseconds(String dateTimeSQLFormatted) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy hh:mm:ss");
+
+        return sdf.parse(dateTimeSQLFormatted).getTime();
     }
 }

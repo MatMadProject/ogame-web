@@ -1,6 +1,7 @@
 package ogame.ships;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 public enum Mission implements Serializable {
 
@@ -37,18 +38,14 @@ public enum Mission implements Serializable {
     }
 
     public static Mission getFromListIndex(int value){
-        for(Mission mission : Mission.values()){
-            if(mission.getListIndex() == value)
-                return mission;
-        }
-        return UNDEFINED;
+        return Arrays.stream(Mission.values())
+                .filter(item -> item.getListIndex() == value)
+                .findFirst().orElse(UNDEFINED);
     }
 
     public static Mission getFromDataMissionType(int value){
-        for(Mission mission : Mission.values()){
-            if(mission.getdataMissionType() == value)
-                return mission;
-        }
-        return UNDEFINED;
+        return Arrays.stream(Mission.values())
+                .filter(item -> item.getdataMissionType() == value)
+                .findFirst().orElse(UNDEFINED);
     }
 }

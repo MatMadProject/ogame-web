@@ -389,7 +389,7 @@ public class EventBoxContent {
         return null;
     }
 
-    public boolean isAnyFlightEvent(){
+    public static boolean isAnyFlightEvent(){
         return eventBoxSize(OgameWeb.webDriver)  > 0;
     }
 }
