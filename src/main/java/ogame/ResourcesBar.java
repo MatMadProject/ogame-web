@@ -1,5 +1,6 @@
 package ogame;
 
+import ogame.planets.Resources;
 import ogame.utils.log.AppLog;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -13,6 +14,14 @@ public class ResourcesBar {
     public static final String DARKMATTER = "//*[@id=\"resources_darkmatter\"]";
     public static final String ENERGY_BALANCE = "//*[@id=\"resources_energy\"]";
 
+    public Resources resources(WebDriver w){
+        return new Resources(
+                metal(w),
+                crystal(w),
+                deuterium(w),
+                0
+        );
+    }
     public static long metal(WebDriver w) {
         return value(w,METAL,"Doesn't download value of metal.");
     }

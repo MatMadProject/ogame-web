@@ -49,11 +49,11 @@ public class Calendar {
     }
     /**
      * EN
-     * @param dateTimeSQLFormatted Date in format yyyy-mm-dd hh:mm:ss.
+     * @param dateTimeSQLFormatted Date in format yyyy-MM-dd HH:mm:ss.
      * @return Time in milliseconds from formatted String.
      */
     public static long getDateTimeInMilliseconds(String dateTimeSQLFormatted) throws ParseException {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy hh:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         return sdf.parse(dateTimeSQLFormatted).getTime();
     }

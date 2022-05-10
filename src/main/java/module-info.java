@@ -1,6 +1,6 @@
 module ogame{
-        requires selenium.api;
-        requires selenium.chrome.driver;
+        requires org.seleniumhq.selenium.api;
+        requires org.seleniumhq.selenium.chrome_driver;
 
         opens ogame to javax.xml.bind, TestV2;
 
