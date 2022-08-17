@@ -5,6 +5,7 @@ import ogame.Type;
 import ogame.planets.Coordinate;
 import ogame.FinalXPath;
 import ogame.ResourcesBar;
+import ogame.planets.Resources;
 import ogame.ships.Mission;
 import ogame.ships.Ship;
 import ogame.utils.StringFactory;
@@ -948,5 +949,14 @@ public class FleetDispatch {
         long deuteriumOnPlanet = ResourcesBar.deuterium(webDriver);
 
         return  deuteriumOnPlanet > deuteriumConsumption;
+    }
+
+    public static boolean loadResourcesOnFleet(WebDriver webDriver, Resources resources){
+        if(!setMetalValue(webDriver,resources.getMetal()))
+            return false;
+        if(!setCrystalValue(webDriver,resources.getCrystal()))
+            return false;
+
+        return setDeuteriumValue(webDriver,resources.getDeuterium());
     }
 }

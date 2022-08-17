@@ -14,7 +14,7 @@ public class ResourcesBar {
     public static final String DARKMATTER = "//*[@id=\"resources_darkmatter\"]";
     public static final String ENERGY_BALANCE = "//*[@id=\"resources_energy\"]";
 
-    public Resources resources(WebDriver w){
+    public static Resources resources(WebDriver w){
         return new Resources(
                 metal(w),
                 crystal(w),
@@ -22,6 +22,7 @@ public class ResourcesBar {
                 0
         );
     }
+
     public static long metal(WebDriver w) {
         return value(w,METAL,"Doesn't download value of metal.");
     }
@@ -40,7 +41,7 @@ public class ResourcesBar {
     private static long value(WebDriver w, String xPath, String errorMsg){
         try {
             WebElement e = w.findElement(By.xpath(xPath));
-            String value = e.getText().replace(".", "");
+            String value = e.getAttribute("data-raw");
             return Long.parseLong(value);
         } catch (Exception ex) {
             AppLog.printOnConsole(ResourcesBar.class.getName(), 1, errorMsg);
